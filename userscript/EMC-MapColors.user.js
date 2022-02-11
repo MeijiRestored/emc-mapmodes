@@ -3,8 +3,8 @@
 // @namespace    https://github.com/32Vache/emc-map-colors
 // @version      0.1
 // @description  show more color on emc dynmap for mega nations
-// @updateURL    https://raw.githubusercontent.com/32Vache/emc-map-colors/master/userscript/EMC-MapColors.user.js
-// @downloadURL  https://raw.githubusercontent.com/32Vache/emc-map-colors/master/userscript/EMC-MapColors.user.js
+// @updateURL    https://raw.githubusercontent.com/32Vache/emc-map-colors/main/userscript/EMC-MapColors.user.js
+// @downloadURL  https://raw.githubusercontent.com/32Vache/emc-map-colors/mainr/userscript/EMC-MapColors.user.js
 // @author       32Vache
 // @include      https://earthmc.net/map*
 // @include      http://earthmc.net/map*
