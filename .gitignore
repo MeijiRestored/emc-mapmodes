@@ -1,0 +1,4 @@
+web-ext-artifacts
+node_modules
+marker_earth.json
+.env

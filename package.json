@@ -1,0 +1,12 @@
+{
+  "name": "process",
+  "version": "1.0.0",
+  "description": "The script fetches marker_earth.json from earthmc.net once in a while and changes the colors accoding to data.json\r Then the processed marker_earth.json is made available for web requests.",
+  "main": "process.js",
+  "author": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "fs": "^0.0.1-security"
+  }
+}
