@@ -62,7 +62,7 @@ let colors = [
 
 // Builds recolored marker_earth.json
 // Runs every 5 minutes
-setInterval(function () {
+
   https.get(
     "https://earthmc.net/map/tiles/_markers_/marker_earth.json",
     function (res) {
@@ -123,7 +123,7 @@ setInterval(function () {
       });
     }
   );
-}, 300000); // 5 minutes
+
 
 // Passes the recolored marker_earth.json when requested
 app.get("/:file(*)", function (req, re, next) {
