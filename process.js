@@ -574,7 +574,7 @@ https.get(
                   let nats = e["nations"];
                   for (let n of nats) {
                     if (n.toLowerCase() === nation.toLowerCase()) {
-                      console.log(`Recolored ${nation}!`);
+                      // console.log(`Recolored ${nation}!`);
                       Response["sets"]["townyPlugin.markerset"]["areas"][i][
                         "fillcolor"
                       ] = e["color"][0];
@@ -637,14 +637,10 @@ setInterval(function () {
 
 // Passes the recolored marker_earth.json or clean update.json when requested
 app.get("/:file(*)", function (req, re, next) {
-  if (file === "marker_earth.json" || file === "update.json") {
-    var file = req.params.file,
-      path = __dirname + "/" + file;
-    re.sendFile(path);
-    console.log(`${file} sent!`);
-  } else {
-    console.log("Incorrect request received.");
-  }
+  var file = req.params.file,
+    path = __dirname + "/" + file;
+  re.sendFile(path);
+  console.log(`${file} sent!`);
 });
 
 app.listen(process.env.PORT);
