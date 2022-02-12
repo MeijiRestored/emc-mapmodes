@@ -1,9 +1,12 @@
 # EMC Map Colors
 
-![](https://img.shields.io/github/v/release/32Vache/emc-map-colors) ![](https://img.shields.io/github/commit-activity/m/32Vache/emc-map-colors) ![](https://img.shields.io/github/repo-size/32Vache/emc-map-colors) ![](https://img.shields.io/github/downloads/32Vache/emc-map-colors/total)
+![Release](https://img.shields.io/github/v/release/32Vache/emc-map-colors) ![Commit activity](https://img.shields.io/github/commit-activity/m/32Vache/emc-map-colors) ![Repo size](https://img.shields.io/github/repo-size/32Vache/emc-map-colors) ![Downloads](https://img.shields.io/github/downloads/32Vache/emc-map-colors/total)
 
+Userscript for EarthMC's dynmap that colors meganations together.
+![Map](https://media.discordapp.net/attachments/667790176184958976/942099891478470687/Screenshot_639.png)
 
-Userscript for EarthMC's dynmap that colors meganations together
+It also shows which meganation a town is part of on the popup!
+![Popup](https://media.discordapp.net/attachments/667790176184958976/942099891210031164/Screenshot_640.png)
 
 ## Updates
 

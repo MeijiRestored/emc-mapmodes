@@ -580,7 +580,7 @@ https.get(
                       );
                       let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
                       let popup = `${start[1]}<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${e["name"]}</span>${end[1]}`;
-                      console.log(popup);
+                      // console.log(popup);
                       Response["sets"]["townyPlugin.markerset"]["areas"][i][
                         "fillcolor"
                       ] = e["color"][0];
