@@ -52,7 +52,7 @@ let colors = [
       "Uruguay",
       "Argentina",
       "Peru",
-      "Acre,
+      "Acre",
       "Chile",
       "Paraguay",
       "Portugal",
