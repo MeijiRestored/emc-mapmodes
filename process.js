@@ -618,7 +618,7 @@ setInterval(function () {
         // If update is bigger than 32KB, it definitifly contains areas updates which reset the map colors
         if (body.length < 32768) {
           // Update is less than 32KB, it is a player data update only. Simply pass it to the web server
-          fs.writeFileSync("update.json", final, (err) => {
+          fs.writeFileSync("update.json", body, (err) => {
             if (err) console.log(err);
           });
         } else {
