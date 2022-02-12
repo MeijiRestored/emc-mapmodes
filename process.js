@@ -554,7 +554,7 @@ https.get(
       var Response = JSON.parse(body);
       var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
-      // Iterate through areas and recolor if necessary
+      // Iterate through areas and recolor and/or modify popup if necessary
       for (let i in areas) {
         var desc = areas[i]["desc"];
         let desc_title = desc.match(
@@ -569,18 +569,27 @@ https.get(
               nation = nation[1];
               if (nation) {
                 // Check if nation has recolor
-
                 for (let e of colors) {
                   let nats = e["nations"];
                   for (let n of nats) {
                     if (n.toLowerCase() === nation.toLowerCase()) {
+                      // Nation has recolor, modify the color and the popup
                       // console.log(`Recolored ${nation}!`);
+                      let start = desc.match(
+                        /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
+                      );
+                      let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
+                      let popup = `${start[1]}<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${e["name"]}</span>${end[1]}`;
+                      console.log(popup);
                       Response["sets"]["townyPlugin.markerset"]["areas"][i][
                         "fillcolor"
                       ] = e["color"][0];
                       Response["sets"]["townyPlugin.markerset"]["areas"][i][
                         "color"
                       ] = e["color"][1] || e["color"][0];
+                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                        "desc"
+                      ] = popup;
                     }
                   }
                 }
