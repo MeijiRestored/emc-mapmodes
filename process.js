@@ -539,57 +539,57 @@ function formatBytes(bytes, decimals) {
 }
 
 // Builds recolored marker_earth.json
-// Runs every 5 minutes
+function builder() {
+  https.get(
+    "https://earthmc.net/map/tiles/_markers_/marker_earth.json",
+    function (res) {
+      var body = "";
 
-https.get(
-  "https://earthmc.net/map/tiles/_markers_/marker_earth.json",
-  function (res) {
-    var body = "";
+      res.on("data", function (chunk) {
+        body += chunk;
+      });
 
-    res.on("data", function (chunk) {
-      body += chunk;
-    });
+      res.on("end", function () {
+        var Response = JSON.parse(body);
+        var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
-    res.on("end", function () {
-      var Response = JSON.parse(body);
-      var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
-
-      // Iterate through areas and recolor and/or modify popup if necessary
-      for (let i in areas) {
-        var desc = areas[i]["desc"];
-        let desc_title = desc.match(
-          /<span style=\"font-size:120%\">(.+?)<\/span>/
-        );
-        if (desc_title) {
-          desc_title = desc_title[1];
-
+        // Iterate through areas and recolor and/or modify popup if necessary
+        for (let i in areas) {
+          var desc = areas[i]["desc"];
+          let desc_title = desc.match(
+            /<span style=\"font-size:120%\">(.+?)<\/span>/
+          );
           if (desc_title) {
-            let nation = desc_title.match(/.+? \((.+?)\)$/);
-            if (nation) {
-              nation = nation[1];
+            desc_title = desc_title[1];
+
+            if (desc_title) {
+              let nation = desc_title.match(/.+? \((.+?)\)$/);
               if (nation) {
-                // Check if nation has recolor
-                for (let e of colors) {
-                  let nats = e["nations"];
-                  for (let n of nats) {
-                    if (n.toLowerCase() === nation.toLowerCase()) {
-                      // Nation has recolor, modify the color and the popup
-                      // console.log(`Recolored ${nation}!`);
-                      let start = desc.match(
-                        /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
-                      );
-                      let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
-                      let popup = `${start[1]}<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${e["name"]}</span>${end[1]}`;
-                      // console.log(popup);
-                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                        "fillcolor"
-                      ] = e["color"][0];
-                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                        "color"
-                      ] = e["color"][1] || e["color"][0];
-                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                        "desc"
-                      ] = popup;
+                nation = nation[1];
+                if (nation) {
+                  // Check if nation has recolor
+                  for (let e of colors) {
+                    let nats = e["nations"];
+                    for (let n of nats) {
+                      if (n.toLowerCase() === nation.toLowerCase()) {
+                        // Nation has recolor, modify the color and the popup
+                        // console.log(`Recolored ${nation}!`);
+                        let start = desc.match(
+                          /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
+                        );
+                        let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
+                        let popup = `${start[1]}<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${e["name"]}</span>${end[1]}`;
+                        // console.log(popup);
+                        Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                          "fillcolor"
+                        ] = e["color"][0];
+                        Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                          "color"
+                        ] = e["color"][1] || e["color"][0];
+                        Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                          "desc"
+                        ] = popup;
+                      }
                     }
                   }
                 }
@@ -597,20 +597,27 @@ https.get(
             }
           }
         }
-      }
 
-      var final = JSON.stringify(Response);
-      fs.writeFileSync("marker_earth.json", final, (err) => {
-        if (err) console.log(err);
+        var final = JSON.stringify(Response);
+        fs.writeFileSync("marker_earth.json", final, (err) => {
+          if (err) console.log(err);
+        });
       });
-    });
 
-    res.on("error", function (r) {
-      console.log(e);
-    });
-  }
-);
+      res.on("error", function (r) {
+        console.log(e);
+      });
+    }
+  );
+}
 
+// Run it on startup...
+builder();
+
+// ...and every ten minutes.
+setInterval(function () {
+  builder();
+}, 600000);
 // FIlters player updates
 // Runs every 5 seconds to always have up to date data.
 setInterval(function () {
