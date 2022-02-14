@@ -519,6 +519,27 @@ let colors = [
   },
 ];
 
+// Area calculator
+/**
+ * Calculate area of polygon.
+ * @function calcArea
+ * @param {Array} x Array of X coordinates
+ * @param {Array} y Array of Y coordinates
+ * @param {number} ptsNum Number of coordinate points
+ * @returns {number} Calculated area
+ */
+function calcArea(x, y, ptsNum) {
+  let area = 0;
+  let j = ptsNum - 1;
+
+  for (let i = 0; i < ptsNum; i++) {
+    area = area + (x[j] + x[i]) * (y[j] - y[i]);
+    j = i;
+  }
+
+  return Math.abs(area / 2);
+}
+
 // Byte convert function
 /**
  * Format bytes into KB, MB, GB, etc.
@@ -554,7 +575,7 @@ function builder() {
         var Response = JSON.parse(body);
         var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
-        // Iterate through areas and recolor and/or modify popup if necessary
+        // Iterate through areas, add town chunk amoun, and recolor and add meganation name if necessary
         for (let i in areas) {
           var desc = areas[i]["desc"];
           let desc_title = desc.match(
@@ -579,17 +600,48 @@ function builder() {
                           /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
                         );
                         let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
-                        let popup = `${start[1]}<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${e["name"]}</span>${end[1]}`;
-                        // console.log(popup);
+                        let town = desc_title.match(/(.+?) \(.+?\)$/);
+                        let area = calcArea(
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "x"
+                          ],
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "y"
+                          ],
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "x"
+                          ].length
+                        );
+
+                        // Show chunk amount. Filter Shop polygons to avoid incorretc chunk amount calculation
+                        if (town.endsWith("(Shop)")) {
+                          let popup = `${start[1]}<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${e["name"]}</span>${end[1]}`;
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "desc"
+                          ] = popup;
+                        } else {
+                          let popup = `${
+                            start[1]
+                          }<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${
+                            e["name"]
+                          }</span><br /><span style="font-size:80%">Town size: </span><span style="font-size:90%">${(
+                            area / 16
+                          ).toString()}</span><span style="font-size:80%"> chunks</span>${
+                            end[1]
+                          }`;
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "desc"
+                          ] = popup;
+                        }
+
                         Response["sets"]["townyPlugin.markerset"]["areas"][i][
                           "fillcolor"
                         ] = e["color"][0];
                         Response["sets"]["townyPlugin.markerset"]["areas"][i][
                           "color"
                         ] = e["color"][1] || e["color"][0];
-                        Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                          "desc"
-                        ] = popup;
+                      } else {
+                        // No recolor, but add town chunk amount anyways
                       }
                     }
                   }
