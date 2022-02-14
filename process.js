@@ -614,7 +614,7 @@ function builder() {
                         );
 
                         // Show chunk amount. Filter Shop polygons to avoid incorretc chunk amount calculation
-                        if (town.endsWith("(Shop)")) {
+                        if (town[1].endsWith("(Shop)")) {
                           let popup = `${start[1]}<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${e["name"]}</span>${end[1]}`;
                           Response["sets"]["townyPlugin.markerset"]["areas"][i][
                             "desc"
