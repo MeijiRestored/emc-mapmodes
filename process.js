@@ -625,7 +625,7 @@ function builder() {
                           }<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${
                             e["name"]
                           }</span><br /><span style="font-size:80%">Town size: </span><span style="font-size:90%">${(
-                            area / 16
+                            area / 256
                           ).toString()}</span><span style="font-size:80%"> chunks</span>${
                             end[1]
                           }`;
