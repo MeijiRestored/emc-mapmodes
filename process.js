@@ -529,6 +529,9 @@ let colors = [
  * @returns {number} Calculated area
  */
 function calcArea(x, y, ptsNum) {
+  console.log(x);
+  console.log(y);
+  console.log(ptsNum);
   let area = 0;
   let j = ptsNum - 1;
 
