@@ -1,13 +1,12 @@
 // ==UserScript==
 // @name         EMC Dynmap Colors
 // @namespace    https://github.com/32Vache/emc-map-colors
-// @version      0.2
-// @description  show more color on emc dynmap for mega nations
+// @version      0.2.1
+// @description  Userscript for EarthMC's dynmap that colors meganations and enhances the town popups.
 // @updateURL    https://raw.githubusercontent.com/32Vache/emc-map-colors/main/userscript/EMC-MapColors.user.js
 // @downloadURL  https://raw.githubusercontent.com/32Vache/emc-map-colors/main/userscript/EMC-MapColors.user.js
 // @author       32Vache
-// @include      https://earthmc.net/map*
-// @include      http://earthmc.net/map*
+// @include      *://earthmc.net/map*
 // @include      https://emc-color.herokuapp.com*
 // @grant        GM_webRequest
 // @webRequest   [{"selector":{"include":"*://earthmc.net/map/tiles/_markers_/marker_earth.json"},"action":{"redirect":"https://emc-color.herokuapp.com/marker_earth.json"}}]
