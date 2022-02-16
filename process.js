@@ -177,10 +177,10 @@ function builder() {
 
                         Response["sets"]["townyPlugin.markerset"]["areas"][i][
                           "fillcolor"
-                        ] = e["color"][0];
+                        ] = e["color"];
                         Response["sets"]["townyPlugin.markerset"]["areas"][i][
                           "color"
-                        ] = e["color"][1] || e["color"][0];
+                        ] = e["color"];
                       } else {
                         // No recolor, but add town chunk amount anyways
                       }
