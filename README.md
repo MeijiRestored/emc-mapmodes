@@ -4,7 +4,7 @@
 
 Userscript for EarthMC's dynmap that colors meganations together.
 
-![Map](https://media.discordapp.net/attachments/667790176184958976/942099891478470687/Screenshot_639.png)
+![Map](https://media.discordapp.net/attachments/667790176184958976/944589018090315846/Screenshot_643.png)
 
 It also shows which meganation a town is part of on the popup, as well as the town's size in chunks!
 
