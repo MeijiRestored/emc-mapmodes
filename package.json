@@ -1,12 +1,22 @@
 {
-  "name": "process",
-  "version": "1.0.0",
-  "description": "The script fetches marker_earth.json from earthmc.net once in a while and changes the colors accoding to data.json\r Then the processed marker_earth.json is made available for web requests.",
+  "name": "emc-map-colors",
+  "version": "0.1.2",
+  "description": "The script fetches marker_earth.json from earthmc.net once in a while and changes the colors accoding to data.json; Then the processed marker_earth.json is made available for web requests.",
   "main": "process.js",
-  "author": "",
+  "author": "32Vache",
+  "homepage": "https://github.com/32Vache/emc-map-colors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/32Vache/emc-map-colors.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.2",
+    "express": "^4.17.3",
     "fs": "^0.0.1-security"
+  },
+  "engines": {
+    "npm": "8.1.0",
+    "node": "16.13.0"
   }
 }
