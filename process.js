@@ -8,13 +8,27 @@ var app = (module.exports = express());
 app.use(cors());
 
 // Recolors for the script
-var rawData = [];
-fetch("https://raw.githubusercontent.com/32Vache/emc-map-colors/main/data.json")
-  .then((response) => response.json())
-  .then((data) => (rawData = data))
-  .catch(() => (rawData = []));
+var rawData = {};
+var colors = [];
+https.get(
+  "https://raw.githubusercontent.com/32Vache/emc-map-colors/main/data.json",
+  function (res) {
+    var body = "";
 
-var colors = rawData["data"];
+    res.on("data", function (chunk) {
+      body += chunk;
+    });
+
+    res.on("end", function () {
+      rawData = JSON.parse(body);
+      colors = rawData["data"];
+    });
+
+    res.on("error", function (r) {
+      console.log(e);
+    });
+  }
+);
 
 // Area calculator
 /**
