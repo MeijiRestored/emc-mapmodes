@@ -153,6 +153,37 @@ function builder() {
                         ] = e["color"];
                       } else {
                         // No recolor, but add town chunk amount anyways
+                        let start = desc.match(
+                          /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
+                        );
+                        let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
+                        let town = desc_title.match(/(.+?) \(.+?\)$/);
+                        let area = calcArea(
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "x"
+                          ],
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "z"
+                          ],
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "x"
+                          ].length
+                        );
+
+                        if (town[1].endsWith("(Shop)")) {
+                          // Do not modify the popup
+                        } else {
+                          let popup = `${
+                            start[1]
+                          }<br /><span style="font-size:80%">Town size: </span><span style="font-size:90%">${(
+                            area / 256
+                          ).toString()}</span><span style="font-size:80%"> chunks</span>${
+                            end[1]
+                          }`;
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "desc"
+                          ] = popup;
+                        }
                       }
                     }
                   }
