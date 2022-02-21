@@ -25,6 +25,7 @@
 				crs: L.CRS.Simple
 			}).setView([0, 0], 3);
 
+            // EMC background tiles
             L.tileLayer('https://earthmc.net/map/tiles/earth/flat/0_0/zzzzz_{x1}_{y1}.png', {
                 maxZoom: 3,
                 minZoom: 3,
@@ -51,6 +52,13 @@
                 tileSize: 128
             }).addTo(emcmap);
 			L.tileLayer('https://earthmc.net/map/tiles/earth/flat/0_0/{x}_{y6}.png', {
+                maxZoom: 8,
+                minZoom: 8,
+                tileSize: 128
+            }).addTo(emcmap);
+
+            // Grid tiles
+            L.tileLayer('https://32vache.github.io/emc-map-colors/{z}.png', {
                 maxZoom: 8,
                 minZoom: 8,
                 tileSize: 128
