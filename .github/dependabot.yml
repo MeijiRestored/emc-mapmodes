@@ -1,0 +1,15 @@
+# Dependabot package updater
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      time: "10:00"
+      timezone: "Europe/Paris"
+    assignees:
+      - "32Vache"
+    labels:
+      - "package update"
