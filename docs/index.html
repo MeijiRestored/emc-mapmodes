@@ -1,68 +1,127 @@
 <html>
-    <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <meta
       http-equiv="content-type"
       content="text/html; charset=utf-8"
       lang="en"
     />
     <meta content="EMC Map Chunk Grid" property="og:title" />
-    <meta content="Chunk grid for EarthMC's dynmap." property="og:description" />
+    <meta
+      content="Chunk grid for EarthMC's dynmap."
+      property="og:description"
+    />
     <meta content="#43B581" data-react-helmet="true" name="theme-color" />
+
     <link
-        rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin=""/>
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script src="leaflet.js"></script>
+
     <script
-        src="leaflet.js"></script>
+      type="text/javascript"
+      src="http://code.jquery.com/jquery-latest.js"
+    ></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#zoomInBox").delay(5000).fadeOut();
+      });
+    </script>
     <title>EMC Map Chunk Grid</title>
-    <style>body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }</style>
-    </head>
-    <body>
-        <div id="map" style="position: relative;"></div>
-        <script>
-            var emcmap = L.map('map', {
-				crs: L.CRS.Simple
-			}).setView([0, 0], 3);
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      #map {
+        height: 100%;
+        width: 100vw;
+      }
+      #zoomInBox {
+        position: relative;
+        margin: 0 auto;
+        clear: left;
+        height: auto;
+        width: 300px;
+        z-index: 9999;
+        text-align: center;
+        background-color: white;
+        font-size: 18pt;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" style="position: relative">
+        <div id="zoomInBox">Zoom in to see the chunk grid!</div>
+    </div>
+    <script>
+      var emcmap = L.map("map", {
+        crs: L.CRS.Simple,
+      }).setView([0, 0], 3);
 
-            // EMC background tiles
-            L.tileLayer('https://earthmc.net/map/tiles/earth/flat/0_0/zzzzz_{x1}_{y1}.png', {
-                maxZoom: 3,
-                minZoom: 3,
-                tileSize: 128
-            }).addTo(emcmap);
-			L.tileLayer('https://earthmc.net/map/tiles/earth/flat/0_0/zzzz_{x2}_{y2}.png', {
-                maxZoom: 4,
-                minZoom: 4,
-                tileSize: 128
-            }).addTo(emcmap);
-			L.tileLayer('https://earthmc.net/map/tiles/earth/flat/0_0/zzz_{x3}_{y3}.png', {
-                maxZoom: 5,
-                minZoom: 5,
-                tileSize: 128
-            }).addTo(emcmap);
-			L.tileLayer('https://earthmc.net/map/tiles/earth/flat/0_0/zz_{x4}_{y4}.png', {
-                maxZoom: 6,
-                minZoom: 6,
-                tileSize: 128
-            }).addTo(emcmap);
-			L.tileLayer('https://earthmc.net/map/tiles/earth/flat/0_0/z_{x5}_{y5}.png', {
-                maxZoom: 7,
-                minZoom: 7,
-                tileSize: 128
-            }).addTo(emcmap);
-			L.tileLayer('https://earthmc.net/map/tiles/earth/flat/0_0/{x}_{y6}.png', {
-                maxZoom: 8,
-                minZoom: 8,
-                tileSize: 128
-            }).addTo(emcmap);
+      // EMC background tiles
+      L.tileLayer(
+        "https://earthmc.net/map/tiles/earth/flat/0_0/zzzzz_{x1}_{y1}.png",
+        {
+          maxZoom: 3,
+          minZoom: 3,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+      L.tileLayer(
+        "https://earthmc.net/map/tiles/earth/flat/0_0/zzzz_{x2}_{y2}.png",
+        {
+          maxZoom: 4,
+          minZoom: 4,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+      L.tileLayer(
+        "https://earthmc.net/map/tiles/earth/flat/0_0/zzz_{x3}_{y3}.png",
+        {
+          maxZoom: 5,
+          minZoom: 5,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+      L.tileLayer(
+        "https://earthmc.net/map/tiles/earth/flat/0_0/zz_{x4}_{y4}.png",
+        {
+          maxZoom: 6,
+          minZoom: 6,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+      L.tileLayer(
+        "https://earthmc.net/map/tiles/earth/flat/0_0/z_{x5}_{y5}.png",
+        {
+          maxZoom: 7,
+          minZoom: 7,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+      L.tileLayer("https://earthmc.net/map/tiles/earth/flat/0_0/{x}_{y6}.png", {
+        maxZoom: 8,
+        minZoom: 8,
+        tileSize: 128,
+      }).addTo(emcmap);
 
-            // Grid tiles
-            L.tileLayer('https://github.com/32Vache/emc-map-colors/raw/main/docs/grid/{z}.png', {
-                maxZoom: 8,
-                minZoom: 8,
-                tileSize: 128
-            }).addTo(emcmap);
-        </script>
-    </body>
+      // Grid tiles
+      L.tileLayer(
+        "https://github.com/32Vache/emc-map-colors/raw/main/docs/grid/{z}.png",
+        {
+          maxZoom: 8,
+          minNativeZoom: 7,
+          minZoom: 6,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+    </script>
+  </body>
 </html>
