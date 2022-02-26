@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         EMC Dynmap Colors
 // @namespace    https://github.com/32Vache/emc-map-colors
-// @version      0.3
+// @version      0.3.1
 // @description  Userscript for EarthMC's dynmap that colors meganations and enhances the town popups.
 // @updateURL    https://raw.githubusercontent.com/32Vache/emc-map-colors/main/userscript/EMC-MapColors.user.js
 // @downloadURL  https://raw.githubusercontent.com/32Vache/emc-map-colors/main/userscript/EMC-MapColors.user.js
@@ -30,6 +30,7 @@ var interval = setInterval(function() {
    if (time <= 1) {
       var infodiv = `
         <div id="emcmapcolors-info" class="coord-control">
+          <img src="https://raw.githubusercontent.com/32Vache/emc-map-colors/main/ua.svg" alt="🇺🇦" draggable="false" style="margin-right: 4px;width: 14px;height: 14px" data-type="emoji" data-name="🇺🇦">
            <span class="coord-control-label">Meganations updated</span>
            <br>
            <span class="coord-control-value">${lastupdate["last-update"]}</span>
