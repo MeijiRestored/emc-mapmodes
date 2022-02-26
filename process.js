@@ -107,11 +107,11 @@ function builder() {
                       if (n.toLowerCase() === nation.toLowerCase()) {
                         // Nation has recolor, modify the color and the popup
                         // console.log(`Recolored ${nation}!`);
+
                         let start = desc.match(
                           /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
                         );
                         let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
-                        let town = desc_title.match(/(.+?) \(.+?\)$/);
                         let area = calcArea(
                           Response["sets"]["townyPlugin.markerset"]["areas"][i][
                             "x"
@@ -124,26 +124,20 @@ function builder() {
                           ].length
                         );
 
-                        // Show chunk amount. Filter Shop polygons to avoid incorrect chunk amount calculation
-                        if (town[1].endsWith("(Shop)")) {
-                          let popup = `${start[1]}<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${e["name"]}</span>${end[1]}`;
-                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                            "desc"
-                          ] = popup;
-                        } else {
-                          let popup = `${
-                            start[1]
-                          }<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${
-                            e["name"]
-                          }</span><br /><span style="font-size:80%">Town size: </span><span style="font-size:90%">${(
-                            area / 256
-                          ).toString()}</span><span style="font-size:80%"> chunks</span>${
-                            end[1]
-                          }`;
-                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                            "desc"
-                          ] = popup;
-                        }
+                        // Show chunk amount and meganation name.
+
+                        let popup = `${
+                          start[1]
+                        }<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${
+                          e["name"]
+                        }</span><br /><span style="font-size:80%">Town size: </span><span style="font-size:90%">${(
+                          area / 256
+                        ).toString()}</span><span style="font-size:80%"> chunks</span>${
+                          end[1]
+                        }`;
+                        Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                          "desc"
+                        ] = popup;
 
                         Response["sets"]["townyPlugin.markerset"]["areas"][i][
                           "fillcolor"
@@ -151,8 +145,10 @@ function builder() {
                         Response["sets"]["townyPlugin.markerset"]["areas"][i][
                           "color"
                         ] = e["color"][0];
+
                       } else {
                         // No recolor, but add town chunk amount anyways
+
                         let start = desc.match(
                           /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
                         );
