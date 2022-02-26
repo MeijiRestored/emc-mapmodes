@@ -165,7 +165,7 @@ function builder() {
                             "x"
                           ].length
                         );
-
+                        /*
                         if (!town[1].endsWith("(Shop)")) {
                           let popup = `${
                             start[1]
@@ -178,6 +178,7 @@ function builder() {
                             "desc"
                           ] = popup;
                         }
+                        */
                       }
                     }
                   }
