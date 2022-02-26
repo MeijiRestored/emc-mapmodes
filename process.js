@@ -124,7 +124,7 @@ function builder() {
                           ].length
                         );
 
-                        // Show chunk amount. Filter Shop polygons to avoid incorretc chunk amount calculation
+                        // Show chunk amount. Filter Shop polygons to avoid incorrect chunk amount calculation
                         if (town[1].endsWith("(Shop)")) {
                           let popup = `${start[1]}<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${e["name"]}</span>${end[1]}`;
                           Response["sets"]["townyPlugin.markerset"]["areas"][i][
@@ -170,9 +170,7 @@ function builder() {
                           ].length
                         );
 
-                        if (town[1].endsWith("(Shop)")) {
-                          // Do not modify the popup
-                        } else {
+                        if (!town[1].endsWith("(Shop)")) {
                           let popup = `${
                             start[1]
                           }<br /><span style="font-size:80%">Town size: </span><span style="font-size:90%">${(
