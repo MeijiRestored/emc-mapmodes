@@ -1,6 +1,6 @@
 # EMC Map Colors
 
-![Release](https://img.shields.io/github/v/release/32Vache/emc-map-colors) ![Commit activity](https://img.shields.io/github/commit-activity/m/32Vache/emc-map-colors) ![Repo size](https://img.shields.io/github/repo-size/32Vache/emc-map-colors) ![Downloads](https://img.shields.io/github/downloads/32Vache/emc-map-colors/total)
+![Release](https://img.shields.io/github/v/release/32Vache/emc-map-colors) ![Commit activity](https://img.shields.io/github/commit-activity/m/32Vache/emc-map-colors) ![Repo size](https://img.shields.io/github/repo-size/32Vache/emc-map-colors) ![Downloads](https://img.shields.io/github/downloads/32Vache/emc-map-colors/total) &nbsp; <img src="https://raw.githubusercontent.com/32Vache/emc-map-colors/main/ua.svg" width="20px">
 
 Userscript for EarthMC's dynmap that colors meganations together.
 
