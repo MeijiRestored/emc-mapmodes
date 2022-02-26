@@ -22,3 +22,11 @@ Once you got it installed you can just download the userscript from [releases](h
 ## Compatibility
 
 This userscript is compatible with Tampermonkey version 4.9 or later. If you use Firefox, check out [this firefox addon](https://github.com/3meraldK/earthmc-dynmapcolor) instead.
+
+## Other
+
+There is also a chunk grid mod for the dynmap! [Open it here!](https://32vache.github.io/emc-map-colors)
+
+![Grid](https://cdn.discordapp.com/attachments/667790176184958976/945272009762418708/Screenshot_652.png)
+
+
