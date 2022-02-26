@@ -114,7 +114,8 @@
         }
       ).addTo(emcmap);
       L.tileLayer("https://earthmc.net/map/tiles/earth/flat/0_0/{x}_{y6}.png", {
-        maxZoom: 8,
+        maxZoom: 9,
+        maxNativeZoom: 8,
         minZoom: 8,
         tileSize: 128,
       }).addTo(emcmap);
@@ -123,7 +124,7 @@
       L.tileLayer(
         "https://github.com/32Vache/emc-map-colors/raw/main/docs/grid/{z}.png",
         {
-          maxZoom: 8,
+          maxZoom: 9,
           minNativeZoom: 7,
           minZoom: 6,
           tileSize: 128,
