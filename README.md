@@ -12,7 +12,9 @@ It also shows which meganation a town is part of on the popup, as well as the to
 
 ## Updates
 
-If you want a meganation updated/added/recolored please open an issue.
+If you want a meganation updated/added/recolored, either:
+- Open a [pull request](https://github.com/32Vache/emc-map-colors/pulls) (if you know how to update json yourself)
+- Open an [issue](https://github.com/32Vache/emc-map-colors/issues) (if you do not know)
 
 ## Installation
 
