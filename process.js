@@ -8,6 +8,7 @@ var app = (module.exports = express());
 app.use(cors());
 
 // Recolors for the script
+var time = 1;
 var rawData = {};
 var colors = [];
 https.get(
@@ -201,8 +202,14 @@ function builder() {
   );
 }
 
-// Run it on startup...
-builder();
+// Run it on startup with slight delay...
+var interval = setInterval(function() {
+   if (time <= 1) {
+     builder();
+   else {
+      clearInterval(interval);
+   }
+}, 3000);
 
 // ...and every ten minutes.
 setInterval(function () {
