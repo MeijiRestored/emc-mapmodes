@@ -1,2 +1,0 @@
-/userscript/ to be deleted in 2 weeks. Userscript moved to /assets/ but removing this one will prevent auto updates from working for pepole who got the script installed.
-Tampermonkey runs auto update every week by usual. Once script is updated the updateURL will redirect to /assets/ correctly.
