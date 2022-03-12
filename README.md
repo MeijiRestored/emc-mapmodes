@@ -1,6 +1,6 @@
 # EMC Map Colors
 
-![Release](https://img.shields.io/github/v/release/32Vache/emc-map-colors) ![Commit activity](https://img.shields.io/github/commit-activity/m/32Vache/emc-map-colors) ![Repo size](https://img.shields.io/github/repo-size/32Vache/emc-map-colors) ![Downloads](https://img.shields.io/github/downloads/32Vache/emc-map-colors/total) &nbsp; <img src="https://raw.githubusercontent.com/32Vache/emc-map-colors/main/ua.svg" width="20px">
+![Release](https://img.shields.io/github/v/release/32Vache/emc-map-colors) ![Commit activity](https://img.shields.io/github/commit-activity/m/32Vache/emc-map-colors) ![Repo size](https://img.shields.io/github/repo-size/32Vache/emc-map-colors) ![Downloads](https://img.shields.io/github/downloads/32Vache/emc-map-colors/total) &nbsp; <img src="https://raw.githubusercontent.com/32Vache/assets/emc-map-colors/main/ua.svg" width="20px">
 
 Userscript for EarthMC's dynmap that colors meganations together.
 
@@ -13,6 +13,7 @@ It also shows which meganation a town is part of on the popup, as well as the to
 ## Updates
 
 If you want a meganation updated/added/recolored, either:
+
 - Open a [pull request](https://github.com/32Vache/emc-map-colors/pulls) (if you know how to update json yourself)
 - Open an [issue](https://github.com/32Vache/emc-map-colors/issues) (if you do not know)
 
@@ -30,5 +31,3 @@ This userscript is compatible with Tampermonkey version 4.9 or later. If you use
 There is also a chunk grid mod for the dynmap! [Open it here!](https://32vache.github.io/emc-map-colors)
 
 ![Grid](https://cdn.discordapp.com/attachments/667790176184958976/945272009762418708/Screenshot_652.png)
-
-
