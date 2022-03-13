@@ -189,25 +189,23 @@ function builder() {
         // Replace true/false attributes from popup with actual phrases
         for (let i in areas) {
           var pop = areas[i]["desc"];
-          
-          pop = pop.replace(/hasUpkeep: true/,'Upkeep enabled');
-          pop = pop.replace(/hasUpkeep: false/,'Upkeep disabled');
-          pop = pop.replace(/pvp: true/,'PvP is allowed');
-          pop = pop.replace(/pvp: false/,'PvP is disallowed');
-          pop = pop.replace(/mobs: true/,'Mob spawns enabled');
-          pop = pop.replace(/mobs: false/,'Mob spawns disabled');
-          pop = pop.replace(/public: true/,'Town is public');
-          pop = pop.replace(/public: false/,'Town is not public');
-          pop = pop.replace(/explosion: true/,'Explosions enabled');
-          pop = pop.replace(/explosion: false/,'Explosions disabled');
-          pop = pop.replace(/fire: true/,'Fire spread enabled');
-          pop = pop.replace(/fire: false/,'Fire spread disabled');
-          pop = pop.replace(/capital: true/,'Captial of the nation');
-          pop = pop.replace(/capital: false/,'Town of the nation');
 
-          Response["sets"]["townyPlugin.markerset"]["areas"][i][
-            "desc"
-          ] = pop;
+          pop = pop.replace(/hasUpkeep: true/, "Upkeep enabled");
+          pop = pop.replace(/hasUpkeep: false/, "Upkeep disabled");
+          pop = pop.replace(/pvp: true/, "PvP is allowed");
+          pop = pop.replace(/pvp: false/, "PvP is disallowed");
+          pop = pop.replace(/mobs: true/, "Mob spawns enabled");
+          pop = pop.replace(/mobs: false/, "Mob spawns disabled");
+          pop = pop.replace(/public: true/, "Town is public");
+          pop = pop.replace(/public: false/, "Town is not public");
+          pop = pop.replace(/explosion: true/, "Explosions enabled");
+          pop = pop.replace(/explosion: false/, "Explosions disabled");
+          pop = pop.replace(/fire: true/, "Fire spread enabled");
+          pop = pop.replace(/fire: false/, "Fire spread disabled");
+          pop = pop.replace(/capital: true/, "Captial of the nation");
+          pop = pop.replace(/capital: false/, "Town of the nation");
+
+          Response["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
         }
 
         // Write file and push to web
