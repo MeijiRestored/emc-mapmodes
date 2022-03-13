@@ -203,7 +203,7 @@ function builder() {
           pop = pop.replace(/fire: true/,'Fire spread enabled');
           pop = pop.replace(/fire: false/,'Fire spread disabled');
           pop = pop.replace(/capital: true/,'Captial of the nation');
-          pop = pop.replace(/hasUpkeep: false/,'Town of the nation');
+          pop = pop.replace(/capital: false/,'Town of the nation');
 
           Response["sets"]["townyPlugin.markerset"]["areas"][i][
             "desc"
