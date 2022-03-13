@@ -6,7 +6,7 @@ Userscript for EarthMC's dynmap that colors meganations together.
 
 ![Map](https://raw.githubusercontent.com/32Vache/emc-map-colors/main/assets/main-map.png)
 
-It also shows which meganation a town is part of on the popup, as well as the town's size in chunks!
+It also shows which meganation a town is part of on the popup, as well as the town's size in chunks and also changes the flags to phrases:
 
 ![Popup](https://raw.githubusercontent.com/32Vache/emc-map-colors/main/assets/main-popup.png)
 
