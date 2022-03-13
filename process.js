@@ -145,7 +145,6 @@ function builder() {
                         Response["sets"]["townyPlugin.markerset"]["areas"][i][
                           "color"
                         ] = e["color"][0];
-
                       } else {
                         // No recolor, but add town chunk amount anyways
 
@@ -187,7 +186,31 @@ function builder() {
             }
           }
         }
+        // Replace true/false attributes from popup with actual phrases
+        for (let i in areas) {
+          var pop = areas[i]["desc"];
+          
+          pop = pop.replace(/hasUpkeep: true/,'Upkeep enabled');
+          pop = pop.replace(/hasUpkeep: false/,'Upkeep disabled');
+          pop = pop.replace(/pvp: true/,'PvP is allowed');
+          pop = pop.replace(/pvp: false/,'PvP is disallowed');
+          pop = pop.replace(/mobs: true/,'Mob spawns enabled');
+          pop = pop.replace(/mobs: false/,'Mob spawns disabled');
+          pop = pop.replace(/public: true/,'Town is public');
+          pop = pop.replace(/public: false/,'Town is not public');
+          pop = pop.replace(/explosion: true/,'Explosions enabled');
+          pop = pop.replace(/explosion: false/,'Explosions disabled');
+          pop = pop.replace(/fire: true/,'Fire spread enabled');
+          pop = pop.replace(/fire: false/,'Fire spread disabled');
+          pop = pop.replace(/capital: true/,'Captial of the nation');
+          pop = pop.replace(/hasUpkeep: false/,'Town of the nation');
 
+          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+            "desc"
+          ] = pop;
+        }
+
+        // Write file and push to web
         var final = JSON.stringify(Response);
         fs.writeFileSync("marker_earth.json", final, (err) => {
           if (err) console.log(err);
@@ -201,13 +224,13 @@ function builder() {
   );
 }
 
-// Run it on startup with slight delay...
+// Run it on startup...
 builder();
 
-// ...and every ten minutes.
+// ...and every five minutes.
 setInterval(function () {
   builder();
-}, 600000);
+}, 300000);
 // FIlters player updates
 // Runs every 5 seconds to always have up to date data.
 setInterval(function () {
