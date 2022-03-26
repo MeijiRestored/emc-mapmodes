@@ -230,7 +230,7 @@ setInterval(function () {
   builder();
 }, 300000);
 // FIlters player updates
-// Runs every 3 seconds to always have up-to-date data.
+// Runs every 2 seconds to always have up-to-date data.
 setInterval(function () {
   https.get(
     `https://earthmc.net/map/up/world/earth/${Date.now()}`,
@@ -260,7 +260,7 @@ setInterval(function () {
       });
     }
   );
-}, 3000); // 3 seconds
+}, 2000); // 2 seconds
 
 // Passes the recolored marker_earth.json or clean update.json when requested
 app.get("/:file(*)", function (req, re, next) {
