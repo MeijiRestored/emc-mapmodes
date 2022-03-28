@@ -1,5 +1,5 @@
 {
-    "last-update": "Mar. 28 - 10:00",
+    "last-update": "Mar. 28 - 13:45",
     "data":
     [
 	{"name": "Lechian Empire", "nations": ["poland", "tasmania", "croatia", "lithuania"], "color": ["#9F0807"]},
@@ -29,7 +29,7 @@
 	{"name": "Fourth Australian Empire", "nations": ["australia", "westernaustralia", "kimberley", "neale", "terraaustralis", "straya", "papua", "west_papua", "blackwood"], "color": ["#FF8800"]},
 	
 	{"name": "Second Nubian Empire", "nations": ["nubia", "kasai", "nejd", "namibia", "molodezhnaya", "bura", "cote_divoire", "algeria", "cameroon", "east_africa", "ghana", "comoros", "senegal", "ifriqiya", "dzata", "mauritania", "rhodesia", "sadr", "gabon", "cape", "zanzibar", "angola", "numidia", "pomene", "mozambique", "india", "gujarat", "fezzan", "tripolitania", "riodeoro", "oranje"], "color": ["#7F3300"]},
-	{"name": "Tanzanian Empire", "nations": ["tanzania", "lake_nyasa", "uganda", "sudan", "ethiopia", "drc", "katanga", "center_africa", "maravi", "zimbabwe", "4.1messagestaff", "uae", "syria", "middle_east", "europe", "madeira", "normandie", "new_caledonia", "bharat", "nepal", "maurya_dynasty", "new_granada", "azande", "agadez", "liverpool", "tavastia", "suomi", "lapland"], "color": ["#1EB53A"]},
+	{"name": "Tanzanian Empire", "nations": ["tanzania", "lake_nyasa", "uganda", "sudan", "ethiopia", "drc", "katanga", "center_africa", "maravi", "zimbabwe", "4.1messagestaff", "uae", "syria", "middle_east", "europe", "madeira", "normandie", "new_caledonia", "bharat", "nepal", "maurya_dynasty", "new_granada", "azande", "agadez", "liverpool", "tavastia", "suomi", "lapland", "queensland"], "color": ["#1EB53A"]},
 	{"name": "Madagascar", "nations": ["madagascar", "samoa"], "color": ["#237542" ,"#FFBB00"]},
 
 	{"name": "Republic of Brazil", "nations": ["brazil", "manabi"], "color": ["#FFC0CB"]},
