@@ -186,7 +186,7 @@ function builder() {
             }
           }
         }
-        // Replace true/false attributes from popup with actual phrases
+        // Replace true/false attributes from popup with actual phrases, and add resident count.
         for (let i in areas) {
           var pop = areas[i]["desc"];
 
@@ -203,7 +203,17 @@ function builder() {
           pop = pop.replace(/fire: true/, "Fire spread enabled");
           pop = pop.replace(/fire: false/, "Fire spread disabled");
           pop = pop.replace(/capital: true/, "Captial of the nation");
-          pop = pop.replace(/capital: false/, "Town of the nation");
+          pop = pop.replace(/capital: false/, "");
+
+          let resList = desc.match(
+            /Members <span style=\"font-weight:bold\">(.+?)<\/span>/
+          );
+          var mCount = (resList[1].match(/,/g) || []).length + 1;
+
+          pop = pop.replace(
+            /Members <span style=\"font-weight:bold\">/,
+            `Members <span style=\"font-weight:bold\"> [${mCount}]`
+          );
 
           Response["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
         }
