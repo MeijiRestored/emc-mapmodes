@@ -205,14 +205,15 @@ function builder() {
           pop = pop.replace(/capital: true/, "Captial of the nation");
           pop = pop.replace(/capital: false/, "");
 
-          let resList = desc.match(
+          let resList = pop.match(
             /Members <span style=\"font-weight:bold\">(.+?)<\/span>/
           );
+
           var mCount = (resList[1].match(/,/g) || []).length + 1;
 
           pop = pop.replace(
             /Members <span style=\"font-weight:bold\">/,
-            `Members <span style=\"font-weight:bold\"> [${mCount}]`
+            `Members <span style=\"font-weight:bold\"> [${mCount}] `
           );
 
           Response["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
