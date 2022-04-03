@@ -19,9 +19,8 @@
 	{"name": "Han Dynasty", "nations": ["han", "hong_kong", "chu", "south_sea", "bei_qi", "cape_dorset"], "color": ["#282828"]},
 	{"name": "Liao", "nations": ["liao", "great_liao"], "color": ["#01315A"]},
 	{"name": "Ming", "nations": ["ming", "north_china"], "color": ["#D4AF37"]},
-	{"name": "Federation of East", "nations": ["philippines", "mcmurdo", "mozambique", "roc"], "color": ["#0038A8"]},
 	{"name": "Indochina", "nations": ["indochina", "sumatra", "vietnam"], "color": ["#FFFFFF"]},
-	{"name": "Majapahit Empire", "nations": ["majapahit", "sulawesi", "sarawak", "maluku"], "color": ["#FFDF3F"]},
+	{"name": "Republic of Nusantara", "nations": ["majapahit", "sulawesi", "sarawak", "maluku", "philippines", "mcmurdo", "mozambique", "roc"], "color": ["#FFDF3F", "#0038A8"]},
 	{"name": "Formosa Realm", "nations": ["taiwan", "takasago"], "color": ["#7FFFFF"]},
 	
 	{"name": "Oniyama Shogunate", "nations": ["grasberg", "pulau_japen", "lutzow_bay", "kepulauan_aru"], "color": ["#41F226"]},
@@ -47,5 +46,5 @@
 	{"name": "Third Canadian Empire", "nations": ["quebec", "baffin", "hall", "macaua", "canada", "ellesmere", "saskatchewan", "hbc", "hollis", "contactstaff4.1", "arctic_islands", "cumberland", "klondike", "iceland", "iroquois", "nouvelle-france", "maine", "acadia", "keewatin", "cumania", "fiji", "western_sahara", "avalon", "labrador", "manitoba", "bermuda", "north_america", "manitoba", "north_ontario", "arctic_alaska", "buckland", "arctic"], "color": ["#CC3F4F"]},
 	{"name": "Federal Republic of Evergreen", "nations": ["british_columbia", "bhutan", "canadian_rockies", "cascadia", "colorado", "columbia", "columbia_river", "greenland", "keewatin", "maldives", "nez_perce", "october_island", "queen_charlotte", "russian_alaska", "sahtu", "slave_lake", "tlingit", "victoria_island", "washington", "wyoming", "kansas"], "color": ["#002200"]}, 
 	{"name": "Alaskan Tsardom", "nations": ["kodiak", "bering_strait", "yukon"], "color": ["#011DC1"]}
-]
+    ]
 }
