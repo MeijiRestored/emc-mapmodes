@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         EMC Dynmap Colors
 // @namespace    https://github.com/32Vache/emc-map-colors
-// @version      0.3.3
+// @version      0.3.4
 // @description  Userscript for EarthMC's dynmap that colors meganations and enhances the town popups.
 // @updateURL    https://raw.githubusercontent.com/32Vache/emc-map-colors/main/assets/EMC-MapColors.user.js
 // @downloadURL  https://raw.githubusercontent.com/32Vache/emc-map-colors/main/assets/EMC-MapColors.user.js
@@ -10,15 +10,15 @@
 // @include      https://emc-color.herokuapp.com*
 // @include      https://raw.githubusercontent.com/32Vache/emc-map-colors*
 // @grant        GM_webRequest
-// @webRequest   [{"selector":{"include":"*://earthmc.net/map/tiles/_markers_/marker_earth.json"},"action":{"redirect":"https://emc-color.herokuapp.com/marker_earth.json"}}]
-// @webRequest   [{"selector":{"include":"*://earthmc.net/map/up/world/earth*"},"action":{"redirect":"https://emc-color.herokuapp.com/update.json"}}]
+// @webRequest   [{"selector":{"include":"*://earthmc.net/map/nova/tiles/_markers_/marker_earth.json"},"action":{"redirect":"https://emc-color.herokuapp.com/marker_earth.json"}}]
+// @webRequest   [{"selector":{"include":"*://earthmc.net/map/nova/up/world/earth*"},"action":{"redirect":"https://emc-color.herokuapp.com/update.json"}}]
 
 // ==/UserScript==
 
 // Recolors and popups
 var currently_active_webrequest_rule = JSON.stringify(GM_info.script.webRequest);
 
-GM_webRequest([{selector:{include:"*://earthmc.net/map/tiles/_markers_/marker_earth.json"},action:{redirect:"https://emc-color.herokuapp.com/marker_earth.json"}}, {"selector":{"include":"*://earthmc.net/map/up/world/earth*"},"action":{"redirect":"https://emc-color.herokuapp.com/update.json"}}], function(info, message, details) {
+GM_webRequest([{selector:{include:"*://earthmc.net/map/nova/tiles/_markers_/marker_earth.json"},action:{redirect:"https://emc-color.herokuapp.com/marker_earth.json"}}, {"selector":{"include":"*://earthmc.net/map/nova/up/world/earth*"},"action":{"redirect":"https://emc-color.herokuapp.com/update.json"}}], function(info, message, details) {
     console.log(info, message, details);
 });
 

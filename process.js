@@ -74,7 +74,7 @@ function formatBytes(bytes, decimals) {
 // Builds recolored marker_earth.json
 function builder() {
   https.get(
-    "https://earthmc.net/map/tiles/_markers_/marker_earth.json",
+    "https://earthmc.net/map/nova/tiles/_markers_/marker_earth.json",
     function (res) {
       var body = "";
 
@@ -244,7 +244,7 @@ setInterval(function () {
 // Runs every 2 seconds to always have up-to-date data.
 setInterval(function () {
   https.get(
-    `https://earthmc.net/map/up/world/earth/${Date.now()}`,
+    `https://earthmc.net/map/nova/up/world/earth/${Date.now()}`,
     function (res) {
       var body = "";
 
