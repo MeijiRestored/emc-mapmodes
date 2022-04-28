@@ -28,6 +28,6 @@ This userscript is compatible with Tampermonkey version 4.9 or later. If you use
 
 ## Other
 
-There is also a chunk grid mod for the dynmap! [Open it here](https://32vache.github.io/emc-map-colors)!
+There is also a chunk grid mod for the dynmap! [Terra Nova](https://32vache.github.io/emc-map-colors/nova.html) | [Terra Aurora](https://32vache.github.io/emc-map-colors/aurora.html)!
 
 ![Grid](https://raw.githubusercontent.com/32Vache/emc-map-colors/main/assets/main-grid.png)
