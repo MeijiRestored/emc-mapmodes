@@ -30,6 +30,28 @@ https.get(
   }
 );
 
+var rawDataA = {};
+var colorsA = [];
+https.get(
+  "https://raw.githubusercontent.com/32Vache/emc-map-colors/main/data-aurora.json",
+  function (res) {
+    var body = "";
+
+    res.on("data", function (chunk) {
+      body += chunk;
+    });
+
+    res.on("end", function () {
+      rawDataA = JSON.parse(body);
+      colorsA = rawDataA["data"];
+    });
+
+    res.on("error", function (r) {
+      console.log(e);
+    });
+  }
+);
+
 // Area calculator
 /**
  * Calculate area of polygon.
@@ -233,14 +255,178 @@ function builder() {
   );
 }
 
+function builderA() {
+  https.get(
+    "https://earthmc.net/map/aurora/tiles/_markers_/marker_earth.json",
+    function (res) {
+      var body = "";
+
+      res.on("data", function (chunk) {
+        body += chunk;
+      });
+
+      res.on("end", function () {
+        var Response = JSON.parse(body);
+        var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
+
+        // Iterate through areas, add town chunk amoun, and recolor and add meganation name if necessary
+        for (let i in areas) {
+          var desc = areas[i]["desc"];
+          let desc_title = desc.match(
+            /<span style=\"font-size:120%\">(.+?)<\/span>/
+          );
+          if (desc_title) {
+            desc_title = desc_title[1];
+
+            if (desc_title) {
+              let nation = desc_title.match(/.+? \((.+?)\)$/);
+              if (nation) {
+                nation = nation[1];
+                if (nation) {
+                  // Check if nation has recolor
+                  for (let e of colorsA) {
+                    let nats = e["nations"];
+                    for (let n of nats) {
+                      if (n.toLowerCase() === nation.toLowerCase()) {
+                        // Nation has recolor, modify the color and the popup
+                        // console.log(`Recolored ${nation}!`);
+
+                        let start = desc.match(
+                          /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
+                        );
+                        let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
+                        let area = calcArea(
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "x"
+                          ],
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "z"
+                          ],
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "x"
+                          ].length
+                        );
+
+                        // Show chunk amount and meganation name.
+
+                        let popup = `${
+                          start[1]
+                        }<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${
+                          e["name"]
+                        }</span><br /><span style="font-size:80%">Town size: </span><span style="font-size:90%">${(
+                          area / 256
+                        ).toString()}</span><span style="font-size:80%"> chunks</span>${
+                          end[1]
+                        }`;
+                        Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                          "desc"
+                        ] = popup;
+
+                        Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                          "fillcolor"
+                        ] = e["color"][1] || e["color"][0];
+                        Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                          "color"
+                        ] = e["color"][0];
+                      } else {
+                        // No recolor, but add town chunk amount anyways
+
+                        let start = desc.match(
+                          /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
+                        );
+                        let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
+                        let town = desc_title.match(/(.+?) \(.+?\)$/);
+                        let area = calcArea(
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "x"
+                          ],
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "z"
+                          ],
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "x"
+                          ].length
+                        );
+                        /*
+                        if (!town[1].endsWith("(Shop)")) {
+                          let popup = `${
+                            start[1]
+                          }<br /><span style="font-size:80%">Town size: </span><span style="font-size:90%">${(
+                            area / 256
+                          ).toString()}</span><span style="font-size:80%"> chunks</span>${
+                            end[1]
+                          }`;
+                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                            "desc"
+                          ] = popup;
+                        }
+                        */
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        // Replace true/false attributes from popup with actual phrases, and add resident count.
+        for (let i in areas) {
+          var pop = areas[i]["desc"];
+
+          pop = pop.replace(/hasUpkeep: true/, "Upkeep enabled");
+          pop = pop.replace(/hasUpkeep: false/, "Upkeep disabled");
+          pop = pop.replace(/pvp: true/, "PvP is allowed");
+          pop = pop.replace(/pvp: false/, "PvP is disallowed");
+          pop = pop.replace(/mobs: true/, "Mob spawns enabled");
+          pop = pop.replace(/mobs: false/, "Mob spawns disabled");
+          pop = pop.replace(/public: true/, "Town is public");
+          pop = pop.replace(/public: false/, "Town is not public");
+          pop = pop.replace(/explosion: true/, "Explosions enabled");
+          pop = pop.replace(/explosion: false/, "Explosions disabled");
+          pop = pop.replace(/fire: true/, "Fire spread enabled");
+          pop = pop.replace(/fire: false/, "Fire spread disabled");
+          pop = pop.replace(/capital: true/, "Captial of the nation");
+          pop = pop.replace(/capital: false/, "");
+
+          let resList = pop.match(
+            /Members <span style=\"font-weight:bold\">(.+?)<\/span>/
+          );
+
+          var mCount = (resList[1].match(/,/g) || []).length + 1;
+
+          pop = pop.replace(
+            /Members <span style=\"font-weight:bold\">/,
+            `Members <span style=\"font-weight:bold\"> [${mCount}] `
+          );
+
+          Response["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
+        }
+
+        // Write file and push to web
+        var final = JSON.stringify(Response);
+        fs.writeFileSync("marker_earth_aurora.json", final, (err) => {
+          if (err) console.log(err);
+        });
+      });
+
+      res.on("error", function (r) {
+        console.log(e);
+      });
+    }
+  );
+}
+
 // Run it on startup...
 builder();
+builderA();
 
 // ...and every five minutes.
 setInterval(function () {
   builder();
+  builderA();
 }, 300000);
-// FIlters player updates
+
+// Filters player updates
 // Runs every 2 seconds to always have up-to-date data.
 setInterval(function () {
   https.get(
@@ -257,6 +443,34 @@ setInterval(function () {
         if (body.length < 32768) {
           // Update is less than 32KB, it is a player data update only. Simply pass it to the web server
           fs.writeFileSync("update.json", body, (err) => {
+            if (err) console.log(err);
+          });
+        } else {
+          // Update is more than 32KB, skipping it.
+          let byte = formatBytes(body.length, 2);
+          console.log(`Update is ${byte}, skipping.`);
+        }
+      });
+
+      res.on("error", function (r) {
+        console.log(e);
+      });
+    }
+  );
+  https.get(
+    `https://earthmc.net/map/aurora/up/world/earth/${Date.now()}`,
+    function (res) {
+      var body = "";
+
+      res.on("data", function (chunk) {
+        body += chunk;
+      });
+
+      res.on("end", function () {
+        // If update is bigger than 32KB, it definitifly contains areas updates which reset the map colors
+        if (body.length < 32768) {
+          // Update is less than 32KB, it is a player data update only. Simply pass it to the web server
+          fs.writeFileSync("update-aurora.json", body, (err) => {
             if (err) console.log(err);
           });
         } else {
