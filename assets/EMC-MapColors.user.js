@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         EMC Dynmap Colors
 // @namespace    https://github.com/32Vache/emc-map-colors
-// @version      0.4.0
+// @version      0.4.1
 // @description  Userscript for EarthMC's dynmap that colors meganations and enhances the town popups.
 // @updateURL    https://raw.githubusercontent.com/32Vache/emc-map-colors/main/assets/EMC-MapColors.user.js
 // @downloadURL  https://raw.githubusercontent.com/32Vache/emc-map-colors/main/assets/EMC-MapColors.user.js
@@ -27,7 +27,11 @@ GM_webRequest([{selector:{include:"*://earthmc.net/map/nova/tiles/_markers_/mark
 // Info
 var time = 1;
 var lastupdate = ""
-fetch('https://raw.githubusercontent.com/32Vache/emc-map-colors/main/data.json').then(response => response.json()).then(data => lastupdate = data).catch(() => lastupdate = [])
+if (window.location.href.includes('aurora')) {
+    fetch('https://raw.githubusercontent.com/32Vache/emc-map-colors/main/data-aurora.json').then(response => response.json()).then(data => lastupdate = data).catch(() => lastupdate = [])
+} else {
+    fetch('https://raw.githubusercontent.com/32Vache/emc-map-colors/main/data.json').then(response => response.json()).then(data => lastupdate = data).catch(() => lastupdate = [])
+}
 var interval = setInterval(function() {
    if (time <= 1) {
       var infodiv = `
