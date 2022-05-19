@@ -108,7 +108,7 @@ function builder() {
         var Response = JSON.parse(body);
         var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
-        // Iterate through areas, add town chunk amoun, and recolor and add meganation name if necessary
+        // Iterate through areas, recolor and add meganation name if necessary
         for (let i in areas) {
           var desc = areas[i]["desc"];
           let desc_title = desc.match(
@@ -134,29 +134,10 @@ function builder() {
                           /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
                         );
                         let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
-                        let area = calcArea(
-                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                            "x"
-                          ],
-                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                            "z"
-                          ],
-                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                            "x"
-                          ].length
-                        );
 
-                        // Show chunk amount and meganation name.
+                        // Show  meganation name.
 
-                        let popup = `${
-                          start[1]
-                        }<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${
-                          e["name"]
-                        }</span><br /><span style="font-size:80%">Town size: </span><span style="font-size:90%">${(
-                          area / 256
-                        ).toString()}</span><span style="font-size:80%"> chunks</span>${
-                          end[1]
-                        }`;
+                        let popup = `${start[1]}<br /><span style="font-size:80%">Part of </span><span style="font-size:90%">${e["name"]}</span>${end[1]}`;
                         Response["sets"]["townyPlugin.markerset"]["areas"][i][
                           "desc"
                         ] = popup;
@@ -167,39 +148,6 @@ function builder() {
                         Response["sets"]["townyPlugin.markerset"]["areas"][i][
                           "color"
                         ] = e["color"][0];
-                      } else {
-                        // No recolor, but add town chunk amount anyways
-
-                        let start = desc.match(
-                          /(<div><div><span style=\"font-size:120%\">.+? \(.+?\)<\/span>)/
-                        );
-                        let end = desc.match(/(<br \/> Mayor <span .+<\/div>)/);
-                        let town = desc_title.match(/(.+?) \(.+?\)$/);
-                        let area = calcArea(
-                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                            "x"
-                          ],
-                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                            "z"
-                          ],
-                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                            "x"
-                          ].length
-                        );
-                        /*
-                        if (!town[1].endsWith("(Shop)")) {
-                          let popup = `${
-                            start[1]
-                          }<br /><span style="font-size:80%">Town size: </span><span style="font-size:90%">${(
-                            area / 256
-                          ).toString()}</span><span style="font-size:80%"> chunks</span>${
-                            end[1]
-                          }`;
-                          Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                            "desc"
-                          ] = popup;
-                        }
-                        */
                       }
                     }
                   }
@@ -208,7 +156,7 @@ function builder() {
             }
           }
         }
-        // Replace true/false attributes from popup with actual phrases, and add resident count.
+        // Replace true/false attributes from popup with actual phrases, add resident count and chunk amount.
         for (let i in areas) {
           var pop = areas[i]["desc"];
 
@@ -237,6 +185,19 @@ function builder() {
             /Members <span style=\"font-weight:bold\">/,
             `Members <span style=\"font-weight:bold\"> [${mCount}] `
           );
+
+          let area = calcArea(
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"],
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"],
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"].length
+          );
+
+          let start = pop.match(/(<br \/> Members <span.+<\/span>)/);
+          let end = pop.match(/(<br \/>Flags<br .+<\/div>)/);
+
+          pop = `${start}<br />Chunks <span style="font-weight:bold">${
+            area / 256
+          }</span>${end}`;
 
           Response["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
         }
