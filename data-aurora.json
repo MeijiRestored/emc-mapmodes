@@ -1,7 +1,8 @@
 {
-    "last-update": "May 05 - 10:00",
+    "last-update": "May 20 - 16:00",
     "data":
     [
-	{"name": "Franco-Germany", "nations": ["france", "germany"], "color": ["#f2ad35", "#0b69db"]}
+	{"name": "Franco-Germany", "nations": ["france", "germany"], "color": ["#f2ad35", "#0b69db"]},
+        {"name": "Benelux", "nations": ["netherlands", "belgium"], "color": ["#e89609"]}
     ]
 }
