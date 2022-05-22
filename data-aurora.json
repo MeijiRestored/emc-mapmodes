@@ -5,6 +5,6 @@
 	{"name": "Franco-Germany", "nations": ["france", "germany"], "color": ["#f2ad35", "#0b69db"]},
         {"name": "Benelux", "nations": ["netherlands", "belgium"], "color": ["#e89609"]},
 	{"name": "Australia", "nations": ["australia", "queensland"], "color": ["#ecf00e"]},
-	{"name": "West Indies", "nations": ["cuba", "carribean"], "color": ["#FF005D", "#0008FF"]}
+	{"name": "West Indies", "nations": ["cuba", "caribbean"], "color": ["#FF005D", "#0008FF"]}
     ]
 }
