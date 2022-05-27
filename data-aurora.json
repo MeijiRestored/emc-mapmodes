@@ -1,10 +1,13 @@
 {
-    "last-update": "May 22 - 10:00",
+    "last-update": "May 27 - 16:30",
     "data":
     [
 	{"name": "Franco-Germany", "nations": ["france", "germany"], "color": ["#f2ad35", "#0b69db"]},
         {"name": "Benelux", "nations": ["netherlands", "belgium"], "color": ["#e89609"]},
-	{"name": "Australia", "nations": ["australia", "queensland"], "color": ["#ecf00e"]},
-	{"name": "West Indies", "nations": ["cuba", "caribbean"], "color": ["#FF005D", "#0008FF"]}
+	{"name": "Australia", "nations": ["australia", "queensland", "tasmania"], "color": ["#ecf00e"]},
+	{"name": "West Indies", "nations": ["cuba", "caribbean", "south_america"], "color": ["#FF005D", "#0008FF"]},
+        {"name": "Britain", "nations": ["britain", "norway", "texas", "ireland"], "color": ["#a11632"]},
+        {"name": "California", "nations": ["california", "oregon"], "color": ["#ffe747"]},
+        {"name": "Mexican Empire", "nations": ["mexico", "sonora"], "color": ["#f06e32"]}
     ]
 }
