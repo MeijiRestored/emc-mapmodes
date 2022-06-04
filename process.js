@@ -420,11 +420,11 @@ function builderA() {
 builder();
 builderA();
 
-// ...and every five minutes.
+// ...and every three minutes.
 setInterval(function () {
   builder();
   builderA();
-}, 300000);
+}, 180000);
 
 // Filters player updates
 // Runs every 2 seconds to always have up-to-date data.
@@ -457,6 +457,9 @@ setInterval(function () {
       });
     }
   );
+}, 2000); // 2 seconds
+
+setInterval(function () {
   https.get(
     `https://earthmc.net/map/aurora/up/world/earth/${Date.now()}`,
     function (res) {
@@ -467,14 +470,14 @@ setInterval(function () {
       });
 
       res.on("end", function () {
-        // If update is bigger than 32KB, it definitifly contains areas updates which reset the map colors
-        if (body.length < 32768) {
+        // If update is bigger than 64KB, it definitifly contains areas updates which reset the map colors
+        if (body.length < 65536) {
           // Update is less than 32KB, it is a player data update only. Simply pass it to the web server
           fs.writeFileSync("update-aurora.json", body, (err) => {
             if (err) console.log(err);
           });
         } else {
-          // Update is more than 32KB, skipping it.
+          // Update is more than 64KB, skipping it.
           let byte = formatBytes(body.length, 2);
           console.log(`Update is ${byte}, skipping.`);
         }
