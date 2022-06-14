@@ -5,7 +5,7 @@
 	{"name": "Franco-Germany", "nations": ["france", "germany"], "color": ["#f2ad35", "#0b69db"]},
         {"name": "Benelux", "nations": ["netherlands", "belgium"], "color": ["#e89609"]},
 	{"name": "North Sea Empire", "nations": ["ireland", "iceland", "greenland"], "color": ["#FFFFFF"]},
-	{"name": "Rûm", "nations": ["rum", "italy"], "color": ["#0000FF", "#000000"]},
+	{"name": "Rûm", "nations": ["rûm", "italy"], "color": ["#0000FF", "#000000"]},
 	{"name": "Australia", "nations": ["australia", "queensland", "tasmania"], "color": ["#ecf00e"]},
 	{"name": "Åland", "nations": ["aland", "mongolia"], "color": ["#FF0000", "#FFFF00"]},
 	{"name": "West Indies", "nations": ["cuba", "caribbean", "south_america"], "color": ["#FF005D", "#0008FF"]},
