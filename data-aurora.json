@@ -1,5 +1,5 @@
 {
-    "last-update": "June 14 - 11:00",
+    "last-update": "June 18 - 11:00",
     "data":
     [
 	{"name": "Franco-Germany", "nations": ["france", "germany"], "color": ["#f2ad35", "#0b69db"]},
@@ -12,7 +12,7 @@
         {"name": "Britain", "nations": ["britain", "norway", "texas", "ireland"], "color": ["#a11632"]},
         {"name": "California", "nations": ["california", "oregon"], "color": ["#ffe747"]},
         {"name": "Mexican Empire", "nations": ["mexico", "sonora"], "color": ["#f06e32"]},
-	{"name": "Groß-Kaiserreich", "nations": ["kaiserreich", "belarus"], "color": ["#000000", "#FF0000"]},
+	{"name": "Groß-Kaiserreich", "nations": ["4.1namingrule", "belarus"], "color": ["#000000", "#FF0000"]},
 	{"name": "United States of America", "nations": ["america", "louisiana"], "color": ["#0000FF"]},
 	{"name": "Indochina", "nations": ["indochina", "timor", "south_pole", "borneo"], "color": ["#800006", "#FF0000"]},
 	{"name": "Indian Empire", "nations": ["india", "himalayas"], "color": ["#FFFF00"]},
