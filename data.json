@@ -1,5 +1,5 @@
 {
-    "last-update": "May 19 - 10:00",
+    "last-update": "June 18 - 11:00",
     "data":
     [
 	{"name": "German Confederation", "nations": ["austria", "4.1getnewname", "south-pole", "germany", "preußen", "h.r.e.", "belgium", "switzerland"], "color": ["#A48111"]},
@@ -27,14 +27,14 @@
 	{"name": "Republic of Nusantara", "nations": ["philippines", "mcmurdo", "mozambique", "roc", "majapahit", "sulawesi", "sarawak", "maluku"], "color": ["#0000FF", "#000080"]},
 	
 	{"name": "Saint-Empire de Victoria", "nations": ["long_bay", "ulimaroa", "oceania", "huron", "lake_torrens", "moreton_bay", "northaustralia", "cape_york", "giya"], "color": ["#0301AE", "#F8E300"]},
-	{"name": "Fourth Australian Empire", "nations": ["australia", "westernaustralia", "kimberley", "neale", "terraaustralis", "straya", "papua", "west_papua", "blackwood", "port_moresby", "down_under", "great_victoria", "east_newguinea", "nullarbor", "northernterriory"], "color": ["#000000", "#00FFB7"]},
+	{"name": "Fourth Australian Empire", "nations": ["australia", "westernaustralia", "kimberley", "neale", "terraaustralis", "straya", "papua", "west_papua", "blackwood", "port_moresby", "down_under", "great_victoria", "east_newguinea", "nullarbor", "northernterriory", "ethiopia"], "color": ["#000000", "#00FFB7"]},
 	{"name": "Oniyama Shogunate", "nations": ["grasberg", "pulau_japen", "lutzow_bay", "kepulauan_aru", "giluwe", "bismarck", "inca_empire", "westernnewguinea", "timor"], "color": ["#640064"]},
 
 	{"name": "Madagascar", "nations": ["madagascar", "samoa"], "color": ["#237542" ,"#FFBB00"]},
 	{"name": "Somalian Kingdom", "nations": ["somalia", "congo_freestate"], "color": ["#000000"]},
 	{"name": "Ancient Egypt", "nations": ["ancient_egypt", "kemet", "cyrene", "libya", "egypte_federe"], "color": ["#00672B"]},
 	{"name": "Second Nubian Empire", "nations": ["nubia", "kasai", "nejd", "namibia", "molodezhnaya", "bura", "algeria", "east_africa", "comoros", "ifriqiya", "dzata", "mauritania", "rhodesia", "sadr", "gabon", "cape", "maravi", "numidia", "pomene", "mozambique", "fezzan", "tripolitania", "songhai", "gujarat"], "color": ["#FFBFDE", "#FF4CA8"]},
-	{"name": "Tanzanian Empire", "nations": ["tanzania", "lake_nyasa", "uganda", "sudan", "ethiopia", "drc", "katanga", "center_africa", "4.1messagestaff", "uae", "syria", "normandie", "new_caledonia", "agadez", "azande", "bharat", "middle_east"], "color": ["#1EB53A"]},
+	{"name": "Tanzanian Empire", "nations": ["tanzania", "lake_nyasa", "uganda", "sudan", "drc", "katanga", "center_africa", "4.1messagestaff", "uae", "syria", "normandie", "new_caledonia", "agadez", "azande", "bharat", "middle_east"], "color": ["#1EB53A"]},
 
 	{"name": "Cuban Empire", "nations": ["cuba", "haiti", "new_granada", "cordoba", "yucatan", "dominican", "miami", "costa_rica", "panama"], "color": ["#FF0068"]},
 	{"name": "Republic of Rio Grande", "nations": ["rio_grande", "lone_star", "new_mexico"], "color": ["#FFFFFF"]},
@@ -51,5 +51,5 @@
 	{"name": "Peru-Bolivia", "nations": ["peru-bolivia", "barinas"], "color": ["#FF0000"]},
 	
 	{"name": "Egalitarist People's Republic of Antarctica", "nations": ["casey", "sandwich_islands", "marie_byrd_land", "antarctica", "west_antarctic", "victoria_land"], "color": ["#C80000", "#FF0000"]}
-    ]
+     ]
 }
