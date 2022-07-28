@@ -596,6 +596,7 @@ function builderTAeu4() {
                 if (nation) {
                   // Check if nation has recolor
                   for (let e of eu4colors) {
+                    console.log(`${nation.toLowerCase()} vs ${e["name"]}`);
                     if (e["name"] === nation.toLowerCase()) {
                       Response["sets"]["townyPlugin.markerset"]["areas"][i][
                         "fillcolor"

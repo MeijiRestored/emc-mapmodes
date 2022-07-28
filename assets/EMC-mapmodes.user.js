@@ -134,6 +134,32 @@ if (mapmode === "pvp") {
   );
 }
 
+if (mapmode === "eu4") {
+   GM_webRequest(
+     [
+       {
+         selector: {
+           include: `*://earthmc.net/map/${world[1]}/tiles/_markers_/marker_earth.json`,
+         },
+         action: {
+           redirect: `https://emc-color.herokuapp.com/marker_earth_${world[0]}_eu4.json`,
+         },
+       },
+       {
+         selector: {
+           include: `*://earthmc.net/map/${world[1]}/up/world/earth*`,
+         },
+         action: {
+           redirect: `https://emc-color.herokuapp.com/update_${world[0]}.json`,
+         },
+       },
+     ],
+     function (info, message, details) {
+       console.log(info, message, details);
+     }
+   );
+ }
+
 var time = 1;
 
 var interval = setInterval(function () {
