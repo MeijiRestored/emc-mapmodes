@@ -10,12 +10,14 @@
 // @include      https://emc-color.herokuapp.com*
 // @include      https://raw.githubusercontent.com/32Vache/emc-mapmodes*
 // @grant        GM_webRequest
-// @grant        GM_setValue
-// @grant        GM_getValue
 
 // ==/UserScript==
 
-let mapmode = await GM_getValue("mapmode", "pop");
+let mapmode = localStorage.getItem("mapmode");
+
+if (mapmode == null) {
+  mapmode = "pop";
+}
 
 var world = ["", ""];
 if (window.location.href.includes("aurora")) {
@@ -28,7 +30,7 @@ var currently_active_webrequest_rule = JSON.stringify(
   GM_info.script.webRequest
 );
 
-if ((mapmode = "pop")) {
+if (mapmode === "pop") {
   GM_webRequest(
     [
       {
@@ -53,3 +55,87 @@ if ((mapmode = "pop")) {
     }
   );
 }
+
+if (mapmode === "area") {
+  GM_webRequest(
+    [
+      {
+        selector: {
+          include: `*://earthmc.net/map/${world[1]}/tiles/_markers_/marker_earth.json`,
+        },
+        action: {
+          redirect: `https://emc-color.herokuapp.com/marker_earth_${world[0]}_area.json`,
+        },
+      },
+      {
+        selector: {
+          include: `*://earthmc.net/map/${world[1]}/up/world/earth*`,
+        },
+        action: {
+          redirect: `https://emc-color.herokuapp.com/update_${world[0]}.json`,
+        },
+      },
+    ],
+    function (info, message, details) {
+      console.log(info, message, details);
+    }
+  );
+}
+
+if (mapmode === "open") {
+  GM_webRequest(
+    [
+      {
+        selector: {
+          include: `*://earthmc.net/map/${world[1]}/tiles/_markers_/marker_earth.json`,
+        },
+        action: {
+          redirect: `https://emc-color.herokuapp.com/marker_earth_${world[0]}_open.json`,
+        },
+      },
+      {
+        selector: {
+          include: `*://earthmc.net/map/${world[1]}/up/world/earth*`,
+        },
+        action: {
+          redirect: `https://emc-color.herokuapp.com/update_${world[0]}.json`,
+        },
+      },
+    ],
+    function (info, message, details) {
+      console.log(info, message, details);
+    }
+  );
+}
+
+var time = 1;
+
+var interval = setInterval(function () {
+  if (time <= 1) {
+    var naam = "";
+    mapmode = "pop" ? (naam = "Population") : "";
+    mapmode = "area" ? (naam = "Claim size") : "";
+    mapmode = "open" ? (naam = "Open/Closed status") : "";
+    var infodiv = `
+        <div id="emcmapmodes-info" class="coord-control">
+           <span class="coord-control-label">Current mapmode: ${naam}</span>
+           <br>
+           Change mode: <span class="coord-control-value" onclick="changeMode('pop')">Pop.</span> / <span class="coord-control-value" onclick="changeMode('area')">Claim.</span> / <span class="coord-control-value" onclick="changeMode('open')">Open.</span>
+        </div>
+        `;
+    const div = document.createElement("div");
+    div.className = "coord-control leaflet-control";
+    document
+      .getElementsByClassName("leaflet-top leaflet-left")[0]
+      .appendChild(div);
+    div.innerHTML = infodiv;
+    time++;
+  } else {
+    clearInterval(interval);
+  }
+}, 6000);
+
+var scriptElem = document.createElement("script");
+scriptElem.innerHTML =
+  'function changeMode(mode) { localStorage.setItem("mapmode", mode); window.location.reload(); }';
+document.body.appendChild(scriptElem);

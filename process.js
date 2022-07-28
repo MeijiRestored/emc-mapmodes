@@ -175,36 +175,43 @@ function builderTAarea() {
         var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
         for (let i in areas) {
-          let area =
-            calcArea(
-              Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"],
-              Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"],
-              Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"].length
-            ) / 256;
+          var pop = areas[i]["desc"];
+          if (!pop.includes("(Shop)")) {
+            let area =
+              calcArea(
+                Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"],
+                Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"],
+                Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"]
+                  .length
+              ) / 256;
 
-          var areacolor = "#000000";
-          area >= 940 ? (areacolor = "#008800") : "";
-          area <= 939 ? (areacolor = "#00AA00") : "";
-          area <= 768 ? (areacolor = "#00FF00") : "";
-          area <= 640 ? (areacolor = "#66FF00") : "";
-          area <= 512 ? (areacolor = "#99FF00") : "";
-          area <= 384 ? (areacolor = "#CCFF00") : "";
-          area <= 256 ? (areacolor = "#EEEE00") : "";
-          area <= 128 ? (areacolor = "#FFCC00") : "";
-          area <= 64 ? (areacolor = "#FF6600") : "";
-          area <= 32 ? (areacolor = "#FF2200") : "";
-          area <= 16 ? (areacolor = "#EE0000") : "";
-          area == 1 ? (areacolor = "#CC0000") : "";
+            var areacolor = "#000000";
+            area >= 940 ? (areacolor = "#008800") : "";
+            area <= 939 ? (areacolor = "#00AA00") : "";
+            area <= 768 ? (areacolor = "#00FF00") : "";
+            area <= 640 ? (areacolor = "#66FF00") : "";
+            area <= 512 ? (areacolor = "#99FF00") : "";
+            area <= 384 ? (areacolor = "#CCFF00") : "";
+            area <= 256 ? (areacolor = "#EEEE00") : "";
+            area <= 128 ? (areacolor = "#FFCC00") : "";
+            area <= 64 ? (areacolor = "#FF6600") : "";
+            area <= 32 ? (areacolor = "#FF2200") : "";
+            area <= 16 ? (areacolor = "#EE0000") : "";
+            area == 1 ? (areacolor = "#CC0000") : "";
 
-          Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
-            areacolor;
-          Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
-            areacolor;
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
+              areacolor;
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+              areacolor;
+          } else {
+            // Destroy all 'Shop' shapes
+            Response["sets"]["townyPlugin.markerset"]["areas"][i] = "";
+          }
         }
 
         // Write file and push to web
         var final = JSON.stringify(Response);
-        fs.writeFileSync("marker_earth_tn_area.json", final, (err) => {
+        fs.writeFileSync("marker_earth_ta_area.json", final, (err) => {
           if (err) console.log(err);
         });
       });
@@ -231,36 +238,43 @@ function builderTNarea() {
         var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
         for (let i in areas) {
-          let area =
-            calcArea(
-              Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"],
-              Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"],
-              Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"].length
-            ) / 256;
+          var pop = areas[i]["desc"];
+          if (!pop.includes("(Shop)")) {
+            let area =
+              calcArea(
+                Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"],
+                Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"],
+                Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"]
+                  .length
+              ) / 256;
 
-          var areacolor = "#000000";
-          area >= 940 ? (areacolor = "#008800") : "";
-          area <= 939 ? (areacolor = "#00AA00") : "";
-          area <= 768 ? (areacolor = "#00FF00") : "";
-          area <= 640 ? (areacolor = "#66FF00") : "";
-          area <= 512 ? (areacolor = "#99FF00") : "";
-          area <= 384 ? (areacolor = "#CCFF00") : "";
-          area <= 256 ? (areacolor = "#EEEE00") : "";
-          area <= 128 ? (areacolor = "#FFCC00") : "";
-          area <= 64 ? (areacolor = "#FF6600") : "";
-          area <= 32 ? (areacolor = "#FF2200") : "";
-          area <= 16 ? (areacolor = "#EE0000") : "";
-          area == 1 ? (areacolor = "#CC0000") : "";
+            var areacolor = "#000000";
+            area >= 940 ? (areacolor = "#008800") : "";
+            area <= 939 ? (areacolor = "#00AA00") : "";
+            area <= 768 ? (areacolor = "#00FF00") : "";
+            area <= 640 ? (areacolor = "#66FF00") : "";
+            area <= 512 ? (areacolor = "#99FF00") : "";
+            area <= 384 ? (areacolor = "#CCFF00") : "";
+            area <= 256 ? (areacolor = "#EEEE00") : "";
+            area <= 128 ? (areacolor = "#FFCC00") : "";
+            area <= 64 ? (areacolor = "#FF6600") : "";
+            area <= 32 ? (areacolor = "#FF2200") : "";
+            area <= 16 ? (areacolor = "#EE0000") : "";
+            area == 1 ? (areacolor = "#CC0000") : "";
 
-          Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
-            areacolor;
-          Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
-            areacolor;
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
+              areacolor;
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+              areacolor;
+          } else {
+            // Destroy all 'Shop' shapes
+            Response["sets"]["townyPlugin.markerset"]["areas"][i] = "";
+          }
         }
 
         // Write file and push to web
         var final = JSON.stringify(Response);
-        fs.writeFileSync("marker_earth_ta_area.json", final, (err) => {
+        fs.writeFileSync("marker_earth_tn_area.json", final, (err) => {
           if (err) console.log(err);
         });
       });
@@ -364,6 +378,62 @@ function builderTAopen() {
   );
 }
 
+// This just reposts the unedited marker_earth. This can be used as a mirror for browser scripts
+// since the raw marker_earth on the EMC website has no cross origin headers.
+function builderTN() {
+  https.get(
+    "https://earthmc.net/map/nova/tiles/_markers_/marker_earth.json",
+    function (res) {
+      var body = "";
+
+      res.on("data", function (chunk) {
+        body += chunk;
+      });
+
+      res.on("end", function () {
+        var Response = JSON.parse(body);
+
+        // Write file and push to web
+        var final = JSON.stringify(Response);
+        fs.writeFileSync("marker_earth_tn.json", final, (err) => {
+          if (err) console.log(err);
+        });
+      });
+
+      res.on("error", function (r) {
+        console.log(e);
+      });
+    }
+  );
+}
+
+function builderTA() {
+  https.get(
+    "https://earthmc.net/map/aurora/tiles/_markers_/marker_earth.json",
+    function (res) {
+      var body = "";
+
+      res.on("data", function (chunk) {
+        body += chunk;
+      });
+
+      res.on("end", function () {
+        var Response = JSON.parse(body);
+
+        // Write file and push to web
+        var final = JSON.stringify(Response);
+        fs.writeFileSync("marker_earth_ta.json", final, (err) => {
+          if (err) console.log(err);
+        });
+      });
+
+      res.on("error", function (r) {
+        console.log(e);
+      });
+    }
+  );
+}
+
 // Run it on startup...
 builderTNpop();
 builderTApop();
@@ -371,6 +441,8 @@ builderTNarea();
 builderTAarea();
 builderTNopen();
 builderTAopen();
+builderTN();
+builderTA();
 
 // ...and every three minutes.
 setInterval(function () {
@@ -380,6 +452,8 @@ setInterval(function () {
   builderTAarea();
   builderTNopen();
   builderTAopen();
+  builderTN();
+  builderTA();
 }, 180000);
 
 // Filters player updates
