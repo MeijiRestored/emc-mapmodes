@@ -178,7 +178,8 @@ function builderTAarea() {
           var pop = areas[i]["desc"];
           if (pop.includes("(Shop)") == true) {
             // Destroy all 'Shop' shapes
-            Response["sets"]["townyPlugin.markerset"]["areas"][i] = "";
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"] = [-99999,-99998];
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"] = [-99999,-99998];
           } else {
             let area =
               calcArea(
@@ -241,7 +242,8 @@ function builderTNarea() {
           var pop = areas[i]["desc"];
           if (pop.includes("(Shop)") == true) {
             // Destroy all 'Shop' shapes
-            Response["sets"]["townyPlugin.markerset"]["areas"][i] = "";
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"] = [-99999,-99998];
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"] = [-99999,-99998];
           } else {
             let area =
               calcArea(
