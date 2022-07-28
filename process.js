@@ -139,8 +139,8 @@ function builderTApop() {
           mCount <= 10 ? (popcolor = "#FFCC00") : "";
           mCount <= 6 ? (popcolor = "#FF6600") : "";
           mCount <= 4 ? (popcolor = "#FF2200") : "";
-          mCount = 2 ? (popcolor = "#EE0000") : "";
-          mCount = 1 ? (popcolor = "#CC0000") : "";
+          mCount == 2 ? (popcolor = "#EE0000") : "";
+          mCount == 1 ? (popcolor = "#CC0000") : "";
 
           Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
             popcolor;
@@ -196,7 +196,7 @@ function builderTAarea() {
           area <= 64 ? (areacolor = "#FF6600") : "";
           area <= 32 ? (areacolor = "#FF2200") : "";
           area <= 16 ? (areacolor = "#EE0000") : "";
-          area = 1 ? (areacolor = "#CC0000") : "";
+          area == 1 ? (areacolor = "#CC0000") : "";
 
           Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
             areacolor;
@@ -252,7 +252,7 @@ function builderTNarea() {
           area <= 64 ? (areacolor = "#FF6600") : "";
           area <= 32 ? (areacolor = "#FF2200") : "";
           area <= 16 ? (areacolor = "#EE0000") : "";
-          area = 1 ? (areacolor = "#CC0000") : "";
+          area == 1 ? (areacolor = "#CC0000") : "";
 
           Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
             areacolor;
