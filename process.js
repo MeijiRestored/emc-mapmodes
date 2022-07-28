@@ -516,6 +516,13 @@ function builderTNeu4() {
         var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
         for (let i in areas) {
+          Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
+            "#4AA9E1";
+          Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+            "#4AA9E1";
+        }
+
+        for (let i in areas) {
           var desc = areas[i]["desc"];
           let desc_title = desc.match(
             /<span style=\"font-size:120%\">(.+?)<\/span>/
@@ -537,16 +544,6 @@ function builderTNeu4() {
                       Response["sets"]["townyPlugin.markerset"]["areas"][i][
                         "color"
                       ] = e["color"];
-                    } else {
-                      /*
-                      // If no EU4 color, then set default nation color to avoid mix-up with EMC's colors
-                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                        "fillcolor"
-                      ] = "#4AA9E1";
-                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                        "color"
-                      ] = "#4AA9E1";
-                      */
                     }
                   }
                 }
@@ -584,6 +581,13 @@ function builderTAeu4() {
         var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
         for (let i in areas) {
+          Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
+            "#4AA9E1";
+          Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+            "#4AA9E1";
+        }
+
+        for (let i in areas) {
           var desc = areas[i]["desc"];
           let desc_title = desc.match(
             /<span style=\"font-size:120%\">(.+?)<\/span>/
@@ -605,14 +609,6 @@ function builderTAeu4() {
                       Response["sets"]["townyPlugin.markerset"]["areas"][i][
                         "color"
                       ] = e["color"];
-                    } else {
-                      // If no EU4 color, then set default nation color to avoid mix-up with EMC's colors
-                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                        "fillcolor"
-                      ] = "#4AA9E1";
-                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
-                        "color"
-                      ] = "#4AA9E1";
                     }
                   }
                 }
