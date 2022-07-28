@@ -8,7 +8,6 @@ var app = (module.exports = express());
 app.use(cors());
 
 // Pre-load EU4 color data
-var rawData = {};
 var eu4colors = [];
 https.get(
   "https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/eu4-colors.json",
@@ -20,8 +19,7 @@ https.get(
     });
 
     res.on("end", function () {
-      rawData = JSON.parse(body);
-      eu4colors = rawData["data"];
+      eu4colors = JSON.parse(body);
     });
 
     res.on("error", function (r) {
@@ -29,7 +27,6 @@ https.get(
     });
   }
 );
-console.log(eu4colors);
 
 // Area calculator
 /**
