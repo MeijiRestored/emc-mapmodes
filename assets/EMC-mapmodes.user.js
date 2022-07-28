@@ -10,12 +10,46 @@
 // @include      https://emc-color.herokuapp.com*
 // @include      https://raw.githubusercontent.com/32Vache/emc-mapmodes*
 // @grant        GM_webRequest
+// @grant        GM_setValue
+// @grant        GM_getValue
 
 // ==/UserScript==
 
-// Recolors and popups
-var currently_active_webrequest_rule = JSON.stringify(GM_info.script.webRequest);
+await GM.getValue("mapmode", "pop");
 
-GM_webRequest([{selector:{include:"*://earthmc.net/map/nova/tiles/_markers_/marker_earth.json"},action:{redirect:"https://emc-color.herokuapp.com/marker_earth.json"}}, {"selector":{"include":"*://earthmc.net/map/nova/up/world/earth*"},"action":{"redirect":"https://emc-color.herokuapp.com/update.json"}},{selector:{include:"*://earthmc.net/map/aurora/tiles/_markers_/marker_earth.json"},action:{redirect:"https://emc-color.herokuapp.com/marker_earth_aurora.json"}}, {"selector":{"include":"*://earthmc.net/map/aurora/up/world/earth*"},"action":{"redirect":"https://emc-color.herokuapp.com/update-aurora.json"}}], function(info, message, details) {
-    console.log(info, message, details);
-});
+var world = ["", ""];
+if (window.location.href.includes("aurora")) {
+  world = ["ta", "aurora"];
+} else {
+  world = ["tn", "nova"];
+}
+
+var currently_active_webrequest_rule = JSON.stringify(
+  GM_info.script.webRequest
+);
+
+if ((mapmode = "pop")) {
+  GM_webRequest(
+    [
+      {
+        selector: {
+          include: `*://earthmc.net/map/${world[1]}/tiles/_markers_/marker_earth.json`,
+        },
+        action: {
+          redirect: `https://emc-color.herokuapp.com/marker_earth_${world[0]}_pop.json`,
+        },
+      },
+      {
+        selector: {
+          include: `*://earthmc.net/map/${world[1]}/up/world/earth*`,
+        },
+        action: {
+          redirect: `https://emc-color.herokuapp.com/update_${world[0]}.json`,
+        },
+      },
+    ],
+    function (info, message, details) {
+      console.log(info, message, details);
+    }
+  );
+}

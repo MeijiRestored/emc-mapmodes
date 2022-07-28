@@ -398,7 +398,7 @@ setInterval(function () {
         // If update is bigger than 64KB, it definitifly contains areas updates which reset the map colors
         if (body.length < 65536) {
           // Update is less than 64KB, it is a player data update only. Simply pass it to the web server
-          fs.writeFileSync("update.json", body, (err) => {
+          fs.writeFileSync("update_tn.json", body, (err) => {
             if (err) console.log(err);
           });
         } else {
@@ -429,7 +429,7 @@ setInterval(function () {
         // If update is bigger than 64KB, it definitifly contains areas updates which reset the map colors
         if (body.length < 65536) {
           // Update is less than 64KB, it is a player data update only. Simply pass it to the web server
-          fs.writeFileSync("update-aurora.json", body, (err) => {
+          fs.writeFileSync("update_ta.json", body, (err) => {
             if (err) console.log(err);
           });
         } else {
