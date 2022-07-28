@@ -238,6 +238,7 @@ function builderTNarea() {
         var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
         for (let i in areas) {
+          var pop = areas[i]["desc"];
           if (pop.includes("(Shop)") == true) {
             // Destroy all 'Shop' shapes
             Response["sets"]["townyPlugin.markerset"]["areas"][i] = "";
