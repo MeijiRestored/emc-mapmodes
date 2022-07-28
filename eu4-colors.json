@@ -5,7 +5,7 @@
   },
   {
     "name": "spain",
-    "color": "#C1AB08"
+    "color": "#E7B50C"
   },
   {
     "name": "portugal",
@@ -33,7 +33,7 @@
   },
   {
     "name": "ireland",
-    "color": "#5E600B"
+    "color": "#709669"
   },
   {
     "name": "papal_states",
@@ -77,11 +77,11 @@
   },
   {
     "name": "germany",
-    "color": "#446968"
+    "color": "#4B8287"
   },
   {
     "name": "prussia",
-    "color": "#666968"
+    "color": "#8F8D80"
   },
   {
     "name": "hungary",
@@ -97,7 +97,7 @@
   },
   {
     "name": "greece",
-    "color": "#2E3192"
+    "color": "#090967"
   },
   {
     "name": "romania",
@@ -105,7 +105,7 @@
   },
   {
     "name": "ukraine",
-    "color": "#007891"
+    "color": "#7CB797"
   },
   {
     "name": "georgia",
@@ -121,7 +121,7 @@
   },
   {
     "name": "russian_empire",
-    "color": "#617E25"
+    "color": "#5D7E4D"
   },
   {
     "name": "morocco",
@@ -132,7 +132,99 @@
     "color": "#FFFFB9"
   },
   {
-    "name": "mali",
-    "color": "#FFFFB9"
+    "name": "newfoundland",
+    "color": "#AC3030"
+  },
+  {
+    "name": "brazil",
+    "color": "#1FA47A"
+  },
+  {
+    "name": "gran_colombia",
+    "color": "#E9BC26"
+  },
+  {
+    "name": "tierra_del_fuego",
+    "color": "#E09850"
+  },
+  {
+    "name": "india",
+    "color": "#5880C5"
+  },
+  {
+    "name": "h.r.e",
+    "color": "#96B1A1"
+  },
+  {
+    "name": "israel",
+    "color": "#1489FD"
+  },
+  {
+    "name": "italy",
+    "color": "#7DAB54"
+  },
+  {
+    "name": "spqr",
+    "color": "#A70A64"
+  },
+  {
+    "name": "finland",
+    "color": "#B68664"
+  },
+  {
+    "name": "alba",
+    "color": "#006968"
+  },
+  {
+    "name": "genoa",
+    "color": "#DAD738"
+  },
+  {
+    "name": "al_andalus",
+    "color": "#D2DCAF"
+  },
+  {
+    "name": "mesopotamia",
+    "color": "#D40027"
+  },
+  {
+    "name": "emirates",
+    "color": "#EAE97C"
+  },
+  {
+    "name": "ethiopia",
+    "color": "#3878BF"
+  },
+  {
+    "name": "orange",
+    "color": "#DC8A39"
+  },
+  {
+    "name": "mongolia",
+    "color": "#CCB8B1"
+  },
+  {
+    "name": "mexico",
+    "color": "#EBC237"
+  },
+  {
+    "name": "california",
+    "color": "#E9BD28"
+  },
+  {
+    "name": "united_states",
+    "color": "#128BE4"
+  },
+  {
+    "name": "quebec",
+    "color": "#4960DC"
+  },
+  {
+    "name": "iceland",
+    "color": "#2B3C75"
+  },
+  {
+    "name": "arctic",
+    "color": "#1D1E9E"
   }
 ]
