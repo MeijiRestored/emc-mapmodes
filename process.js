@@ -81,8 +81,8 @@ function builderTNpop() {
           mCount <= 10 ? (popcolor = "#FFCC00") : "";
           mCount <= 6 ? (popcolor = "#FF6600") : "";
           mCount <= 4 ? (popcolor = "#FF2200") : "";
-          mCount = 2 ? (popcolor = "#EE0000") : "";
-          mCount = 1 ? (popcolor = "#CC0000") : "";
+          mCount == 2 ? (popcolor = "#EE0000") : "";
+          mCount == 1 ? (popcolor = "#CC0000") : "";
 
           Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
             popcolor;
@@ -124,8 +124,6 @@ function builderTApop() {
             /Members <span style=\"font-weight:bold\">(.+?)<\/span>/
           );
           var mCount = (resList[1].match(/,/g) || []).length + 1;
-
-          console.log(mCount);
 
           var popcolor = "#000000";
           mCount >= 100 ? (popcolor = "#008800") : "";
