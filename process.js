@@ -176,8 +176,10 @@ function builderTAarea() {
 
         for (let i in areas) {
           var pop = areas[i]["desc"];
-          console.log(pop.includes("(Shop)"));
-          if (!pop.includes("(Shop)")) {
+          if (pop.includes("(Shop)") == true) {
+            // Destroy all 'Shop' shapes
+            Response["sets"]["townyPlugin.markerset"]["areas"][i] = "";
+          } else {
             let area =
               calcArea(
                 Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"],
@@ -204,9 +206,6 @@ function builderTAarea() {
               areacolor;
             Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
               areacolor;
-          } else {
-            // Destroy all 'Shop' shapes
-            Response["sets"]["townyPlugin.markerset"]["areas"][i] = "";
           }
         }
 
@@ -239,8 +238,10 @@ function builderTNarea() {
         var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
         for (let i in areas) {
-          var pop = areas[i]["desc"];
-          if (!pop.includes("(Shop)")) {
+          if (pop.includes("(Shop)") == true) {
+            // Destroy all 'Shop' shapes
+            Response["sets"]["townyPlugin.markerset"]["areas"][i] = "";
+          } else {
             let area =
               calcArea(
                 Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"],
@@ -267,9 +268,6 @@ function builderTNarea() {
               areacolor;
             Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
               areacolor;
-          } else {
-            // Destroy all 'Shop' shapes
-            Response["sets"]["townyPlugin.markerset"]["areas"][i] = "";
           }
         }
 
