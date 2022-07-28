@@ -538,6 +538,7 @@ function builderTNeu4() {
                         "color"
                       ] = e["color"];
                     } else {
+                      /*
                       // If no EU4 color, then set default nation color to avoid mix-up with EMC's colors
                       Response["sets"]["townyPlugin.markerset"]["areas"][i][
                         "fillcolor"
@@ -545,6 +546,7 @@ function builderTNeu4() {
                       Response["sets"]["townyPlugin.markerset"]["areas"][i][
                         "color"
                       ] = "#4AA9E1";
+                      */
                     }
                   }
                 }
