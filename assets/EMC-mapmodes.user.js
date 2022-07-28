@@ -108,6 +108,32 @@ if (mapmode === "open") {
   );
 }
 
+if (mapmode === "pvp") {
+  GM_webRequest(
+    [
+      {
+        selector: {
+          include: `*://earthmc.net/map/${world[1]}/tiles/_markers_/marker_earth.json`,
+        },
+        action: {
+          redirect: `https://emc-color.herokuapp.com/marker_earth_${world[0]}_pvp.json`,
+        },
+      },
+      {
+        selector: {
+          include: `*://earthmc.net/map/${world[1]}/up/world/earth*`,
+        },
+        action: {
+          redirect: `https://emc-color.herokuapp.com/update_${world[0]}.json`,
+        },
+      },
+    ],
+    function (info, message, details) {
+      console.log(info, message, details);
+    }
+  );
+}
+
 var time = 1;
 
 var interval = setInterval(function () {
@@ -116,12 +142,13 @@ var interval = setInterval(function () {
     mapmode === "pop" ? (naam = "Population") : "";
     mapmode === "area" ? (naam = "Claim size") : "";
     mapmode === "open" ? (naam = "Open/Closed status") : "";
+    mapmode === "pvp" ? (naam = "PvP Enabled/Disabled") : "";
     mapmode === "default" ? (naam = "Default map") : "";
     var infodiv = `
         <div id="emcmapmodes-info" class="coord-control">
            <span class="coord-control-label">Current mapmode: ${naam}</span>
            <br>
-           Change mode: <span class="coord-control-value" onclick="changeMode('pop')">Pop.</span> / <span class="coord-control-value" onclick="changeMode('area')">Claim.</span> / <span class="coord-control-value" onclick="changeMode('open')">Open.</span> / <span class="coord-control-value" onclick="changeMode('default')">Default</span>
+           Change mode: <span class="coord-control-value" onclick="changeMode('pop')">Population</span> / <span class="coord-control-value" onclick="changeMode('area')">Claim size</span> / <span class="coord-control-value" onclick="changeMode('open')">Open status</span><br />/ <span class="coord-control-value" onclick="changeMode('pvp')">PvP status</span> / <span class="coord-control-value" onclick="changeMode('open')">Open status</span><br />/ <span class="coord-control-value" onclick="changeMode('default')">Default</span>
         </div>
         `;
     const div = document.createElement("div");

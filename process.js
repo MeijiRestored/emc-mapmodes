@@ -178,8 +178,12 @@ function builderTAarea() {
           var pop = areas[i]["desc"];
           if (pop.includes("(Shop)") == true) {
             // Destroy all 'Shop' shapes
-            Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"] = [-99999,-99998];
-            Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"] = [-99999,-99998];
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"] = [
+              -99999, -99998,
+            ];
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"] = [
+              -99999, -99998,
+            ];
           } else {
             let area =
               calcArea(
@@ -242,8 +246,12 @@ function builderTNarea() {
           var pop = areas[i]["desc"];
           if (pop.includes("(Shop)") == true) {
             // Destroy all 'Shop' shapes
-            Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"] = [-99999,-99998];
-            Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"] = [-99999,-99998];
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"] = [
+              -99999, -99998,
+            ];
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"] = [
+              -99999, -99998,
+            ];
           } else {
             let area =
               calcArea(
@@ -380,6 +388,98 @@ function builderTAopen() {
   );
 }
 
+function builderTNpvp() {
+  https.get(
+    "https://earthmc.net/map/nova/tiles/_markers_/marker_earth.json",
+    function (res) {
+      var body = "";
+
+      res.on("data", function (chunk) {
+        body += chunk;
+      });
+
+      res.on("end", function () {
+        var Response = JSON.parse(body);
+        var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
+
+        for (let i in areas) {
+          var pop = areas[i]["desc"];
+
+          var public = pop.toLowerCase().includes("pvp: false");
+
+          if (public) {
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
+              "#00EE00";
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+              "#00EE00";
+          } else {
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
+              "#EE0000";
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+              "#EE0000";
+          }
+        }
+
+        // Write file and push to web
+        var final = JSON.stringify(Response);
+        fs.writeFileSync("marker_earth_tn_open.json", final, (err) => {
+          if (err) console.log(err);
+        });
+      });
+
+      res.on("error", function (r) {
+        console.log(e);
+      });
+    }
+  );
+}
+
+function builderTApvp() {
+  https.get(
+    "https://earthmc.net/map/aurora/tiles/_markers_/marker_earth.json",
+    function (res) {
+      var body = "";
+
+      res.on("data", function (chunk) {
+        body += chunk;
+      });
+
+      res.on("end", function () {
+        var Response = JSON.parse(body);
+        var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
+
+        for (let i in areas) {
+          var pop = areas[i]["desc"];
+
+          var public = pop.toLowerCase().includes("pvp: false");
+
+          if (public) {
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
+              "#00EE00";
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+              "#00EE00";
+          } else {
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
+              "#EE0000";
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+              "#EE0000";
+          }
+        }
+
+        // Write file and push to web
+        var final = JSON.stringify(Response);
+        fs.writeFileSync("marker_earth_ta_open.json", final, (err) => {
+          if (err) console.log(err);
+        });
+      });
+
+      res.on("error", function (r) {
+        console.log(e);
+      });
+    }
+  );
+}
+
 // This just reposts the unedited marker_earth. This can be used as a mirror for browser scripts
 // since the raw marker_earth on the EMC website has no cross origin headers.
 function builderTN() {
@@ -443,6 +543,8 @@ builderTNarea();
 builderTAarea();
 builderTNopen();
 builderTAopen();
+builderTNpvp();
+builderTApvp();
 builderTN();
 builderTA();
 
@@ -454,6 +556,8 @@ setInterval(function () {
   builderTAarea();
   builderTNopen();
   builderTAopen();
+  builderTNpvp();
+  builderTApvp();
   builderTN();
   builderTA();
 }, 180000);
