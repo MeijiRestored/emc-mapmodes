@@ -176,6 +176,7 @@ function builderTAarea() {
 
         for (let i in areas) {
           var pop = areas[i]["desc"];
+          console.log(pop.includes("(Shop)"));
           if (!pop.includes("(Shop)")) {
             let area =
               calcArea(

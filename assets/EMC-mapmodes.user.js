@@ -113,14 +113,15 @@ var time = 1;
 var interval = setInterval(function () {
   if (time <= 1) {
     var naam = "";
-    mapmode = "pop" ? (naam = "Population") : "";
-    mapmode = "area" ? (naam = "Claim size") : "";
-    mapmode = "open" ? (naam = "Open/Closed status") : "";
+    mapmode === "pop" ? (naam = "Population") : "";
+    mapmode === "area" ? (naam = "Claim size") : "";
+    mapmode === "open" ? (naam = "Open/Closed status") : "";
+    mapmode === "default" ? (naam = "Default map") : "";
     var infodiv = `
         <div id="emcmapmodes-info" class="coord-control">
            <span class="coord-control-label">Current mapmode: ${naam}</span>
            <br>
-           Change mode: <span class="coord-control-value" onclick="changeMode('pop')">Pop.</span> / <span class="coord-control-value" onclick="changeMode('area')">Claim.</span> / <span class="coord-control-value" onclick="changeMode('open')">Open.</span>
+           Change mode: <span class="coord-control-value" onclick="changeMode('pop')">Pop.</span> / <span class="coord-control-value" onclick="changeMode('area')">Claim.</span> / <span class="coord-control-value" onclick="changeMode('open')">Open.</span> / <span class="coord-control-value" onclick="changeMode('default')">Default</span>
         </div>
         `;
     const div = document.createElement("div");
