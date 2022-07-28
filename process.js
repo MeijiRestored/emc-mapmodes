@@ -125,6 +125,8 @@ function builderTApop() {
           );
           var mCount = (resList[1].match(/,/g) || []).length + 1;
 
+          console.log(mCount);
+
           var popcolor = "#000000";
           mCount >= 100 ? (popcolor = "#008800") : "";
           mCount <= 99 ? (popcolor = "#00AA00") : "";

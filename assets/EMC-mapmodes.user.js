@@ -15,7 +15,7 @@
 
 // ==/UserScript==
 
-await GM.getValue("mapmode", "pop");
+let mapmode = await GM_getValue("mapmode", "pop");
 
 var world = ["", ""];
 if (window.location.href.includes("aurora")) {
