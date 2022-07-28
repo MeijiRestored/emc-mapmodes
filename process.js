@@ -29,6 +29,7 @@ https.get(
     });
   }
 );
+console.log(eu4colors);
 
 // Area calculator
 /**
