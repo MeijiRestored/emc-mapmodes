@@ -422,7 +422,7 @@ function builderTNpvp() {
 
         // Write file and push to web
         var final = JSON.stringify(Response);
-        fs.writeFileSync("marker_earth_tn_open.json", final, (err) => {
+        fs.writeFileSync("marker_earth_tn_pvp.json", final, (err) => {
           if (err) console.log(err);
         });
       });
@@ -468,7 +468,7 @@ function builderTApvp() {
 
         // Write file and push to web
         var final = JSON.stringify(Response);
-        fs.writeFileSync("marker_earth_ta_open.json", final, (err) => {
+        fs.writeFileSync("marker_earth_ta_pvp.json", final, (err) => {
           if (err) console.log(err);
         });
       });
