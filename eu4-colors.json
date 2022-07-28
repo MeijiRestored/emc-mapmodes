@@ -1,0 +1,138 @@
+[
+  {
+    "name": "france",
+    "color": "#1432D2"
+  },
+  {
+    "name": "spain",
+    "color": "#C1AB08"
+  },
+  {
+    "name": "portugal",
+    "color": "#39A065"
+  },
+  {
+    "name": "england",
+    "color": "#C11A0E"
+  },
+  {
+    "name": "england",
+    "color": "#A10A0E"
+  },
+  {
+    "name": "aquitaine",
+    "color": "#BBCEF7"
+  },
+  {
+    "name": "netherlands",
+    "color": "#FF850F"
+  },
+  {
+    "name": "scotland",
+    "color": "#C7AF0C"
+  },
+  {
+    "name": "ireland",
+    "color": "#5E600B"
+  },
+  {
+    "name": "papal_states",
+    "color": "#D3DCB2"
+  },
+  {
+    "name": "venice",
+    "color": "#36A79C"
+  },
+  {
+    "name": "byzantium",
+    "color": "#952D66"
+  },
+  {
+    "name": "turkey",
+    "color": "#7ECB78"
+  },
+  {
+    "name": "poland",
+    "color": "#C55C6A"
+  },
+  {
+    "name": "livonia",
+    "color": "#7D1E64"
+  },
+  {
+    "name": "switzerland",
+    "color": "#997A6C"
+  },
+  {
+    "name": "denmark",
+    "color": "#BE4646"
+  },
+  {
+    "name": "norway",
+    "color": "#75A5BC"
+  },
+  {
+    "name": "sweden",
+    "color": "#0852A5"
+  },
+  {
+    "name": "germany",
+    "color": "#446968"
+  },
+  {
+    "name": "prussia",
+    "color": "#666968"
+  },
+  {
+    "name": "hungary",
+    "color": "#98555C"
+  },
+  {
+    "name": "austria",
+    "color": "#DCDCDC"
+  },
+  {
+    "name": "epirus",
+    "color": "#E6E4D6"
+  },
+  {
+    "name": "greece",
+    "color": "#2E3192"
+  },
+  {
+    "name": "romania",
+    "color": "#889D17"
+  },
+  {
+    "name": "ukraine",
+    "color": "#007891"
+  },
+  {
+    "name": "georgia",
+    "color": "#BE2325"
+  },
+  {
+    "name": "khazar",
+    "color": "#616687"
+  },
+  {
+    "name": "kazakhkhanate",
+    "color": "#5986A6"
+  },
+  {
+    "name": "russian_empire",
+    "color": "#617E25"
+  },
+  {
+    "name": "morocco",
+    "color": "#BF6E3E"
+  },
+  {
+    "name": "mali",
+    "color": "#FFFFB9"
+  },
+  {
+    "name": "mali",
+    "color": "#FFFFB9"
+  }
+]

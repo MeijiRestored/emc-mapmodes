@@ -7,6 +7,29 @@ const cors = require("cors");
 var app = (module.exports = express());
 app.use(cors());
 
+// Pre-load EU4 color data
+var rawData = {};
+var eu4colors = [];
+https.get(
+  "https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/eu4-colors.json",
+  function (res) {
+    var body = "";
+
+    res.on("data", function (chunk) {
+      body += chunk;
+    });
+
+    res.on("end", function () {
+      rawData = JSON.parse(body);
+      eu4colors = rawData["data"];
+    });
+
+    res.on("error", function (r) {
+      console.log(e);
+    });
+  }
+);
+
 // Area calculator
 /**
  * Calculate area of polygon.
@@ -480,6 +503,138 @@ function builderTApvp() {
   );
 }
 
+function builderTNeu4() {
+  https.get(
+    "https://earthmc.net/map/nova/tiles/_markers_/marker_earth.json",
+    function (res) {
+      var body = "";
+
+      res.on("data", function (chunk) {
+        body += chunk;
+      });
+
+      res.on("end", function () {
+        var Response = JSON.parse(body);
+        var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
+
+        for (let i in areas) {
+          var desc = areas[i]["desc"];
+          let desc_title = desc.match(
+            /<span style=\"font-size:120%\">(.+?)<\/span>/
+          );
+          if (desc_title) {
+            desc_title = desc_title[1];
+
+            if (desc_title) {
+              let nation = desc_title.match(/.+? \((.+?)\)$/);
+              if (nation) {
+                nation = nation[1];
+                if (nation) {
+                  // Check if nation has recolor
+                  for (let e of eu4colors) {
+                    if (e["name"] === nation.toLowerCase()) {
+                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                        "fillcolor"
+                      ] = e["color"];
+                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                        "color"
+                      ] = e["color"];
+                    } else {
+                      // If no EU4 color, then set default nation color to avoid mix-up with EMC's colors
+                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                        "fillcolor"
+                      ] = "#4AA9E1";
+                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                        "color"
+                      ] = "#4AA9E1";
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        // Write file and push to web
+        var final = JSON.stringify(Response);
+        fs.writeFileSync("marker_earth_tn_eu4.json", final, (err) => {
+          if (err) console.log(err);
+        });
+      });
+
+      res.on("error", function (r) {
+        console.log(e);
+      });
+    }
+  );
+}
+
+function builderTAeu4() {
+  https.get(
+    "https://earthmc.net/map/aurora/tiles/_markers_/marker_earth.json",
+    function (res) {
+      var body = "";
+
+      res.on("data", function (chunk) {
+        body += chunk;
+      });
+
+      res.on("end", function () {
+        var Response = JSON.parse(body);
+        var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
+
+        for (let i in areas) {
+          var desc = areas[i]["desc"];
+          let desc_title = desc.match(
+            /<span style=\"font-size:120%\">(.+?)<\/span>/
+          );
+          if (desc_title) {
+            desc_title = desc_title[1];
+
+            if (desc_title) {
+              let nation = desc_title.match(/.+? \((.+?)\)$/);
+              if (nation) {
+                nation = nation[1];
+                if (nation) {
+                  // Check if nation has recolor
+                  for (let e of eu4colors) {
+                    if (e["name"] === nation.toLowerCase()) {
+                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                        "fillcolor"
+                      ] = e["color"];
+                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                        "color"
+                      ] = e["color"];
+                    } else {
+                      // If no EU4 color, then set default nation color to avoid mix-up with EMC's colors
+                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                        "fillcolor"
+                      ] = "#4AA9E1";
+                      Response["sets"]["townyPlugin.markerset"]["areas"][i][
+                        "color"
+                      ] = "#4AA9E1";
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        // Write file and push to web
+        var final = JSON.stringify(Response);
+        fs.writeFileSync("marker_earth_ta_eu4.json", final, (err) => {
+          if (err) console.log(err);
+        });
+      });
+
+      res.on("error", function (r) {
+        console.log(e);
+      });
+    }
+  );
+}
+
 // This just reposts the unedited marker_earth. This can be used as a mirror for browser scripts
 // since the raw marker_earth on the EMC website has no cross origin headers.
 function builderTN() {
@@ -545,6 +700,8 @@ builderTNopen();
 builderTAopen();
 builderTNpvp();
 builderTApvp();
+builderTNeu4();
+builderTAeu4();
 builderTN();
 builderTA();
 
@@ -558,6 +715,8 @@ setInterval(function () {
   builderTAopen();
   builderTNpvp();
   builderTApvp();
+  builderTNeu4();
+  builderTAeu4();
   builderTN();
   builderTA();
 }, 180000);

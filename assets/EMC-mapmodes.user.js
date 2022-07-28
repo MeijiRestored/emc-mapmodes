@@ -143,12 +143,13 @@ var interval = setInterval(function () {
     mapmode === "area" ? (naam = "Claim size") : "";
     mapmode === "open" ? (naam = "Open/Closed status") : "";
     mapmode === "pvp" ? (naam = "PvP Enabled/Disabled") : "";
+    mapmode === "eu4" ? (naam = "EU4 Colors") : "";
     mapmode === "default" ? (naam = "Default map") : "";
     var infodiv = `
         <div id="emcmapmodes-info" class="coord-control">
            <span class="coord-control-label">Current mapmode: ${naam}</span>
            <br>
-           Change mode: <span class="coord-control-value" onclick="changeMode('pop')">Population</span> / <span class="coord-control-value" onclick="changeMode('area')">Claim size</span> / <span class="coord-control-value" onclick="changeMode('open')">Open status</span><br />/ <span class="coord-control-value" onclick="changeMode('pvp')">PvP status</span> / <span class="coord-control-value" onclick="changeMode('default')">Default</span>
+           Change mode: <span class="coord-control-value" onclick="changeMode('pop')">Population</span> / <span class="coord-control-value" onclick="changeMode('area')">Claim size</span> / <span class="coord-control-value" onclick="changeMode('open')">Open status</span><br />/ <span class="coord-control-value" onclick="changeMode('pvp')">PvP status</span> / <span class="coord-control-value" onclick="changeMode('eu4')">EU4</span> / <span class="coord-control-value" onclick="changeMode('default')">Default</span>
         </div>
         `;
     const div = document.createElement("div");

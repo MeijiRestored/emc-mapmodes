@@ -11,6 +11,10 @@ Userscript for EarthMC's dynmap that colors towns depeding on different statisti
 - By population
 - By claims
 - Open/Closed status
+- PvP Enabled/Disabled
+- EU4 nation colors
+
+The default map can also be toggled to.
 
 ## Installation
 
