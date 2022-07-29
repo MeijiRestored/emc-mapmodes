@@ -137,7 +137,7 @@
   },
   {
     "name": "brazil",
-    "color": "#1FA47A"
+    "color": "#82B17D"
   },
   {
     "name": "gran_colombia",
@@ -226,5 +226,97 @@
   {
     "name": "arctic",
     "color": "#1D1E9E"
+  },
+  {
+    "name": "yugoslavia",
+    "color": "#A64839"
+  },
+  {
+    "name": "bulgaria",
+    "color": "#64616F"
+  },
+  {
+    "name": "iberia",
+    "color": "#A64448"
+  },
+  {
+    "name": "deutsches_reich",
+    "color": "#745C27"
+  },
+  {
+    "name": "belgium",
+    "color": "#2B8DAC"
+  },
+  {
+    "name": "aland",
+    "color": "#084285"
+  },
+  {
+    "name": "babylon",
+    "color": "#367588"
+  },
+  {
+    "name": "egypt",
+    "color": "#BCA65D"
+  },
+  {
+    "name": "sassanid_dynasty",
+    "color": "#82A8E0"
+  },
+  {
+    "name": "kushan",
+    "color": "#007891"
+  },
+  {
+    "name": "lithuania",
+    "color": "#9A4574"
+  },
+  {
+    "name": "wales",
+    "color": "#757179"
+  },
+  {
+    "name": "normandy",
+    "color": "#615D66"
+  },
+  {
+    "name": "italia",
+    "color": "#7DAB54"
+  },
+  {
+    "name": "croatia",
+    "color": "#685EF7"
+  },
+  {
+    "name": "crimea",
+    "color": "#3B9E7D"
+  },
+  {
+    "name": "latvia",
+    "color": "#7D1E64"
+  },
+  {
+    "name": "russia",
+    "color": "#5D7E4D"
+  },
+  {
+    "name": "estonia",
+    "color": "#CA7467"
+  },
+  {
+    "name": "pomerania",
+    "color": "#547349"
+  },
+  {
+    "name": "duchy_of_finland",
+    "color": "#B68664"
+  },
+  {
+    "name": "preußen",
+    "color": "#8F8D80"
+  },
+  {
+    "name": "crusader_states",
+    "color": "#6A7FB7"
   }
 ]
