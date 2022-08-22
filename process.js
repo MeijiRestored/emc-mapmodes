@@ -92,7 +92,8 @@ function builderTNpop() {
           var mCount = (resList[1].match(/,/g) || []).length + 1;
 
           var popcolor = "#000000";
-          mCount >= 50 ? (popcolor = "#00AA00") : "";
+          mCount >= 100 ? (popcolor = "#008800") : "";
+          mCount <= 99 ? (popcolor = "#00AA00") : "";
           mCount <= 49 ? (popcolor = "#00CC00") : "";
           mCount <= 42 ? (popcolor = "#00FF00") : "";
           mCount <= 36 ? (popcolor = "#66FF00") : "";
@@ -195,6 +196,9 @@ function builderTAarea() {
         var Response = JSON.parse(body);
         var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
+        let arealist = {};
+
+        // First figure exact area for each town (fix for towns cut in several polygons)
         for (let i in areas) {
           var pop = areas[i]["desc"];
           if (pop.includes("(Shop)") == true) {
@@ -206,13 +210,41 @@ function builderTAarea() {
               -99999, -99998,
             ];
           } else {
-            let area =
+            let desc_title = desc.match(
+              /<span style=\"font-size:120%\">(.+?)<\/span>/
+            );
+            let areao =
               calcArea(
                 Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"],
                 Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"],
                 Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"]
                   .length
               ) / 256;
+
+            if (arealist[desc_title] == undefined) {
+              arealist[desc_title] = areao;
+            } else {
+              arealist[desc_title] += areao;
+            }
+          }
+        }
+
+        for (let i in areas) {
+          var pop = areas[i]["desc"];
+          if (pop.includes("(Shop)") == true) {
+            // Destroy all 'Shop' shapes
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"] = [
+              -99999, -99998,
+            ];
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"] = [
+              -99999, -99998,
+            ];
+          } else {
+            let desc_title = desc.match(
+              /<span style=\"font-size:120%\">(.+?)<\/span>/
+            );
+
+            let area = arealist[desc_title];
 
             var areacolor = "#000000";
             area >= 940 ? (areacolor = "#008800") : "";
@@ -263,6 +295,9 @@ function builderTNarea() {
         var Response = JSON.parse(body);
         var areas = Response["sets"]["townyPlugin.markerset"]["areas"];
 
+        let arealist = {};
+
+        // First figure exact area for each town (fix for towns cut in several polygons)
         for (let i in areas) {
           var pop = areas[i]["desc"];
           if (pop.includes("(Shop)") == true) {
@@ -274,13 +309,41 @@ function builderTNarea() {
               -99999, -99998,
             ];
           } else {
-            let area =
+            let desc_title = desc.match(
+              /<span style=\"font-size:120%\">(.+?)<\/span>/
+            );
+            let areao =
               calcArea(
                 Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"],
                 Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"],
                 Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"]
                   .length
               ) / 256;
+
+            if (arealist[desc_title] == undefined) {
+              arealist[desc_title] = areao;
+            } else {
+              arealist[desc_title] += areao;
+            }
+          }
+        }
+
+        for (let i in areas) {
+          var pop = areas[i]["desc"];
+          if (pop.includes("(Shop)") == true) {
+            // Destroy all 'Shop' shapes
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["x"] = [
+              -99999, -99998,
+            ];
+            Response["sets"]["townyPlugin.markerset"]["areas"][i]["z"] = [
+              -99999, -99998,
+            ];
+          } else {
+            let desc_title = desc.match(
+              /<span style=\"font-size:120%\">(.+?)<\/span>/
+            );
+
+            let area = arealist[desc_title];
 
             var areacolor = "#000000";
             area >= 940 ? (areacolor = "#008800") : "";

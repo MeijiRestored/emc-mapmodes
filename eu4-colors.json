@@ -56,6 +56,10 @@
     "color": "#C55C6A"
   },
   {
+    "name": "lubusz",
+    "color": "#E57C8A"
+  },
+  {
     "name": "livonia",
     "color": "#7D1E64"
   },
@@ -89,6 +93,10 @@
   },
   {
     "name": "austria",
+    "color": "#DCDCDC"
+  },
+  {
+    "name": "austria-hungary",
     "color": "#DCDCDC"
   },
   {
@@ -200,6 +208,10 @@
     "color": "#DC8A39"
   },
   {
+    "name": "obeyrule4.1",
+    "color": "#DC8A39"
+  },
+  {
     "name": "mongolia",
     "color": "#CCB8B1"
   },
@@ -276,7 +288,7 @@
     "color": "#757179"
   },
   {
-    "name": "normandy",
+    "name": "normandie",
     "color": "#615D66"
   },
   {
@@ -293,7 +305,7 @@
   },
   {
     "name": "latvia",
-    "color": "#7D1E64"
+    "color": "#6D0E54"
   },
   {
     "name": "russia",
