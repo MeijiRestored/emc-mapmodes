@@ -309,7 +309,7 @@ function builderTNarea() {
               -99999, -99998,
             ];
           } else {
-            let desc_title = desc.match(
+            let desc_title = pop.match(
               /<span style=\"font-size:120%\">(.+?)<\/span>/
             );
             let areao =
@@ -339,7 +339,7 @@ function builderTNarea() {
               -99999, -99998,
             ];
           } else {
-            let desc_title = desc.match(
+            let desc_title = pop.match(
               /<span style=\"font-size:120%\">(.+?)<\/span>/
             );
 
