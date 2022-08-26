@@ -1,7 +1,7 @@
 {
-  "name": "emc-map-colors",
-  "version": "0.3.3",
-  "description": "The script fetches marker_earth.json from earthmc.net once in a while and changes the colors accoding to data.json; Then the processed marker_earth.json is made available for web requests.",
+  "name": "emc-mapmodes",
+  "version": "1.1.0",
+  "description": "mapmodes for emc's map - backend",
   "main": "process.js",
   "author": "32Vache",
   "homepage": "https://github.com/32Vache/emc-map-colors",

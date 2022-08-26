@@ -57,7 +57,7 @@
   },
   {
     "name": "lubusz",
-    "color": "#E57C8A"
+    "color": "#C3959B"
   },
   {
     "name": "livonia",
@@ -330,5 +330,17 @@
   {
     "name": "crusader_states",
     "color": "#6A7FB7"
+  },
+  {
+    "name": "silesia",
+    "color": "#758C24"
+  },
+  {
+    "name": "francia",
+    "color": "#008CA5"
+  },
+  {
+    "name": "poitou-charentes",
+    "color": "#D8798B"
   }
 ]
