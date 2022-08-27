@@ -88,11 +88,11 @@ li:hover:not(.active) {
 
 #densityInfo {
   position: absolute;
-  height: 450px;
+  height: 460px;
   width: 350px;
   top: 50%;
   left: 50%;
-  margin: -225px 0 0 -175px;
+  margin: -227px 0 0 -175px;
   padding: 6px;
   border-radius: 5px;
   text-align: left;
