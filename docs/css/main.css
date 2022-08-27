@@ -1,0 +1,99 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map {
+  position: relative;
+  height: 100%;
+  width: 100vw;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#loading {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  background-color: #000000;
+  z-index: 9900;
+}
+
+.progress {
+  position: fixed;
+  height: 150px;
+  width: 250px;
+  top: 50%;
+  left: 50%;
+  margin: -75px 0 0 -125px;
+  text-align: center;
+  opacity: 1;
+  background-color: #ffffff;
+  z-index: 10000;
+}
+
+#barContainer {
+  margin: 0 auto;
+  width: 200px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 9899;
+}
+
+li {
+  float: left;
+  display: block;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+li:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04aa6d;
+}
+
+#info {
+  position: fixed;
+  height: 400px;
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  margin: -200px 0 0 -250px;
+  padding: 6px;
+  border-radius: 5px;
+  text-align: left;
+  opacity: 1;
+  background-color: #eeeeee;
+  z-index: 9998;
+  display: none;
+}
+
+#hideBtn {
+  position: absolute;
+  background-color: #3f51b5;
+  text-align: center;
+  padding: 10px 12px;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0 auto;
+  bottom: 2%;
+  left: 45%;
+}

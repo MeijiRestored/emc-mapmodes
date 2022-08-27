@@ -1,0 +1,152 @@
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      http-equiv="content-type"
+      content="text/html; charset=utf-8"
+      lang="en"
+    />
+    <meta content="EMC Mapmodes" property="og:title" />
+    <meta
+      content="Visualize different statistics on EMC's map!"
+      property="og:description"
+    />
+    <meta content="#43B581" data-react-helmet="true" name="theme-color" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:title" content="EMC Mapmodes" />
+    <meta
+      name="twitter:description"
+      content="Visualize different statistics on EMC's map!"
+    />
+
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/w3.css" />
+    <script src="js/leaflet.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-latest.js"
+    ></script>
+    <title>EMC Mapmodes</title>
+  </head>
+  <body>
+    <div id="loading"></div>
+    <div class="progress">
+      <span style="font-size: 200%">Please wait...</span>
+
+      <div id="loadingText">Initializing<br /><br /></div>
+      <div id="barContainer" width="200px">
+        <div class="w3-light-grey" style="width: 200px; height: 18px">
+          <div
+            class="w3-container w3-indigo"
+            style="width: 0%; height: 100%"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="info">
+      <span style="font-size: 200%">Information</span>
+      <p>
+        On this website you can visualize different statistics directly onto
+        EarthMC's map, by switching map modes with the buttons on the bottom of
+        the page.
+      </p>
+      Current modes available:<br />
+      - Default: The regular map, but better looking.<br />
+      - EU4 Colors: Nations are colored just like in EU4.<br />
+      - Population: Colors towns depending on thier amount of residents.<br />
+      - Claims: Colors towns depending on thier amount of chunks claimed.<br />
+      - PvP status: Shows which towns have PvP enabled.<br />
+      - Density: Colors towns depending on thier population density.<br />
+      - Nation Bonus: Colors nations depending on thier nation bonus.<br />
+      <span onclick="hideInfo()" id="hideBtn">Close</span>
+    </div>
+
+    <ul>
+      <li class="active" onclick="showInfo()">Info</li>
+      <li onclick="loadmode('deft')">Default</li>
+      <li onclick="loadmode('EU4')">EU4 Colors</li>
+      <li onclick="loadmode('popu')">Population</li>
+      <li onclick="loadmode('claim')">Claims</li>
+      <li onclick="loadmode('pvp')">PvP status</li>
+      <li onclick="loadmode('den')">Density</li>
+      <li onclick="loadmode('nb')">Nation Bonus</li>
+    </ul>
+
+    <div id="map"></div>
+    <script>
+      var emcmap = L.map("map", {
+        crs: L.CRS.Simple,
+        maxBounds: [
+          [-16666, -33333],
+          [16510, 33083],
+        ],
+      }).setView([0, 0], -3);
+
+      // EMC background tiles
+      L.tileLayer(
+        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/zzzzz_{x1}_{y1}.png",
+        {
+          maxZoom: -4,
+          minZoom: -4,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+      L.tileLayer(
+        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/zzzz_{x2}_{y2}.png",
+        {
+          maxZoom: -3,
+          minZoom: -3,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+      L.tileLayer(
+        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/zzz_{x3}_{y3}.png",
+        {
+          maxZoom: -2,
+          minZoom: -2,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+      L.tileLayer(
+        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/zz_{x4}_{y4}.png",
+        {
+          maxZoom: -1,
+          minZoom: -1,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+      L.tileLayer(
+        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/z_{x5}_{y5}.png",
+        {
+          maxZoom: 0,
+          minZoom: 0,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+      L.tileLayer(
+        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/{x}_{y6}.png",
+        {
+          maxZoom: 2,
+          maxNativeZoom: 1,
+          minZoom: 1,
+          tileSize: 128,
+        }
+      ).addTo(emcmap);
+
+      loadTAeu4();
+    </script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
