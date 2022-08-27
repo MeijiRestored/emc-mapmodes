@@ -63,19 +63,59 @@
         the page.
       </p>
       Current modes available:<br />
-      - Default: The regular map, but better looking.<br />
-      - EU4 Colors: Nations are colored just like in EU4.<br />
-      - Population: Colors towns depending on thier amount of residents.<br />
-      - Claims: Colors towns depending on thier amount of chunks claimed.<br />
-      - PvP status: Shows which towns have PvP enabled.<br />
-      - Density: Colors towns depending on thier population density.<br />
-      - Nation Bonus: Colors nations depending on thier nation bonus.<br />
+      <u>- Default:</u> The regular map, but better looking.<br />
+      <u>- EU4 Colors:</u> Nations are colored just like in EU4.<br />
+      <u>- Population:</u> Colors towns depending on thier amount of
+      residents.<br />
+      <u>- Claims:</u> Colors towns depending on thier amount of chunks
+      claimed.<br />
+      <u>- PvP status:</u> Shows which towns have PvP enabled.<br />
+      <u>- Density:</u> Colors towns depending on thier population density.
+      <span onclick="howdense()" style="color: #3344ee"
+        >See how it is calculated</span
+      ><br />
+      <u>- Nation Bonus:</u> Colors nations depending on thier nation bonus.<br />
+      <br />
+      <span style="font-size: 90%"
+        ><a href="https://github.com/32Vache/emc-mapmodes"
+          >Source code on Github</a
+        >
+        • Version 1.0 • Aug. 2022</span
+      >
       <span onclick="hideInfo()" id="hideBtn">Close</span>
     </div>
 
-    <div id="legend" title="Legend">
-
+    <div id="densityInfo">
+      <span style="font-size: 150%">Density Calculation</span>
+      <p>
+        The density for each town is calculated depending on three factors: the
+        amount of chunks claimed, the amount of residents and the claim limit.
+      </p>
+      <p>The equation used:</p>
+      <img
+        src="https://chart.apis.google.com/chart?cht=tx&chl=(residents%20*%208%20%2B%20nationbonus)%20-%20claims"
+      />
+      <p>
+        This returns the difference between the claim limit of the town and it's
+        claimed area, which can range from -932
+        <span style="font-size: 80%"
+          >(1 resident, no nation bonus and 940 claimed)</span
+        >
+        and +939
+        <span style="font-size: 80%"
+          >(max residents, max nation bonus and 1 claimed)</span
+        >.
+      </p>
+      <p>
+        This system considers a town that has a lot of chunks claimed but then
+        let its residents decay to be lowly dense, while a town that strifes to
+        keeping a good amount of residents to not end below claim limit, highly
+        dense.
+      </p>
+      <span onclick="nodense()" id="hideBtn">Close</span>
     </div>
+
+    <div id="legend" title="Legend"></div>
 
     <ul>
       <li class="active" onclick="showInfo()">Info</li>

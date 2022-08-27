@@ -71,18 +71,35 @@ li:hover:not(.active) {
 }
 
 #info {
-  position: fixed;
-  height: 400px;
-  width: 500px;
+  position: absolute;
+  height: 500px;
+  width: 400px;
   top: 50%;
   left: 50%;
-  margin: -200px 0 0 -250px;
+  margin: -250px 0 0 -200px;
+  padding: 6px;
+  border-radius: 5px;
+  text-align: left;
+  opacity: 1;
+  background-color: #eeeeee;
+  z-index: 9997;
+  display: none;
+}
+
+#densityInfo {
+  position: absolute;
+  height: 450px;
+  width: 350px;
+  top: 50%;
+  left: 50%;
+  margin: -225px 0 0 -175px;
   padding: 6px;
   border-radius: 5px;
   text-align: left;
   opacity: 1;
   background-color: #eeeeee;
   z-index: 9998;
+  box-shadow: 0px 0px 10px #000000;
   display: none;
 }
 
@@ -95,7 +112,7 @@ li:hover:not(.active) {
   cursor: pointer;
   margin: 0 auto;
   bottom: 2%;
-  left: 45%;
+  left: 40%;
 }
 
 .popGrad {

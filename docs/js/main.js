@@ -1007,9 +1007,18 @@ function showInfo() {
   $("#loading").fadeIn(500);
 }
 
+function howdense() {
+  $("#densityInfo").fadeIn(500);
+}
+
+function nodense() {
+  $("#densityInfo").fadeOut(500);
+}
+
 function hideInfo() {
   $("#info").fadeOut(500);
   $("#loading").fadeOut(500);
+  $("#densityInfo").fadeOut(500);
 }
 
 function loadmode(mode) {
