@@ -97,3 +97,95 @@ li:hover:not(.active) {
   bottom: 2%;
   left: 45%;
 }
+
+.popGrad {
+  width: 294px;
+  height: 24px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(204, 0, 0, 1) 0%,
+    rgba(255, 102, 0, 1) 25%,
+    rgba(204, 255, 0, 1) 50%,
+    rgba(0, 255, 0, 1) 75%,
+    rgba(0, 136, 0, 1) 100%
+  );
+}
+
+.denGrad {
+  width: 294px;
+  height: 24px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(85, 0, 0, 1) 0%,
+    rgba(255, 0, 0, 1) 25%,
+    rgba(255, 204, 0, 1) 50%,
+    rgba(102, 255, 0, 1) 75%,
+    rgba(0, 119, 0, 1) 100%
+  );
+}
+
+.grGrad {
+  width: 294px;
+  height: 24px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(238, 0, 0, 1) 0%,
+    rgba(238, 0, 0, 1) 49%,
+    rgba(0, 238, 0, 1) 50%,
+    rgba(0, 238, 0, 1) 100%
+  );
+}
+
+.nbGrad {
+  width: 294px;
+  height: 24px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 51, 0, 1) 20%,
+    rgba(255, 204, 0, 1) 40%,
+    rgba(102, 204, 0, 1) 60%,
+    rgba(0, 153, 0, 1) 80%,
+    rgba(0, 187, 238, 1) 100%
+  );
+}
+
+#legend {
+  background-color: #eeeeee;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 50px;
+  z-index: 9898;
+  display: none;
+}
+
+#left {
+  left: 0;
+  position: absolute;
+}
+#left-middle {
+  left: 25%;
+  position: absolute;
+}
+#middle {
+  left: 45%;
+  position: absolute;
+}
+#middle-right {
+  right: 25%;
+  position: absolute;
+}
+#right {
+  right: 0;
+  position: absolute;
+}
+
+.gradBox {
+  position: absolute;
+  width: 294px;
+  height: 24px;
+  padding: 3px;
+  bottom: 0;
+}

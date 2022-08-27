@@ -670,7 +670,7 @@ fetch(
         let density = claimlimit - area;
 
         var dencolor = "#000000";
-        density >= 512 ? (dencolor = "#005500") : "";
+        density >= 512 ? (dencolor = "#007700") : "";
         density <= 511 ? (dencolor = "#008800") : "";
         density <= 384 ? (dencolor = "#00AA00") : "";
         density <= 256 ? (dencolor = "#00CC00") : "";
@@ -687,7 +687,7 @@ fetch(
         density <= -128 ? (dencolor = "#CC0000") : "";
         density <= -256 ? (dencolor = "#990000") : "";
         density <= -384 ? (dencolor = "#660000") : "";
-        density <= -512 ? (dencolor = "#330000") : "";
+        density <= -512 ? (dencolor = "#550000") : "";
 
         markerden["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
           dencolor;
@@ -1023,13 +1023,49 @@ function loadmode(mode) {
     current === "pvp" ? pvp.removeFrom(emcmap) : "";
     current === "nb" ? nb.removeFrom(emcmap) : "";
   }
-  mode === "deft" ? deft.addTo(emcmap) : "";
-  mode === "EU4" ? EU4.addTo(emcmap) : "";
-  mode === "popu" ? popu.addTo(emcmap) : "";
-  mode === "claim" ? claim.addTo(emcmap) : "";
-  mode === "den" ? den.addTo(emcmap) : "";
-  mode === "pvp" ? pvp.addTo(emcmap) : "";
-  mode === "nb" ? nb.addTo(emcmap) : "";
+  if (mode === "deft") {
+    deft.addTo(emcmap);
+    $("#legend").fadeOut(300);
+  }
+  if (mode === "EU4") {
+    EU4.addTo(emcmap);
+    $("#legend").fadeOut(300);
+  }
+  if (mode === "popu") {
+    popu.addTo(emcmap);
+    $("#legend").html(
+      '<span id="left">1</span><span id="left-middle">5</span><span id="middle">20</span><span id="middle-right">45</span><span id="right">100</span><div class="gradBox"><div class="popGrad"></div></div>'
+    );
+    $("#legend").fadeIn(300);
+  }
+  if (mode === "claim") {
+    claim.addTo(emcmap);
+    $("#legend").html(
+      '<span id="left">1</span><span id="left-middle">64</span><span id="middle">256</span><span id="middle-right">640</span><span id="right">940</span><div class="gradBox"><div class="popGrad"></div></div>'
+    );
+    $("#legend").fadeIn(300);
+  }
+  if (mode === "den") {
+    den.addTo(emcmap);
+    $("#legend").html(
+      '<span id="left">Low</span><span id="middle">Medium</span><span id="right">High</span><div class="gradBox"><div class="denGrad"></div></div>'
+    );
+    $("#legend").fadeIn(300);
+  }
+  if (mode === "pvp") {
+    pvp.addTo(emcmap);
+    $("#legend").html(
+      '<span id="left-middle">Enabled</span><span id="middle-right">Disabled</span><div class="gradBox"><div class="grGrad"></div></div>'
+    );
+    $("#legend").fadeIn(300);
+  }
+  if (mode === "nb") {
+    nb.addTo(emcmap);
+    $("#legend").html(
+      '<span style="left: 4%; position: absolute;">0</span><span style="left: 24%; position: absolute;">10</span><span style="left: 40%; position: absolute;">30</span><span style="left: 56%; position: absolute;">50</span><span style="left: 72%; position: absolute;">60</span><span style="right: 4%; position: absolute;">80</span><div class="gradBox"><div class="nbGrad"></div></div>'
+    );
+    $("#legend").fadeIn(300);
+  }
 
   current = mode;
 }
