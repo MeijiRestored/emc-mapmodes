@@ -72,36 +72,36 @@ li:hover:not(.active) {
 
 #info {
   position: absolute;
-  height: 550px;
-  width: 400px;
-  min-width: 300px;
+  height: 600px;
+  width: 325px;
   top: 50%;
   left: 50%;
-  margin: -275px 0 0 -200px;
+  margin: -300px 0 0 -168px;
   padding: 6px;
   border-radius: 5px;
   text-align: left;
   opacity: 1;
-  background-color: #eeeeee;
+  color: #eeeeee;
+  background-color: #222222;
   z-index: 9997;
   display: none;
 }
 
 #densityInfo {
   position: absolute;
-  height: 500px;
-  width: 350px;
-  min-width: 300px;
+  height: 550px;
+  width: 300px;
   top: 50%;
   left: 50%;
-  margin: -250px 0 0 -175px;
+  margin: -275px 0 0 -150px;
   padding: 6px;
   border-radius: 5px;
   text-align: left;
   opacity: 1;
-  background-color: #eeeeee;
+  color: #eeeeee;
+  background-color: #222222;
   z-index: 9998;
-  box-shadow: 0px 0px 10px #000000;
+  box-shadow: 0px 0px 10px #cccccc;
   display: none;
 }
 
