@@ -106,6 +106,10 @@ var eu4colors = [
     color: "#4B8287",
   },
   {
+    name: "deutschland",
+    color: "#3B7277",
+  },
+  {
     name: "prussia",
     color: "#8F8D80",
   },
@@ -182,7 +186,7 @@ var eu4colors = [
     color: "#5880C5",
   },
   {
-    name: "h.r.e",
+    name: "hre",
     color: "#96B1A1",
   },
   {
@@ -418,7 +422,12 @@ fetch(
         desc_title = desc_title[1];
 
         if (desc_title) {
-          let nation = desc_title.match(/.+? \((.+?)\)$/);
+          var nation = [];
+          if (desc_title.includes("</a>") == true) {
+            nation = desc_title.match(/.+? \(<.+?>(.+?)<\/a>\)$/);
+          } else {
+            nation = desc_title.match(/.+? \((.+?)\)$/);
+          }
           if (nation) {
             nation = nation[1];
             if (nation) {
@@ -559,7 +568,12 @@ fetch(
           /Members <span style=\"font-weight:bold\">(.+?)<\/span>/
         );
         var mCount = (resList[1].match(/,/g) || []).length + 1;
-        let nation = desc_title[1].match(/.+? \((.+?)\)$/);
+        var nation = [];
+          if (desc_title.includes("</a>") == true) {
+            nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
+          } else {
+            nation = desc_title[1].match(/.+? \((.+?)\)$/);
+          }
 
         if (nation === null) {
           // ignore nationless
@@ -581,7 +595,12 @@ fetch(
         let desc_title = pop.match(
           /<span style=\"font-size:120%\">(.+?)<\/span>/
         );
-        let nation = desc_title[1].match(/.+? \((.+?)\)$/);
+        var nation = [];
+          if (desc_title.includes("</a>") == true) {
+            nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
+          } else {
+            nation = desc_title[1].match(/.+? \((.+?)\)$/);
+          }
 
         var nbcolor = "#000000";
         if (nation === null) {
@@ -649,7 +668,12 @@ fetch(
         var mCount = (resList[1].match(/,/g) || []).length + 1;
         let area = arealist[desc_title];
 
-        let nation = desc_title[1].match(/.+? \((.+?)\)$/);
+        var nation = [];
+          if (desc_title.includes("</a>") == true) {
+            nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
+          } else {
+            nation = desc_title[1].match(/.+? \((.+?)\)$/);
+          }
 
         var nbonus = 0;
         if (nation === null) {
