@@ -3831,12 +3831,22 @@
                 x3: Math.floor(t.x*8),
 				x4: Math.floor(t.x*4),
                 x5: Math.floor(t.x*2),
+                xb2: Math.floor(t.x/2),
+                xb3: Math.floor(t.x/4),
+                xb4: Math.floor(t.x/8),
+                xb5: Math.floor(t.x/16),
+                xb6: Math.floor(t.x/32),
                 y1: Math.floor(t.y*-32),
 				y2: Math.floor(t.y*-16),
                 y3: Math.floor(t.y*-8),
 				y4: Math.floor(t.y*-4),
                 y5: Math.floor(t.y*-2),
-				y6: Math.floor(t.y*-1)
+				y6: Math.floor(t.y*-1),
+                yb2: Math.floor(-(t.y/2)),
+                yb3: Math.floor(-(t.y/4)),
+                yb4: Math.floor(-(t.y/8)),
+                yb5: Math.floor(-(t.y/16)),
+                yb6: Math.floor(-(t.y/32))
             };
             return this._map && !this._map.options.crs.infinite && (i = this._globalTileRange.max.y - t.y, this.options.tms && (e.y = i), e["-y"] = i), f(this._url, h(e, this.options))
         },

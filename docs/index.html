@@ -77,8 +77,7 @@
       <u>- Nation Bonus:</u> Colors nations depending on thier nation bonus.<br />
       <br />
       <span style="font-size: 90%"
-        ><a href="https://github.com/32Vache/emc-mapmodes"
-        target="_blank"
+        ><a href="https://github.com/32Vache/emc-mapmodes" target="_blank"
           >Source code on Github</a
         >
         • Version 2.0 • Aug. 2022</span
@@ -141,7 +140,7 @@
 
       // EMC background tiles
       L.tileLayer(
-        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/zzzzz_{x1}_{y1}.webp",
+        "https://earthmc.net/map/aurora/tiles/earth/flat/{x}_{y6}/zzzzz_{x1}_{y1}.webp",
         {
           maxZoom: -4,
           minZoom: -4,
@@ -149,7 +148,7 @@
         }
       ).addTo(emcmap);
       L.tileLayer(
-        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/zzzz_{x2}_{y2}.webp",
+        "https://earthmc.net/map/aurora/tiles/earth/flat/{xb2}_{yb2}/zzzz_{x2}_{y2}.webp",
         {
           maxZoom: -3,
           minZoom: -3,
@@ -157,7 +156,7 @@
         }
       ).addTo(emcmap);
       L.tileLayer(
-        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/zzz_{x3}_{y3}.webp",
+        "https://earthmc.net/map/aurora/tiles/earth/flat/{xb3}_{yb3}/zzz_{x3}_{y3}.webp",
         {
           maxZoom: -2,
           minZoom: -2,
@@ -165,7 +164,7 @@
         }
       ).addTo(emcmap);
       L.tileLayer(
-        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/zz_{x4}_{y4}.webp",
+        "https://earthmc.net/map/aurora/tiles/earth/flat/{xb4}_{yb4}/zz_{x4}_{y4}.webp",
         {
           maxZoom: -1,
           minZoom: -1,
@@ -173,7 +172,7 @@
         }
       ).addTo(emcmap);
       L.tileLayer(
-        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/z_{x5}_{y5}.webp",
+        "https://earthmc.net/map/aurora/tiles/earth/flat/{xb5}_{yb5}/z_{x5}_{y5}.webp",
         {
           maxZoom: 0,
           minZoom: 0,
@@ -181,7 +180,7 @@
         }
       ).addTo(emcmap);
       L.tileLayer(
-        "https://earthmc.net/map/aurora/tiles/earth/flat/0_0/{x}_{y6}.webp",
+        "https://earthmc.net/map/aurora/tiles/earth/flat/{xb6}_{yb6}/{x}_{y6}.webp",
         {
           maxZoom: 2,
           maxNativeZoom: 1,
