@@ -208,3 +208,7 @@ li:hover:not(.active) {
   padding: 3px;
   bottom: 0;
 }
+
+a {
+  text-decoration: none;
+}

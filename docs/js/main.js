@@ -380,7 +380,6 @@ var den = L.layerGroup();
 var nb = L.layerGroup();
 
 var current = "blank";
-// Async loading and processing of data
 
 $("#loadingText").html("Fetching map data<br /><br />");
 $("#barContainer").html(
@@ -408,9 +407,9 @@ fetch(
 
     for (let i in areasEU4) {
       markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
-        "#4AA9E1";
+        "#3FB4FF";
       markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
-        "#4AA9E1";
+        "#3FB4FF";
     }
 
     for (let i in areasEU4) {
@@ -419,6 +418,38 @@ fetch(
         /<span style=\"font-size:120%\">(.+?)<\/span>/
       );
       if (desc_title) {
+        var names = [];
+        if (desc_title[1].includes("</a>") == true) {
+          names = desc_title[1].match(
+            /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+          );
+          names = [names[0], names[1], names[3], names[2]];
+        } else {
+          names = desc_title[1].match(/(.+) \((.+|)\)/);
+        }
+        if (names[2] == "") {
+          names[2] = "Nationless";
+        }
+
+        var infos = desc.match(
+          /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+        );
+
+        desc = `<span style="font-size:130%">${
+          infos[3] == "true" ? "★ " + names[1] : names[1]
+        }, ${names[2][0]}</span>${names[2].slice(1).toUpperCase()} ${
+          names[3]
+            ? "<a href='" +
+              names[3] +
+              "' target='_blank' title='Wiki link'>📖</a>"
+            : ""
+        }<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+          infos[1]
+        }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
+          infos[2]
+        }`;
+
+        markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = desc;
         desc_title = desc_title[1];
 
         if (desc_title) {
@@ -476,6 +507,37 @@ fetch(
       mCount <= 4 ? (popcolor = "#FF2200") : "";
       mCount == 2 ? (popcolor = "#EE0000") : "";
       mCount == 1 ? (popcolor = "#CC0000") : "";
+
+      let desc_title = pop.match(
+        /<span style=\"font-size:120%\">(.+?)<\/span>/
+      );
+
+      var names = [];
+      if (desc_title[1].includes("</a>") == true) {
+        names = desc_title[1].match(/(.+?) \(<a href="(.+)">(.+|)<\/a>\)/);
+        names = [names[0], names[1], names[3], names[2]];
+      } else {
+        names = desc_title[1].match(/(.+) \((.+|)\)/);
+      }
+      if (names[2] == "") {
+        names[2] = "Nationless";
+      }
+
+      var infos = pop.match(
+        /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+      );
+
+      pop = `<span style="font-size:130%">${
+        infos[3] == "true" ? "★ " + names[1] : names[1]
+      }, ${names[2][0]}</span>${names[2]
+        .slice(1)
+        .toUpperCase()}<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+        infos[1]
+      }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
+        infos[2]
+      }<br/><br/><span style="font-size:120%">P</span><span style="font-size:90%">OPULATION</span> : <b><span style="font-size:120%; color:${popcolor}">${mCount}</span></b>`;
+
+      markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
 
       markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
         popcolor;
@@ -540,6 +602,33 @@ fetch(
         area <= 16 ? (areacolor = "#EE0000") : "";
         area == 1 ? (areacolor = "#CC0000") : "";
 
+        var names = [];
+        if (desc_title[1].includes("</a>") == true) {
+          names = desc_title[1].match(/(.+?) \(<a href="(.+)">(.+|)<\/a>\)/);
+          names = [names[0], names[1], names[3], names[2]];
+        } else {
+          names = desc_title[1].match(/(.+) \((.+|)\)/);
+        }
+        if (names[2] == "") {
+          names[2] = "Nationless";
+        }
+
+        var infos = pop.match(
+          /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+        );
+
+        pop = `<span style="font-size:130%">${
+          infos[3] == "true" ? "★ " + names[1] : names[1]
+        }, ${names[2][0]}</span>${names[2]
+          .slice(1)
+          .toUpperCase()}<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+          infos[1]
+        }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
+          infos[2]
+        }<br/><br/><span style="font-size:120%">C</span><span style="font-size:90%">LAIMS</span> : <b><span style="font-size:120%; color:${areacolor}">${area}</span></b> <span style="font-size:85%">CHUNKS</span>`;
+
+        markerclaim["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
+
         markerclaim["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
           areacolor;
         markerclaim["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
@@ -569,11 +658,11 @@ fetch(
         );
         var mCount = (resList[1].match(/,/g) || []).length + 1;
         var nation = [];
-          if (desc_title.includes("</a>") == true) {
-            nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
-          } else {
-            nation = desc_title[1].match(/.+? \((.+?)\)$/);
-          }
+        if (desc_title.includes("</a>") == true) {
+          nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
+        } else {
+          nation = desc_title[1].match(/.+? \((.+?)\)$/);
+        }
 
         if (nation === null) {
           // ignore nationless
@@ -596,13 +685,14 @@ fetch(
           /<span style=\"font-size:120%\">(.+?)<\/span>/
         );
         var nation = [];
-          if (desc_title.includes("</a>") == true) {
-            nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
-          } else {
-            nation = desc_title[1].match(/.+? \((.+?)\)$/);
-          }
+        if (desc_title.includes("</a>") == true) {
+          nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
+        } else {
+          nation = desc_title[1].match(/.+? \((.+?)\)$/);
+        }
 
         var nbcolor = "#000000";
+        var nbo = 0;
         if (nation === null) {
           nbcolor = "#000000";
         } else {
@@ -613,7 +703,41 @@ fetch(
           popul <= 59 ? (nbcolor = "#FFCC00") : "";
           popul <= 39 ? (nbcolor = "#FF3300") : "";
           popul <= 9 ? (nbcolor = "#000000") : "";
+
+          popul >= 120 ? (nbo = 80) : "";
+          popul <= 119 ? (nbo = 60) : "";
+          popul <= 89 ? (nbo = 50) : "";
+          popul <= 59 ? (nbo = 30) : "";
+          popul <= 39 ? (nbo = 10) : "";
+          popul <= 9 ? (nbo = 0) : "";
         }
+
+        var names = [];
+        if (desc_title[1].includes("</a>") == true) {
+          names = desc_title[1].match(/(.+?) \(<a href="(.+)">(.+|)<\/a>\)/);
+          names = [names[0], names[1], names[3], names[2]];
+        } else {
+          names = desc_title[1].match(/(.+) \((.+|)\)/);
+        }
+        if (names[2] == "") {
+          names[2] = "Nationless";
+        }
+
+        var infos = pop.match(
+          /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+        );
+
+        pop = `<span style="font-size:130%">${
+          infos[3] == "true" ? "★ " + names[1] : names[1]
+        }, ${names[2][0]}</span>${names[2]
+          .slice(1)
+          .toUpperCase()}<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+          infos[1]
+        }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
+          infos[2]
+        }<br/><br/><span style="font-size:120%">N</span><span style="font-size:90%">ATION BONUS</span> : <b><span style="font-size:120%; color:${nbcolor}">${nbo}</span></b>`;
+
+        markernb["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
 
         markernb["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
           nbcolor;
@@ -634,17 +758,53 @@ fetch(
 
       var public = pop.toLowerCase().includes("pvp: false");
 
+      var pvpe = "No";
       if (public) {
+        pvpe = "No";
         markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
           "#00EE00";
         markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
           "#00EE00";
       } else {
+        pvpe = "Yes";
         markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
           "#EE0000";
         markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
           "#EE0000";
       }
+
+      let desc_title = pop.match(
+        /<span style=\"font-size:120%\">(.+?)<\/span>/
+      );
+
+      var names = [];
+      if (desc_title[1].includes("</a>") == true) {
+        names = desc_title[1].match(/(.+?) \(<a href="(.+)">(.+|)<\/a>\)/);
+        names = [names[0], names[1], names[3], names[2]];
+      } else {
+        names = desc_title[1].match(/(.+) \((.+|)\)/);
+      }
+      if (names[2] == "") {
+        names[2] = "Nationless";
+      }
+
+      var infos = pop.match(
+        /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+      );
+
+      pop = `<span style="font-size:130%">${
+        infos[3] == "true" ? "★ " + names[1] : names[1]
+      }, ${names[2][0]}</span>${names[2]
+        .slice(1)
+        .toUpperCase()}<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+        infos[1]
+      }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
+        infos[2]
+      }<br/><br/><span style="font-size:120%">P</span><span style="font-size:90%">VP</span> : <b><span style="font-size:120%; color:${
+        pvpe === "Yes" ? "#EE0000" : "#00EE00"
+      }">${pvpe}</span></b>`;
+
+      markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
     }
 
     // ============
@@ -669,11 +829,11 @@ fetch(
         let area = arealist[desc_title];
 
         var nation = [];
-          if (desc_title.includes("</a>") == true) {
-            nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
-          } else {
-            nation = desc_title[1].match(/.+? \((.+?)\)$/);
-          }
+        if (desc_title.includes("</a>") == true) {
+          nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
+        } else {
+          nation = desc_title[1].match(/.+? \((.+?)\)$/);
+        }
 
         var nbonus = 0;
         if (nation === null) {
@@ -712,6 +872,37 @@ fetch(
         density <= -256 ? (dencolor = "#990000") : "";
         density <= -384 ? (dencolor = "#660000") : "";
         density <= -512 ? (dencolor = "#550000") : "";
+
+        var names = [];
+        if (desc_title[1].includes("</a>") == true) {
+          names = desc_title[1].match(/(.+?) \(<a href="(.+)">(.+|)<\/a>\)/);
+          names = [names[0], names[1], names[3], names[2]];
+        } else {
+          names = desc_title[1].match(/(.+) \((.+|)\)/);
+        }
+        if (names[2] == "") {
+          names[2] = "Nationless";
+        }
+
+        var infos = pop.match(
+          /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+        );
+
+        pop = `<span style="font-size:130%">${
+          infos[3] == "true" ? "★ " + names[1] : names[1]
+        }, ${names[2][0]}</span>${names[2]
+          .slice(1)
+          .toUpperCase()}<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+          infos[1]
+        }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
+          infos[2]
+        }<br/><br/><span style="font-size:120%">D</span><span style="font-size:90%">ENSITY</span> : <b><span style="font-size:120%; color:${dencolor}">${
+          density < 0
+            ? (density * -1).toString() + " ABOVE CLAIM LIMIT"
+            : density.toString() + " BELOW CLAIM LIMIT"
+        }</span></b>`;
+
+        markerden["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
 
         markerden["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
           dencolor;
@@ -755,7 +946,9 @@ fetch(
             fillOpacity: 0.1,
             weight: 2,
             dashArray: "2 4",
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       } else {
         EU4.addLayer(
@@ -766,7 +959,9 @@ fetch(
               markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
             fillOpacity: 0.3,
             weight: 2,
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       }
     }
@@ -799,7 +994,9 @@ fetch(
             fillOpacity: 0.1,
             weight: 2,
             dashArray: "2 4",
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       } else {
         popu.addLayer(
@@ -810,7 +1007,9 @@ fetch(
               markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
             fillOpacity: 0.3,
             weight: 2,
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       }
     }
@@ -845,7 +1044,9 @@ fetch(
               markerclaim["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
             fillOpacity: 0.3,
             weight: 2,
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       }
     }
@@ -879,7 +1080,9 @@ fetch(
               markernb["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
             fillOpacity: 0.3,
             weight: 2,
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       }
     }
@@ -913,7 +1116,9 @@ fetch(
             fillOpacity: 0.1,
             weight: 2,
             dashArray: "2 4",
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       } else {
         pvp.addLayer(
@@ -924,7 +1129,9 @@ fetch(
               markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
             fillOpacity: 0.3,
             weight: 2,
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       }
     }
@@ -960,7 +1167,9 @@ fetch(
             fillOpacity: 0.1,
             weight: 2,
             dashArray: "2 4",
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       } else {
         deft.addLayer(
@@ -973,7 +1182,9 @@ fetch(
               ],
             fillOpacity: 0.3,
             weight: 2,
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       }
     }
@@ -1007,7 +1218,9 @@ fetch(
               markerden["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
             fillOpacity: 0.3,
             weight: 2,
-          }).bindPopup(desc)
+          }).bindPopup(desc, {
+            maxWidth: 350,
+          })
         );
       }
     }
