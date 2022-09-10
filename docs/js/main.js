@@ -514,7 +514,7 @@ fetch(
 
       var names = [];
       if (desc_title[1].includes("</a>") == true) {
-        names = desc_title[1].match(/(.+?) \(<a href="(.+)">(.+|)<\/a>\)/);
+        names = desc_title[1].match(/(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/);
         names = [names[0], names[1], names[3], names[2]];
       } else {
         names = desc_title[1].match(/(.+) \((.+|)\)/);
@@ -529,9 +529,13 @@ fetch(
 
       pop = `<span style="font-size:130%">${
         infos[3] == "true" ? "★ " + names[1] : names[1]
-      }, ${names[2][0]}</span>${names[2]
-        .slice(1)
-        .toUpperCase()}<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+      }, ${names[2][0]}</span>${names[2].slice(1).toUpperCase()} ${
+        names[3]
+          ? "<a href='" +
+            names[3] +
+            "' target='_blank' title='Wiki link'>📖</a>"
+          : ""
+      }<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
         infos[1]
       }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
         infos[2]
@@ -604,7 +608,9 @@ fetch(
 
         var names = [];
         if (desc_title[1].includes("</a>") == true) {
-          names = desc_title[1].match(/(.+?) \(<a href="(.+)">(.+|)<\/a>\)/);
+          names = desc_title[1].match(
+            /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+          );
           names = [names[0], names[1], names[3], names[2]];
         } else {
           names = desc_title[1].match(/(.+) \((.+|)\)/);
@@ -619,9 +625,13 @@ fetch(
 
         pop = `<span style="font-size:130%">${
           infos[3] == "true" ? "★ " + names[1] : names[1]
-        }, ${names[2][0]}</span>${names[2]
-          .slice(1)
-          .toUpperCase()}<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+        }, ${names[2][0]}</span>${names[2].slice(1).toUpperCase()} ${
+          names[3]
+            ? "<a href='" +
+              names[3] +
+              "' target='_blank' title='Wiki link'>📖</a>"
+            : ""
+        }<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
           infos[1]
         }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
           infos[2]
@@ -714,7 +724,9 @@ fetch(
 
         var names = [];
         if (desc_title[1].includes("</a>") == true) {
-          names = desc_title[1].match(/(.+?) \(<a href="(.+)">(.+|)<\/a>\)/);
+          names = desc_title[1].match(
+            /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+          );
           names = [names[0], names[1], names[3], names[2]];
         } else {
           names = desc_title[1].match(/(.+) \((.+|)\)/);
@@ -729,9 +741,13 @@ fetch(
 
         pop = `<span style="font-size:130%">${
           infos[3] == "true" ? "★ " + names[1] : names[1]
-        }, ${names[2][0]}</span>${names[2]
-          .slice(1)
-          .toUpperCase()}<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+        }, ${names[2][0]}</span>${names[2].slice(1).toUpperCase()} ${
+          names[3]
+            ? "<a href='" +
+              names[3] +
+              "' target='_blank' title='Wiki link'>📖</a>"
+            : ""
+        }<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
           infos[1]
         }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
           infos[2]
@@ -779,7 +795,7 @@ fetch(
 
       var names = [];
       if (desc_title[1].includes("</a>") == true) {
-        names = desc_title[1].match(/(.+?) \(<a href="(.+)">(.+|)<\/a>\)/);
+        names = desc_title[1].match(/(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/);
         names = [names[0], names[1], names[3], names[2]];
       } else {
         names = desc_title[1].match(/(.+) \((.+|)\)/);
@@ -794,9 +810,13 @@ fetch(
 
       pop = `<span style="font-size:130%">${
         infos[3] == "true" ? "★ " + names[1] : names[1]
-      }, ${names[2][0]}</span>${names[2]
-        .slice(1)
-        .toUpperCase()}<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+      }, ${names[2][0]}</span>${names[2].slice(1).toUpperCase()} ${
+        names[3]
+          ? "<a href='" +
+            names[3] +
+            "' target='_blank' title='Wiki link'>📖</a>"
+          : ""
+      }<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
         infos[1]
       }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
         infos[2]
@@ -875,7 +895,9 @@ fetch(
 
         var names = [];
         if (desc_title[1].includes("</a>") == true) {
-          names = desc_title[1].match(/(.+?) \(<a href="(.+)">(.+|)<\/a>\)/);
+          names = desc_title[1].match(
+            /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+          );
           names = [names[0], names[1], names[3], names[2]];
         } else {
           names = desc_title[1].match(/(.+) \((.+|)\)/);
@@ -890,9 +912,13 @@ fetch(
 
         pop = `<span style="font-size:130%">${
           infos[3] == "true" ? "★ " + names[1] : names[1]
-        }, ${names[2][0]}</span>${names[2]
-          .slice(1)
-          .toUpperCase()}<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+        }, ${names[2][0]}</span>${names[2].slice(1).toUpperCase()} ${
+          names[3]
+            ? "<a href='" +
+              names[3] +
+              "' target='_blank' title='Wiki link'>📖</a>"
+            : ""
+        }<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
           infos[1]
         }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
           infos[2]
