@@ -378,8 +378,9 @@ var popu = L.layerGroup();
 var deft = L.layerGroup();
 var den = L.layerGroup();
 var nb = L.layerGroup();
+var capitals = L.layerGroup();
 
-var current = "blank";
+var current = "deft";
 
 $("#loadingText").html("Fetching map data<br /><br />");
 $("#barContainer").html(
@@ -938,6 +939,28 @@ fetch(
     }
 
     // Convert the dynmap data to vanilla leaflet markers
+    // Capital icons
+
+    var capIcon = L.icon({
+      iconUrl:
+        "https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/capital.png",
+
+      iconSize: [15, 15],
+      iconAnchor: [7, 7],
+    });
+
+    for (let i in markerTA["sets"]["townyPlugin.markerset"]["markers"]) {
+      capitals.addLayer(
+        L.marker(
+          [
+            -markerTA["sets"]["townyPlugin.markerset"]["markers"][i]["z"] - 64,
+            markerTA["sets"]["townyPlugin.markerset"]["markers"][i]["x"],
+          ],
+          { icon: capIcon, interactive: false }
+        )
+      );
+    }
+
     // ========
     // EU4 Mode
     // ========
@@ -1174,9 +1197,7 @@ fetch(
       );
       var names = [];
       if (desc_title[1].includes("</a>") == true) {
-        names = desc_title[1].match(
-          /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
-        );
+        names = desc_title[1].match(/(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/);
         names = [names[0], names[1], names[3], names[2]];
       } else {
         names = desc_title[1].match(/(.+) \((.+|)\)/);
@@ -1296,6 +1317,8 @@ fetch(
     });
     $(".progress").fadeOut(2000);
     $("#loading").fadeOut(2000);
+    deft.addTo(emcmap);
+    capitals.addTo(emcmap);
   });
 
 // Control functions
