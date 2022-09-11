@@ -1169,6 +1169,40 @@ fetch(
     var deftareas = markerTA["sets"]["townyPlugin.markerset"]["areas"];
     for (let i in deftareas) {
       var desc = deftareas[i]["desc"];
+      let desc_title = desc.match(
+        /<span style=\"font-size:120%\">(.+?)<\/span>/
+      );
+      var names = [];
+      if (desc_title[1].includes("</a>") == true) {
+        names = desc_title[1].match(
+          /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+        );
+        names = [names[0], names[1], names[3], names[2]];
+      } else {
+        names = desc_title[1].match(/(.+) \((.+|)\)/);
+      }
+      if (names[2] == "") {
+        names[2] = "Nationless";
+      }
+
+      var infos = desc.match(
+        /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+      );
+
+      desc = `<span style="font-size:130%">${
+        infos[3] == "true" ? "★ " + names[1] : names[1]
+      }, ${names[2][0]}</span>${names[2].slice(1).toUpperCase()} ${
+        names[3]
+          ? "<a href='" +
+            names[3] +
+            "' target='_blank' title='Wiki link'>📖</a>"
+          : ""
+      }<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+        infos[1]
+      }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
+        infos[2]
+      }`;
+
       var coordArray = [];
 
       for (let j in markerTA["sets"]["townyPlugin.markerset"]["areas"][i][
