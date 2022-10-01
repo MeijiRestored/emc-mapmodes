@@ -1443,7 +1443,7 @@ function loadTownless() {
               townlesses.push(update["players"][i]["name"]);
             }
           }
-          var tstr = townlesses.toString().replaceAll(",", ", ");
+          var tstr = townlesses.toString().replaceAll(",", " ");
 
           $("#townlessCtn").html(
             `Found ${townlesses.length} townless out of ${
