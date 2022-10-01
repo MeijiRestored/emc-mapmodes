@@ -82,8 +82,16 @@ var eu4colors = [
     color: "#C3959B",
   },
   {
+    name: "masovia",
+    color: "#D3A59B",
+  },
+  {
     name: "livonia",
     color: "#7D1E64",
+  },
+  {
+    name: "tripolitania",
+    color: "#71B097",
   },
   {
     name: "switzerland",
@@ -327,6 +335,10 @@ var eu4colors = [
   },
   {
     name: "crimea",
+    color: "#3B9E7D",
+  },
+  {
+    name: "crimean_khanate",
     color: "#3B9E7D",
   },
   {
