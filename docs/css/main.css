@@ -45,7 +45,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #333333;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -63,7 +63,15 @@ li {
 }
 
 li:hover:not(.active) {
-  background-color: #111;
+  background-color: #111111;
+}
+
+li:hover:is(.active) {
+  background-color: #00794c;
+}
+
+.tool {
+  background-color: #222222;
 }
 
 .active {
@@ -102,6 +110,23 @@ li:hover:not(.active) {
   background-color: #222222;
   z-index: 9998;
   box-shadow: 0px 0px 10px #cccccc;
+  display: none;
+}
+
+#townless {
+  position: absolute;
+  height: 500px;
+  width: 350px;
+  top: 50%;
+  left: 50%;
+  margin: -250px 0 0 -175px;
+  padding: 6px;
+  border-radius: 5px;
+  text-align: left;
+  opacity: 1;
+  color: #eeeeee;
+  background-color: #222222;
+  z-index: 9996;
   display: none;
 }
 
@@ -211,4 +236,23 @@ li:hover:not(.active) {
 
 a {
   text-decoration: none;
+}
+
+#townlessCtn {
+  padding: 4px;
+  margin: 2px;
+  height: auto;
+  width: auto;
+  border-radius: 2px;
+  background-color: #444444;
+  display: none;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+#townlessList {
+  padding: 2px;
+  font-size: 90%;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }

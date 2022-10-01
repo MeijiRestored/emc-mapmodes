@@ -14,7 +14,7 @@
       content="Visualize different statistics on EMC's map!"
       property="og:description"
     />
-    <meta content="#43B581" data-react-helmet="true" name="theme-color" />
+    <meta content="#04aa6d" data-react-helmet="true" name="theme-color" />
     <meta property="og:type" content="website" />
     <meta name="twitter:title" content="EMC Mapmodes" />
     <meta
@@ -56,6 +56,27 @@
       </div>
     </div>
 
+    <div id="townless">
+      <span style="font-size: 180%">Townless Players</span>
+      <p>
+        This tool lists townless players so you can recruit them. It can also
+        generate a <i>/t invite</i> command you can directly copy and paste in
+        the server!<br /><br/>
+        Click Load to begin, or refresh.
+      </p>
+
+      <div id="townlessCtn"></div>
+
+      <span onclick="hideTownless()" id="hideBtn" style="left: 30%">Close</span>
+      <span
+        onclick="loadTownless()"
+        id="hideBtn"
+        class="townlessBtn"
+        style="left: 50%; background-color: #04aa6d"
+        >Load</span
+      >
+    </div>
+
     <div id="info">
       <span style="font-size: 200%">Information</span>
       <p>
@@ -76,12 +97,12 @@
         >See how it is calculated</span
       ><br />
       <u>- Nation Bonus:</u> Colors nations depending on thier nation bonus.<br />
-      <br />
+      <u>- Townless:</u> Bonus tool to easily recruit for your town!<br />
       <span style="font-size: 90%"
         ><a href="https://github.com/32Vache/emc-mapmodes" target="_blank"
           >Source code on Github</a
         >
-        • Version 2.1 • Sep. 2022</span
+        • Version 2.2 • Oct. 2022</span
       >
       <span onclick="hideInfo()" id="hideBtn">Close</span>
     </div>
@@ -127,6 +148,7 @@
       <li onclick="loadmode('pvp')">PvP status</li>
       <li onclick="loadmode('den')">Density</li>
       <li onclick="loadmode('nb')">Nation Bonus</li>
+      <li class="tool" onclick="showTownless()">Townless</li>
     </ul>
 
     <div id="map"></div>

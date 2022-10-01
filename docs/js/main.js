@@ -1341,6 +1341,16 @@ function hideInfo() {
   $("#densityInfo").fadeOut(500);
 }
 
+function showTownless() {
+  $("#townless").fadeIn(500);
+  $("#loading").fadeIn(500);
+}
+
+function hideTownless() {
+  $("#townless").fadeOut(500);
+  $("#loading").fadeOut(500);
+}
+
 function loadmode(mode) {
   if (current === "blank") {
   } else {
@@ -1397,4 +1407,47 @@ function loadmode(mode) {
   }
 
   current = mode;
+}
+
+function loadTownless() {
+  $(".townlessBtn").css("background-color", "#ff8811");
+  fetch(
+    "https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/tiles/_markers_/marker_earth.json"
+  )
+    .then((response) => response.json())
+    .then((marker) => {
+      fetch(
+        "https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/standalone/dynmap_earth.json"
+      )
+        .then((res) => res.json())
+        .then((update) => {
+          var townlesses = [];
+          for (i in update["players"]) {
+            if (
+              JSON.stringify(
+                marker["sets"]["townyPlugin.markerset"]["areas"]
+              ).includes(update["players"][i]["name"]) == false
+            ) {
+              townlesses.push(update["players"][i]["name"]);
+            }
+          }
+          var tstr = townlesses.toString().replaceAll(",", ", ");
+
+          $("#townlessCtn").html(
+            `Found ${townlesses.length} townless out of ${
+              Object.keys(update["players"]).length
+            } players.<br/><br/><div id="townlessList">${tstr}</div><br/><hr/>
+            <div id="copyTownless">
+              <span>Copy /t invite command:</span>
+              <img
+                src="https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/clipboard.png"
+                height="16px"
+              />
+            </div>`
+          );
+          navigator.clipboard.writeText(`/t invite ${tstr}`);
+          $("#townlessCtn").fadeIn(100);
+          $(".townlessBtn").css("background-color", "#04aa6d");
+        });
+    });
 }
