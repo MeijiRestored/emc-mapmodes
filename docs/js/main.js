@@ -1442,12 +1442,25 @@ function loadTownless() {
               <img
                 src="https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/clipboard.png"
                 height="16px"
+                onclick="copyTownless('/t invite ${tstr}')"
+              />
+              <img
+                src="https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/checkmark.png"
+                height="16px"
+                id="checkmark"
+                style="display: none;"
               />
             </div>`
           );
-          navigator.clipboard.writeText(`/t invite ${tstr}`);
+
           $("#townlessCtn").fadeIn(100);
           $(".townlessBtn").css("background-color", "#04aa6d");
         });
     });
+}
+
+function copyTownless(cmd) {
+  navigator.clipboard.writeText(cmd);
+  $("#checkmark").show();
+  $("#checkmark").fadeOut(3000);
 }

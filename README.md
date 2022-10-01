@@ -6,7 +6,7 @@ Website for EarthMC's dynmap that colors towns depeding on different statistics.
 
 ![Map](https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/main-map.png)
 
-## Current mapmodes
+## Mapmodes
 
 - Default (enhanced)
 - By population
@@ -18,17 +18,16 @@ Website for EarthMC's dynmap that colors towns depeding on different statistics.
 
 The default map can also be toggled to.
 
+## Townless Tool
+
+![Townless Tool](https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/townless.png)
+
+There is also a tool to quickly recruit for your town! It can create a /t invite command for you, that you can simply paste into the server!
+
 ## Usage
 
 Open https://32vache.github.io/emc-mapmodes to use! Can work on both computer and phone.
 
 ## Userscript
 
-Important! The userscript will no longer function after November, 2022. The new website is the preferred way of using this app, and the userscript will no longer recieve updates until its removal.
-
-You will need [Tampermonkey](https://www.tampermonkey.net/index.php) to run this userscript.
-Once you got it installed you can just download the userscript from [releases](https://github.com/32Vache/emc-mapmodes/releases/latest)!
-
-### Compatibility
-
-This userscript is compatible with Tampermonkey version 4.9 or later.
+Important! The userscript that was used before is no longer updated and no longer works. Please uninstall it if you still have it, and use the website instead.
