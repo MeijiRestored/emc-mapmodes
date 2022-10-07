@@ -19,6 +19,41 @@ function calcArea(x, y, ptsNum) {
   return Math.abs(area / 2);
 }
 
+/**
+ * Convert dynmap marker data to a leaflet layer group.
+ */
+function leafletConvert(dynMarker, layer) {
+  var areas = dynMarker["sets"]["townyPlugin.markerset"]["areas"];
+  for (let i in areas) {
+    var desc = areas[i]["desc"];
+    var coordArray = [];
+
+    for (let j in dynMarker["sets"]["townyPlugin.markerset"]["areas"][i]["x"]) {
+      coordArray.push([
+        -dynMarker["sets"]["townyPlugin.markerset"]["areas"][i]["z"][j] - 64,
+        dynMarker["sets"]["townyPlugin.markerset"]["areas"][i]["x"][j],
+      ]);
+    }
+
+    if (desc.includes("(Shop)") == true) {
+      // Destroy shop shapes.
+    } else {
+      mapdata[layer].addLayer(
+        L.polygon(coordArray, {
+          color:
+            dynMarker["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
+          fillColor:
+            dynMarker["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
+          fillOpacity: 0.3,
+          weight: 2,
+        }).bindPopup(desc, {
+          maxWidth: 350,
+        })
+      );
+    }
+  }
+}
+
 // Pre-load data
 var eu4colors = [
   {
@@ -383,13 +418,16 @@ var eu4colors = [
   },
 ];
 
-var pvp = L.layerGroup();
-var EU4 = L.layerGroup();
-var claim = L.layerGroup();
-var popu = L.layerGroup();
-var deft = L.layerGroup();
-var den = L.layerGroup();
-var nb = L.layerGroup();
+var mapdata = {
+  pvp: L.layerGroup(),
+  EU4: L.layerGroup(),
+  claim: L.layerGroup(),
+  popu: L.layerGroup(),
+  deft: L.layerGroup(),
+  den: L.layerGroup(),
+  nb: L.layerGroup(),
+};
+
 var capitals = L.layerGroup();
 
 var current = "deft";
@@ -973,229 +1011,17 @@ fetch(
       );
     }
 
-    // ========
-    // EU4 Mode
-    // ========
-
     $("#loadingText").html("Preparing map modes<br /><br />");
     $("#barContainer").html(
       '<div class="w3-light-grey" style="width: 200px; height: 18px"><div class="w3-container w3-indigo"style="width: 75%; height: 100%"></div>'
     );
 
-    var EU4areas = markerEU4["sets"]["townyPlugin.markerset"]["areas"];
-    for (let i in EU4areas) {
-      var desc = EU4areas[i]["desc"];
-      var coordArray = [];
-
-      for (let j in markerEU4["sets"]["townyPlugin.markerset"]["areas"][i][
-        "x"
-      ]) {
-        coordArray.push([
-          -markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["z"][j] - 64,
-          markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["x"][j],
-        ]);
-      }
-
-      if (desc.includes("(Shop)") == true) {
-        // Style shop shapes in a clean way instead of obliterating them
-        EU4.addLayer(
-          L.polygon(coordArray, {
-            color:
-              markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillColor:
-              markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillOpacity: 0.1,
-            weight: 2,
-            dashArray: "2 4",
-          }).bindPopup(desc, {
-            maxWidth: 350,
-          })
-        );
-      } else {
-        EU4.addLayer(
-          L.polygon(coordArray, {
-            color:
-              markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillColor:
-              markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillOpacity: 0.3,
-            weight: 2,
-          }).bindPopup(desc, {
-            maxWidth: 350,
-          })
-        );
-      }
-    }
-    // ===============
-    // Population Mode
-    // ===============
-
-    var popareas = markerpop["sets"]["townyPlugin.markerset"]["areas"];
-    for (let i in popareas) {
-      var desc = popareas[i]["desc"];
-      var coordArray = [];
-
-      for (let j in markerpop["sets"]["townyPlugin.markerset"]["areas"][i][
-        "x"
-      ]) {
-        coordArray.push([
-          -markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["z"][j] - 64,
-          markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["x"][j],
-        ]);
-      }
-
-      if (desc.includes("(Shop)") == true) {
-        // Style shop shapes in a clean way instead of obliterating them
-        popu.addLayer(
-          L.polygon(coordArray, {
-            color:
-              markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillColor:
-              markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillOpacity: 0.1,
-            weight: 2,
-            dashArray: "2 4",
-          }).bindPopup(desc, {
-            maxWidth: 350,
-          })
-        );
-      } else {
-        popu.addLayer(
-          L.polygon(coordArray, {
-            color:
-              markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillColor:
-              markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillOpacity: 0.3,
-            weight: 2,
-          }).bindPopup(desc, {
-            maxWidth: 350,
-          })
-        );
-      }
-    }
-
-    // ===========
-    // Claims Mode
-    // ===========
-
-    var claimareas = markerclaim["sets"]["townyPlugin.markerset"]["areas"];
-    for (let i in claimareas) {
-      var desc = claimareas[i]["desc"];
-      var coordArray = [];
-
-      for (let j in markerclaim["sets"]["townyPlugin.markerset"]["areas"][i][
-        "x"
-      ]) {
-        coordArray.push([
-          -markerclaim["sets"]["townyPlugin.markerset"]["areas"][i]["z"][j] -
-            64,
-          markerclaim["sets"]["townyPlugin.markerset"]["areas"][i]["x"][j],
-        ]);
-      }
-
-      if (desc.includes("(Shop)") == true) {
-        // Destroy shops because we ignored finding their size
-      } else {
-        claim.addLayer(
-          L.polygon(coordArray, {
-            color:
-              markerclaim["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillColor:
-              markerclaim["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillOpacity: 0.3,
-            weight: 2,
-          }).bindPopup(desc, {
-            maxWidth: 350,
-          })
-        );
-      }
-    }
-
-    // =================
-    // Nation Bonus Mode
-    // =================
-
-    var nbareas = markernb["sets"]["townyPlugin.markerset"]["areas"];
-    for (let i in nbareas) {
-      var desc = nbareas[i]["desc"];
-      var coordArray = [];
-
-      for (let j in markernb["sets"]["townyPlugin.markerset"]["areas"][i][
-        "x"
-      ]) {
-        coordArray.push([
-          -markernb["sets"]["townyPlugin.markerset"]["areas"][i]["z"][j] - 64,
-          markernb["sets"]["townyPlugin.markerset"]["areas"][i]["x"][j],
-        ]);
-      }
-
-      if (desc.includes("(Shop)") == true) {
-        // Destroy shops because we ignored finding their size
-      } else {
-        nb.addLayer(
-          L.polygon(coordArray, {
-            color:
-              markernb["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillColor:
-              markernb["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillOpacity: 0.3,
-            weight: 2,
-          }).bindPopup(desc, {
-            maxWidth: 350,
-          })
-        );
-      }
-    }
-
-    // ========
-    // PvP Mode
-    // ========
-
-    var pvpareas = markerpvp["sets"]["townyPlugin.markerset"]["areas"];
-    for (let i in pvpareas) {
-      var desc = pvpareas[i]["desc"];
-      var coordArray = [];
-
-      for (let j in markerpvp["sets"]["townyPlugin.markerset"]["areas"][i][
-        "x"
-      ]) {
-        coordArray.push([
-          -markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["z"][j] - 64,
-          markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["x"][j],
-        ]);
-      }
-
-      if (desc.includes("(Shop)") == true) {
-        // Style shop shapes in a clean way instead of obliterating them
-        pvp.addLayer(
-          L.polygon(coordArray, {
-            color:
-              markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillColor:
-              markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillOpacity: 0.1,
-            weight: 2,
-            dashArray: "2 4",
-          }).bindPopup(desc, {
-            maxWidth: 350,
-          })
-        );
-      } else {
-        pvp.addLayer(
-          L.polygon(coordArray, {
-            color:
-              markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillColor:
-              markerpvp["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillOpacity: 0.3,
-            weight: 2,
-          }).bindPopup(desc, {
-            maxWidth: 350,
-          })
-        );
-      }
-    }
+    leafletConvert(markerpvp, "pvp");
+    leafletConvert(markerEU4, "EU4");
+    leafletConvert(markerpop, "popu");
+    leafletConvert(markerclaim, "claim");
+    leafletConvert(markernb, "nb");
+    leafletConvert(markerden, "den");
 
     // ============
     // Default Mode
@@ -1248,8 +1074,8 @@ fetch(
       }
 
       if (desc.includes("(Shop)") == true) {
-        // Style shop shapes in a clean way instead of obliterating them
-        deft.addLayer(
+        // Keep shop shapes for default mode
+        mapdata["deft"].addLayer(
           L.polygon(coordArray, {
             color:
               markerTA["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
@@ -1265,7 +1091,7 @@ fetch(
           })
         );
       } else {
-        deft.addLayer(
+        mapdata["deft"].addLayer(
           L.polygon(coordArray, {
             color:
               markerTA["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
@@ -1273,42 +1099,6 @@ fetch(
               markerTA["sets"]["townyPlugin.markerset"]["areas"][i][
                 "fillcolor"
               ],
-            fillOpacity: 0.3,
-            weight: 2,
-          }).bindPopup(desc, {
-            maxWidth: 350,
-          })
-        );
-      }
-    }
-
-    // ============
-    // Density Mode
-    // ============
-
-    var denareas = markerden["sets"]["townyPlugin.markerset"]["areas"];
-    for (let i in denareas) {
-      var desc = denareas[i]["desc"];
-      var coordArray = [];
-
-      for (let j in markerden["sets"]["townyPlugin.markerset"]["areas"][i][
-        "x"
-      ]) {
-        coordArray.push([
-          -markerden["sets"]["townyPlugin.markerset"]["areas"][i]["z"][j] - 64,
-          markerden["sets"]["townyPlugin.markerset"]["areas"][i]["x"][j],
-        ]);
-      }
-
-      if (desc.includes("(Shop)") == true) {
-        // Destroy shops because we ignored finding their density
-      } else {
-        den.addLayer(
-          L.polygon(coordArray, {
-            color:
-              markerden["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
-            fillColor:
-              markerden["sets"]["townyPlugin.markerset"]["areas"][i]["color"],
             fillOpacity: 0.3,
             weight: 2,
           }).bindPopup(desc, {
@@ -1329,7 +1119,9 @@ fetch(
     });
     $(".progress").fadeOut(2000);
     $("#loading").fadeOut(2000);
+
     deft.addTo(emcmap);
+
     capitals.addTo(emcmap);
   });
 
@@ -1366,56 +1158,59 @@ function hideTownless() {
 function loadmode(mode) {
   if (current === "blank") {
   } else {
-    current === "deft" ? deft.removeFrom(emcmap) : "";
-    current === "EU4" ? EU4.removeFrom(emcmap) : "";
-    current === "popu" ? popu.removeFrom(emcmap) : "";
-    current === "claim" ? claim.removeFrom(emcmap) : "";
-    current === "den" ? den.removeFrom(emcmap) : "";
-    current === "pvp" ? pvp.removeFrom(emcmap) : "";
-    current === "nb" ? nb.removeFrom(emcmap) : "";
+    current === "deft" ? mapdata["deft"].removeFrom(emcmap) : "";
+    current === "EU4" ? mapdata["EU4"].removeFrom(emcmap) : "";
+    current === "popu" ? mapdata["popu"].removeFrom(emcmap) : "";
+    current === "claim" ? mapdata["claim"].removeFrom(emcmap) : "";
+    current === "den" ? mapdata["den"].removeFrom(emcmap) : "";
+    current === "pvp" ? mapdata["pvp"].removeFrom(emcmap) : "";
+    current === "nb" ? mapdata["nb"].removeFrom(emcmap) : "";
   }
-  if (mode === "deft") {
-    deft.addTo(emcmap);
-    $("#legend").fadeOut(300);
-  }
-  if (mode === "EU4") {
-    EU4.addTo(emcmap);
-    $("#legend").fadeOut(300);
-  }
-  if (mode === "popu") {
-    popu.addTo(emcmap);
-    $("#legend").html(
-      '<span id="left">1</span><span id="left-middle">5</span><span id="middle">20</span><span id="middle-right">45</span><span id="right">100</span><div class="gradBox"><div class="popGrad"></div></div>'
-    );
-    $("#legend").fadeIn(300);
-  }
-  if (mode === "claim") {
-    claim.addTo(emcmap);
-    $("#legend").html(
-      '<span id="left">1</span><span id="left-middle">64</span><span id="middle">256</span><span id="middle-right">640</span><span id="right">940</span><div class="gradBox"><div class="popGrad"></div></div>'
-    );
-    $("#legend").fadeIn(300);
-  }
-  if (mode === "den") {
-    den.addTo(emcmap);
-    $("#legend").html(
-      '<span id="left">Low</span><span id="middle">Medium</span><span id="right">High</span><div class="gradBox"><div class="denGrad"></div></div>'
-    );
-    $("#legend").fadeIn(300);
-  }
-  if (mode === "pvp") {
-    pvp.addTo(emcmap);
-    $("#legend").html(
-      '<span id="left-middle">Enabled</span><span id="middle-right">Disabled</span><div class="gradBox"><div class="grGrad"></div></div>'
-    );
-    $("#legend").fadeIn(300);
-  }
-  if (mode === "nb") {
-    nb.addTo(emcmap);
-    $("#legend").html(
-      '<span style="left: 4%; position: absolute;">0</span><span style="left: 24%; position: absolute;">10</span><span style="left: 40%; position: absolute;">30</span><span style="left: 56%; position: absolute;">50</span><span style="left: 72%; position: absolute;">60</span><span style="right: 4%; position: absolute;">80</span><div class="gradBox"><div class="nbGrad"></div></div>'
-    );
-    $("#legend").fadeIn(300);
+
+  switch (mode) {
+    case "deft":
+      mapdata["deft"].addTo(emcmap);
+      $("#legend").fadeOut(300);
+      break;
+    case "EU4":
+      mapdata["EU4"].addTo(emcmap);
+      $("#legend").fadeOut(300);
+      break;
+    case "popu":
+      mapdata["popu"].addTo(emcmap);
+      $("#legend").html(
+        '<span id="left">1</span><span id="left-middle">5</span><span id="middle">20</span><span id="middle-right">45</span><span id="right">100</span><div class="gradBox"><div class="popGrad"></div></div>'
+      );
+      $("#legend").fadeIn(300);
+      break;
+    case "claim":
+      mapdata["claim"].addTo(emcmap);
+      $("#legend").html(
+        '<span id="left">1</span><span id="left-middle">64</span><span id="middle">256</span><span id="middle-right">640</span><span id="right">940</span><div class="gradBox"><div class="popGrad"></div></div>'
+      );
+      $("#legend").fadeIn(300);
+      break;
+    case "den":
+      mapdata["den"].addTo(emcmap);
+      $("#legend").html(
+        '<span id="left">Low</span><span id="middle">Medium</span><span id="right">High</span><div class="gradBox"><div class="denGrad"></div></div>'
+      );
+      $("#legend").fadeIn(300);
+      break;
+    case "pvp":
+      mapdata["pvp"].addTo(emcmap);
+      $("#legend").html(
+        '<span id="left-middle">Enabled</span><span id="middle-right">Disabled</span><div class="gradBox"><div class="grGrad"></div></div>'
+      );
+      $("#legend").fadeIn(300);
+      break;
+    case "nb":
+      mapdata["nb"].addTo(emcmap);
+      $("#legend").html(
+        '<span style="left: 4%; position: absolute;">0</span><span style="left: 24%; position: absolute;">10</span><span style="left: 40%; position: absolute;">30</span><span style="left: 56%; position: absolute;">50</span><span style="left: 72%; position: absolute;">60</span><span style="right: 4%; position: absolute;">80</span><div class="gradBox"><div class="nbGrad"></div></div>'
+      );
+      $("#legend").fadeIn(300);
+      break;
   }
 
   current = mode;
