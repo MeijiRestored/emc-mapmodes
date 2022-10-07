@@ -1,6 +1,6 @@
 # EMC Mapmodes
 
-![Release](https://img.shields.io/github/v/release/32Vache/emc-mapmodes) ![Commit activity](https://img.shields.io/github/commit-activity/m/32Vache/emc-mapmodes) ![Repo size](https://img.shields.io/github/repo-size/32Vache/emc-mapmodes) ![Downloads](https://img.shields.io/github/downloads/32Vache/emc-mapmodes/total) &nbsp; <img src="https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/ua.svg" width="20px">
+![Release](https://img.shields.io/github/v/release/32Vache/emc-mapmodes) ![Commit activity](https://img.shields.io/github/commit-activity/m/32Vache/emc-mapmodes) ![Repo size](https://img.shields.io/github/repo-size/32Vache/emc-mapmodes) <img src="https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/ua.svg" width="20px">
 
 Website for EarthMC's dynmap that colors towns depeding on different statistics.
 
