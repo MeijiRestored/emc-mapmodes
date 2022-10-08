@@ -1120,7 +1120,7 @@ fetch(
     $(".progress").fadeOut(2000);
     $("#loading").fadeOut(2000);
 
-    maodata['deft'].addTo(emcmap);
+    mapdata['deft'].addTo(emcmap);
 
     capitals.addTo(emcmap);
   });
