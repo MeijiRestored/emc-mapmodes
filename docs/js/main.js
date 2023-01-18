@@ -89,6 +89,10 @@ var eu4colors = [
     color: "#C7AF0C",
   },
   {
+    name: "caledonia",
+    color: "#C7AF0C",
+  },
+  {
     name: "ireland",
     color: "#709669",
   },
@@ -277,7 +281,7 @@ var eu4colors = [
     color: "#DC8A39",
   },
   {
-    name: "obeyrule4.1",
+    name: "cape",
     color: "#DC8A39",
   },
   {
@@ -317,7 +321,7 @@ var eu4colors = [
     color: "#64616F",
   },
   {
-    name: "iberia",
+    name: "aragon",
     color: "#A64448",
   },
   {
@@ -415,6 +419,82 @@ var eu4colors = [
   {
     name: "poitou-charentes",
     color: "#D8798B",
+  },
+  {
+    name: "ming",
+    color: "#B38068",
+  },
+  {
+    name: "yamato",
+    color: "#2F5D50",
+  },
+  {
+    name: "empire_of_japan",
+    color: "#DDDDDD",
+  },
+  {
+    name: "japan",
+    color: "#C92135",
+  },
+  {
+    name: "ezo_republic",
+    color: "#C9C57C",
+  },
+  {
+    name: "hida",
+    color: "#5654A2",
+  },
+  {
+    name: "korea",
+    color: "#1A35B1",
+  },
+  {
+    name: "manchuria",
+    color: "#F4944D",
+  },
+  {
+    name: "r.o.c",
+    color: "#FDCA2D",
+  },
+  {
+    name: "prc",
+    color: "#D73C66",
+  },
+  {
+    name: "vietnam",
+    color: "#88755A",
+  },
+  {
+    name: "laccadive_sea",
+    color: "#F6C418",
+  },
+  {
+    name: "orissa",
+    color: "#246DC2",
+  },
+  {
+    name: "mughals",
+    color: "#3F961E",
+  },
+  {
+    name: "delhi",
+    color: "#9DC82A",
+  },
+  {
+    name: "majapahit",
+    color: "#C91C36",
+  },
+  {
+    name: "indochina",
+    color: "#6460C5",
+  },
+  {
+    name: "albania",
+    color: "#B50014",
+  },
+  {
+    name: "kazakhstan",
+    color: "#5986A6",
   },
 ];
 
