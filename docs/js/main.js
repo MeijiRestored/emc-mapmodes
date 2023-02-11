@@ -181,7 +181,11 @@ var eu4colors = [
     color: "#090967",
   },
   {
-    name: "romania",
+    name: "moldova",
+    color: "#889D17",
+  },
+  {
+    name: "moldavia",
     color: "#889D17",
   },
   {
@@ -270,6 +274,10 @@ var eu4colors = [
   },
   {
     name: "emirates",
+    color: "#EAE97C",
+  },
+  {
+    name: "uae",
     color: "#EAE97C",
   },
   {
@@ -495,6 +503,154 @@ var eu4colors = [
   {
     name: "kazakhstan",
     color: "#5986A6",
+  },
+  {
+    name: "cornwall",
+    color: "#966430",
+  },
+  {
+    name: "sahara",
+    color: "#9A9869",
+  },
+  {
+    name: "annaba",
+    color: "#466C4B",
+  },
+  {
+    name: "monaco",
+    color: "#51657D",
+  },
+  {
+    name: "burgundy",
+    color: "#683145",
+  },
+  {
+    name: "bosnia",
+    color: "#746065",
+  },
+  {
+    name: "herzegovina",
+    color: "#746065",
+  },
+  {
+    name: "herzegovina",
+    color: "#465B73",
+  },
+  {
+    name: "romania",
+    color: "#A2A156",
+  },
+  {
+    name: "ostland",
+    color: "#5E6C78",
+  },
+  {
+    name: "karelia",
+    color: "#8E2C2C",
+  },
+  {
+    name: "oman",
+    color: "#608396",
+  },
+  {
+    name: "yemen",
+    color: "#6A262C",
+  },
+  {
+    name: "himyar",
+    color: "#35BFB0",
+  },
+  {
+    name: "arabia",
+    color: "#326946",
+  },
+  {
+    name: "chechenya",
+    color: "#2A6B11",
+  },
+  {
+    name: "fezzan",
+    color: "#71B097",
+  },
+  {
+    name: "kurdistan",
+    color: "#EAB31E",
+  },
+  {
+    name: "iraq",
+    color: "#8C6698",
+  },
+  {
+    name: "iran",
+    color: "#446E23",
+  },
+  {
+    name: "persia",
+    color: "#446E23",
+  },
+  {
+    name: "kievan_rus",
+    color: "#617E25",
+  },
+  {
+    name: "sri_lanka",
+    color: "#ED8B00",
+  },
+  {
+    name: "mysore",
+    color: "#ECF2F3",
+  },
+  {
+    name: "gujarat",
+    color: "#E7E06B",
+  },
+  {
+    name: "seljuk_empire",
+    color: "#D99058",
+  },
+  {
+    name: "philippines",
+    color: "#B274DD",
+  },
+  {
+    name: "tosa",
+    color: "#165E83",
+  },
+  {
+    name: "ryukyu",
+    color: "#5A8A85",
+  },
+  {
+    name: "yue",
+    color: "#4A5C80",
+  },
+  {
+    name: "han",
+    color: "#9F7FFF",
+  },
+  {
+    name: "shu",
+    color: "#98A7ED",
+  },
+  {
+    name: "shun",
+    color: "#98A7ED",
+  },
+  {
+    name: "xia",
+    color: "#21A867",
+  },
+  {
+    name: "tibet",
+    color: "#2665FF",
+  },
+  {
+    name: "xinjiang",
+    color: "#CCB8B1",
+  },
+  {
+    name: "sinkiang",
+    color: "#CCB8B1",
   },
 ];
 
