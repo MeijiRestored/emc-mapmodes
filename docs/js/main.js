@@ -674,7 +674,7 @@ $("#barContainer").html(
 );
 
 fetch(
-  "https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/tiles/_markers_/marker_earth.json"
+  "https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/standalone/MySQL_markers.php?marker=_markers_/marker_earth.json"
 )
   .then((response) => response.json())
   .then((markerTA) => {
@@ -1455,12 +1455,12 @@ function loadmode(mode) {
 function loadTownless() {
   $(".townlessBtn").css("background-color", "#ff8811");
   fetch(
-    "https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/tiles/_markers_/marker_earth.json"
+    "https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/standalone/MySQL_markers.php?marker=_markers_/marker_earth.json"
   )
     .then((response) => response.json())
     .then((marker) => {
       fetch(
-        "https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/standalone/dynmap_earth.json"
+        `https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/standalone/MySQL_update.php?world=earth&ts=${Date.now()}`
       )
         .then((res) => res.json())
         .then((update) => {
