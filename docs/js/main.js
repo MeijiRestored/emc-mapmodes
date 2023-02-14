@@ -665,6 +665,7 @@ var mapdata = {
 };
 
 var capitals = L.layerGroup();
+var capitalNames = L.layerGroup();
 
 var current = "deft";
 
@@ -1247,6 +1248,30 @@ fetch(
       );
     }
 
+    // Capital names
+
+    for (let i in markerTA["sets"]["townyPlugin.markerset"]["markers"]) {
+      capitalNames.addLayer(
+        L.marker(
+          [
+            -markerTA["sets"]["townyPlugin.markerset"]["markers"][i]["z"] - 64,
+            markerTA["sets"]["townyPlugin.markerset"]["markers"][i]["x"],
+          ],
+          { opacity: 0 }
+        ).bindTooltip(
+          markerTA["sets"]["townyPlugin.markerset"]["markers"][i]["label"],
+          {
+            permanent: true,
+            className: "cptnames",
+            offset: [-16, 29],
+            fillOpacity: 0,
+            fillColor: "black",
+            fill: "false",
+          }
+        )
+      );
+    }
+
     $("#loadingText").html("Preparing map modes<br /><br />");
     $("#barContainer").html(
       '<div class="w3-light-grey" style="width: 200px; height: 18px"><div class="w3-container w3-indigo"style="width: 75%; height: 100%"></div>'
@@ -1356,9 +1381,13 @@ fetch(
     $(".progress").fadeOut(2000);
     $("#loading").fadeOut(2000);
 
-    mapdata['deft'].addTo(emcmap);
+    mapdata["deft"].addTo(emcmap);
 
     capitals.addTo(emcmap);
+    var layerctrl = L.control.layers();
+    layerctrl.addOverlay(capitals, "Capitals");
+    layerctrl.addOverlay(capitalNames, "Capital names");
+    layerctrl.addTo(emcmap);
   });
 
 // Control functions
