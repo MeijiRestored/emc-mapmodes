@@ -1074,38 +1074,6 @@ fetch(
       var markerttpop = JSON.stringify(markerTA);
       markerttpop = JSON.parse(markerttpop);
       var areasttpop = markerttpop["sets"]["townyPlugin.markerset"]["areas"];
-      let nationpopu = {};
-      // Figure population for every nation
-      for (let i in areasttpop) {
-        var pop = areasttpop[i]["desc"];
-        if (pop.includes("(Shop)") == true) {
-          // Ignore all 'Shop' shapes
-        } else {
-          let desc_title = pop.match(
-            /<span style=\"font-size:120%\">(.+?)<\/span>/
-          );
-          let resList = pop.match(
-            /Members <span style=\"font-weight:bold\">(.+?)<\/span>/
-          );
-          var mCount = (resList[1].match(/,/g) || []).length + 1;
-          var nation = [];
-          if (desc_title.includes("</a>") == true) {
-            nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
-          } else {
-            nation = desc_title[1].match(/.+? \((.+?)\)$/);
-          }
-
-          if (nation === null) {
-            // ignore nationless
-          } else {
-            if (nationpopu[nation[1]] == undefined) {
-              nationpopu[nation[1]] = mCount;
-            } else {
-              nationpopu[nation[1]] += mCount;
-            }
-          }
-        }
-      }
 
       for (let i in areasttpop) {
         var pop = areasttpop[i]["desc"];
@@ -1126,7 +1094,7 @@ fetch(
           if (nation === null) {
             ttpopcolor = "#D6D3C0";
           } else {
-            let popul = nationpopu[nation[1]];
+            let popul = nationpop[nation[1]];
             popul >= 350 ? (ttpopcolor = "#51A96D") : "";
             popul <= 275 ? (ttpopcolor = "#63A05D") : "";
             popul <= 200 ? (ttpopcolor = "#80A158") : "";
@@ -1169,7 +1137,7 @@ fetch(
             infos[1]
           }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
             infos[2]
-          }<br/><br/><span style="font-size:120%">N</span><span style="font-size:90%">ATION POPULATION</span> : <b><span style="font-size:120%; color:${ttpopcolor}">${nationpopu[nation[1]]}</span></b>`;
+          }<br/><br/><span style="font-size:120%">N</span><span style="font-size:90%">ATION POPULATION</span> : <b><span style="font-size:120%; color:${ttpopcolor}">${nationpop[nation[1]]}</span></b>`;
 
           markerttpop["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
 
