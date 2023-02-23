@@ -87,22 +87,23 @@
       Current modes available:<br />
       <u>- Default:</u> The regular map, but better looking.<br />
       <u>- EU4 Colors:</u> Nations are colored just like in EU4.<br />
-      <u>- Population:</u> Colors towns depending on thier amount of
+      <u>- Population:</u> Colors towns depending on their amount of
       residents.<br />
-      <u>- Claims:</u> Colors towns depending on thier amount of chunks
+      <u>- Claims:</u> Colors towns depending on their amount of chunks
       claimed.<br />
       <u>- PvP status:</u> Shows which towns have PvP enabled.<br />
-      <u>- Density:</u> Colors towns depending on thier population density.
+      <u>- Density:</u> Colors towns depending on their population density.
       <span onclick="howdense()" style="color: #3344ee"
         >See how it is calculated</span
       ><br />
-      <u>- Nation Bonus:</u> Colors nations depending on thier nation bonus.<br />
+      <u>- Nation Bonus:</u> Colors nations depending on their nation bonus.<br />
+      <u>- Nation Population:</u> Colors nations depending on their total population.
       <u>- Townless:</u> Bonus tool to easily recruit for your town!<br />
       <span style="font-size: 90%"
         ><a href="https://github.com/32Vache/emc-mapmodes" target="_blank"
           >Source code on Github</a
         >
-        • Version 2.3 • Feb. 2023</span
+        • Version 2.4 • Feb. 2023</span
       >
       <span onclick="hideInfo()" id="hideBtn">Close</span>
     </div>
@@ -148,6 +149,7 @@
       <li onclick="loadmode('pvp')">PvP status</li>
       <li onclick="loadmode('den')">Density</li>
       <li onclick="loadmode('nb')">Nation Bonus</li>
+      <li onclick="loadmode('ttpop')"> Nation Pop.</li>
       <li class="tool" onclick="showTownless()">Townless</li>
     </ul>
 

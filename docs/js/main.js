@@ -662,6 +662,7 @@ var mapdata = {
   deft: L.layerGroup(),
   den: L.layerGroup(),
   nb: L.layerGroup(),
+  ttpop: L.layerGroup(),
 };
 
 var capitals = L.layerGroup();
@@ -1065,6 +1066,119 @@ fetch(
             nbcolor;
         }
       }
+      
+      // =======================
+      // Nation Population Mode
+      // =======================
+
+      var markerttpop = JSON.stringify(markerTA);
+      markerttpop = JSON.parse(markerttpop);
+      var areasttpop = markerttpop["sets"]["townyPlugin.markerset"]["areas"];
+      let nationpop = {};
+      // Figure population for every nation
+      for (let i in areasttpop) {
+        var pop = areasttpop[i]["desc"];
+        if (pop.includes("(Shop)") == true) {
+          // Ignore all 'Shop' shapes
+        } else {
+          let desc_title = pop.match(
+            /<span style=\"font-size:120%\">(.+?)<\/span>/
+          );
+          let resList = pop.match(
+            /Members <span style=\"font-weight:bold\">(.+?)<\/span>/
+          );
+          var mCount = (resList[1].match(/,/g) || []).length + 1;
+          var nation = [];
+          if (desc_title.includes("</a>") == true) {
+            nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
+          } else {
+            nation = desc_title[1].match(/.+? \((.+?)\)$/);
+          }
+
+          if (nation === null) {
+            // ignore nationless
+          } else {
+            if (nationpop[nation[1]] == undefined) {
+              nationpop[nation[1]] = mCount;
+            } else {
+              nationpop[nation[1]] += mCount;
+            }
+          }
+        }
+      }
+
+      for (let i in areasttpop) {
+        var pop = areasttpop[i]["desc"];
+        if (pop.includes("(Shop)") == true) {
+          // Ignore all 'Shop' shapes
+        } else {
+          let desc_title = pop.match(
+            /<span style=\"font-size:120%\">(.+?)<\/span>/
+          );
+          var nation = [];
+          if (desc_title.includes("</a>") == true) {
+            nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
+          } else {
+            nation = desc_title[1].match(/.+? \((.+?)\)$/);
+          }
+
+          var ttpopcolor = "#D6D3C0";
+          if (nation === null) {
+            ttpopcolor = "#D6D3C0";
+          } else {
+            let popul = nationpop[nation[1]];
+            popul >= 350 ? (ttpopcolor = "#51A96D") : "";
+            popul <= 275 ? (ttpopcolor = "#63A05D") : "";
+            popul <= 200 ? (ttpopcolor = "#80A158") : "";
+            popul <= 160 ? (ttpopcolor = "#8BA84F") : "";
+            popul <= 120 ? (ttpopcolor = "#96AA53") : "";
+            popul <= 75 ? (ttpopcolor = "#98A756") : "";
+            popul <= 50 ? (ttpopcolor = "#B0B670") : "";
+            popul <= 30 ? (ttpopcolor = "#B3B583") : "";
+            popul <= 20 ? (ttpopcolor = "#BFBF9A") : "";
+            popul <= 10 ? (ttpopcolor = "#D0D0B8") : "";
+            popul <= 3 ? (ttpopcolor = "#D6D3C0") : "";
+          }
+
+          var names = [];
+          if (desc_title[1].includes("</a>") == true) {
+            names = desc_title[1].match(
+              /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+            );
+            names = [names[0], names[1], names[3], names[2]];
+          } else {
+            names = desc_title[1].match(/(.+) \((.+|)\)/);
+          }
+          if (names[2] == "") {
+            names[2] = "Nationless";
+          }
+
+          var infos = pop.match(
+            /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+          );
+
+          pop = `<span style="font-size:130%">${
+            infos[3] == "true" ? "★ " + names[1] : names[1]
+          }, ${names[2][0]}</span>${names[2].slice(1).toUpperCase()} ${
+            names[3]
+              ? "<a href='" +
+                names[3] +
+                "' target='_blank' title='Wiki link'>📖</a>"
+              : ""
+          }<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+            infos[1]
+          }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
+            infos[2]
+          }<br/><br/><span style="font-size:120%">N</span><span style="font-size:90%">ATION POPULATION</span> : <b><span style="font-size:120%; color:${ttpopcolor}">${nbo}</span></b>`;
+
+          markerttpop["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
+
+          markerttpop["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
+            ttpopcolor;
+          markerttpop["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+            ttpopcolor;
+        }
+      }
 
       // ========
       // PvP Mode
@@ -1303,6 +1417,7 @@ fetch(
       leafletConvert(markerclaim, "claim");
       leafletConvert(markernb, "nb");
       leafletConvert(markerden, "den");
+      leafletConvert(markerttpop, "ttpop");
 
       // ============
       // Default Mode
@@ -1453,6 +1568,7 @@ function loadmode(mode) {
     current === "den" ? mapdata["den"].removeFrom(emcmap) : "";
     current === "pvp" ? mapdata["pvp"].removeFrom(emcmap) : "";
     current === "nb" ? mapdata["nb"].removeFrom(emcmap) : "";
+    current === "ttpop" ? mapdata["ttpop"].removeFrom(emcmap) : "";
   }
 
   switch (mode) {
@@ -1498,6 +1614,11 @@ function loadmode(mode) {
         '<span style="left: 4%; position: absolute;">0</span><span style="left: 24%; position: absolute;">10</span><span style="left: 40%; position: absolute;">30</span><span style="left: 56%; position: absolute;">50</span><span style="left: 72%; position: absolute;">60</span><span style="right: 4%; position: absolute;">80</span><div class="gradBox"><div class="nbGrad"></div></div>'
       );
       $("#legend").fadeIn(300);
+      break;
+    case "ttpop":
+      mapdata["ttpop"].addTo(emcmap);
+      // TODO legend
+      $("#legend").fadeOut(300);
       break;
   }
 
