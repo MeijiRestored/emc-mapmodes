@@ -1095,8 +1095,8 @@ fetch(
             ttpopcolor = "#D6D3C0";
           } else {
             let popul = nationpop[nation[1]];
-            popul >= 350 ? (ttpopcolor = "#51A96D") : "";
-            popul <= 275 ? (ttpopcolor = "#63A05D") : "";
+            popul > 300 ? (ttpopcolor = "#51A96D") : "";
+            popul <= 300 ? (ttpopcolor = "#63A05D") : "";
             popul <= 200 ? (ttpopcolor = "#80A158") : "";
             popul <= 160 ? (ttpopcolor = "#8BA84F") : "";
             popul <= 120 ? (ttpopcolor = "#96AA53") : "";
@@ -1137,7 +1137,8 @@ fetch(
             infos[1]
           }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
             infos[2]
-          }<br/><br/><span style="font-size:120%">N</span><span style="font-size:90%">ATION POPULATION</span> : <b><span style="font-size:120%; color:${ttpopcolor}">${nationpop[nation[1]]}</span></b>`;
+          }<br/><br/><span style="font-size:120%">N</span><span style="font-size:90%">ATION POPULATION</span> : <b><span style="font-size:120%; color:${ttpopcolor}">${nation == null ? 'None' : nationpop[nation[1]]}</span></b>`;
+
 
           markerttpop["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
 
