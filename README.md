@@ -9,12 +9,13 @@ Website for EarthMC's dynmap that colors towns depeding on different statistics.
 ## Mapmodes
 
 - Default (enhanced)
+- Colorful (every nation a color)
 - By population
 - By claims
 - By density
 - By nation bonus
 - PvP Enabled/Disabled
-- EU4 nation colors
+- By nation population
 
 The default map can also be toggled to.
 
