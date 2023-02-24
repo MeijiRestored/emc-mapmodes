@@ -55,608 +55,9 @@ function leafletConvert(dynMarker, layer) {
 }
 
 // Pre-load data
-var eu4colors = [
-  {
-    name: "france",
-    color: "#1432D2",
-  },
-  {
-    name: "spain",
-    color: "#E7B50C",
-  },
-  {
-    name: "portugal",
-    color: "#39A065",
-  },
-  {
-    name: "england",
-    color: "#C11A0E",
-  },
-  {
-    name: "britain",
-    color: "#A10A0E",
-  },
-  {
-    name: "aquitaine",
-    color: "#BBCEF7",
-  },
-  {
-    name: "netherlands",
-    color: "#FF850F",
-  },
-  {
-    name: "scotland",
-    color: "#C7AF0C",
-  },
-  {
-    name: "caledonia",
-    color: "#C7AF0C",
-  },
-  {
-    name: "ireland",
-    color: "#709669",
-  },
-  {
-    name: "papal_states",
-    color: "#D3DCB2",
-  },
-  {
-    name: "venice",
-    color: "#36A79C",
-  },
-  {
-    name: "byzantium",
-    color: "#952D66",
-  },
-  {
-    name: "turkey",
-    color: "#7ECB78",
-  },
-  {
-    name: "poland",
-    color: "#C55C6A",
-  },
-  {
-    name: "lubusz",
-    color: "#C3959B",
-  },
-  {
-    name: "masovia",
-    color: "#D3A59B",
-  },
-  {
-    name: "livonia",
-    color: "#7D1E64",
-  },
-  {
-    name: "tripolitania",
-    color: "#71B097",
-  },
-  {
-    name: "switzerland",
-    color: "#997A6C",
-  },
-  {
-    name: "denmark",
-    color: "#BE4646",
-  },
-  {
-    name: "norway",
-    color: "#75A5BC",
-  },
-  {
-    name: "sweden",
-    color: "#0852A5",
-  },
-  {
-    name: "germany",
-    color: "#4B8287",
-  },
-  {
-    name: "deutschland",
-    color: "#3B7277",
-  },
-  {
-    name: "prussia",
-    color: "#8F8D80",
-  },
-  {
-    name: "hungary",
-    color: "#98555C",
-  },
-  {
-    name: "austria",
-    color: "#DCDCDC",
-  },
-  {
-    name: "austria-hungary",
-    color: "#DCDCDC",
-  },
-  {
-    name: "epirus",
-    color: "#E6E4D6",
-  },
-  {
-    name: "greece",
-    color: "#090967",
-  },
-  {
-    name: "moldova",
-    color: "#889D17",
-  },
-  {
-    name: "moldavia",
-    color: "#889D17",
-  },
-  {
-    name: "ukraine",
-    color: "#7CB797",
-  },
-  {
-    name: "georgia",
-    color: "#BE2325",
-  },
-  {
-    name: "khazar",
-    color: "#616687",
-  },
-  {
-    name: "kazakhkhanate",
-    color: "#5986A6",
-  },
-  {
-    name: "russian_empire",
-    color: "#5D7E4D",
-  },
-  {
-    name: "morocco",
-    color: "#BF6E3E",
-  },
-  {
-    name: "mali",
-    color: "#FFFFB9",
-  },
-  {
-    name: "newfoundland",
-    color: "#AC3030",
-  },
-  {
-    name: "brazil",
-    color: "#82B17D",
-  },
-  {
-    name: "gran_colombia",
-    color: "#E9BC26",
-  },
-  {
-    name: "tierra_del_fuego",
-    color: "#E09850",
-  },
-  {
-    name: "india",
-    color: "#5880C5",
-  },
-  {
-    name: "hre",
-    color: "#96B1A1",
-  },
-  {
-    name: "israel",
-    color: "#1489FD",
-  },
-  {
-    name: "italy",
-    color: "#7DAB54",
-  },
-  {
-    name: "spqr",
-    color: "#A70A64",
-  },
-  {
-    name: "finland",
-    color: "#B68664",
-  },
-  {
-    name: "alba",
-    color: "#006968",
-  },
-  {
-    name: "genoa",
-    color: "#DAD738",
-  },
-  {
-    name: "al_andalus",
-    color: "#D2DCAF",
-  },
-  {
-    name: "mesopotamia",
-    color: "#D40027",
-  },
-  {
-    name: "emirates",
-    color: "#EAE97C",
-  },
-  {
-    name: "uae",
-    color: "#EAE97C",
-  },
-  {
-    name: "ethiopia",
-    color: "#3878BF",
-  },
-  {
-    name: "orange",
-    color: "#DC8A39",
-  },
-  {
-    name: "cape",
-    color: "#DC8A39",
-  },
-  {
-    name: "mongolia",
-    color: "#CCB8B1",
-  },
-  {
-    name: "mexico",
-    color: "#EBC237",
-  },
-  {
-    name: "california",
-    color: "#E9BD28",
-  },
-  {
-    name: "united_states",
-    color: "#128BE4",
-  },
-  {
-    name: "quebec",
-    color: "#4960DC",
-  },
-  {
-    name: "iceland",
-    color: "#2B3C75",
-  },
-  {
-    name: "arctic",
-    color: "#1D1E9E",
-  },
-  {
-    name: "yugoslavia",
-    color: "#A64839",
-  },
-  {
-    name: "bulgaria",
-    color: "#64616F",
-  },
-  {
-    name: "aragon",
-    color: "#A64448",
-  },
-  {
-    name: "deutsches_reich",
-    color: "#745C27",
-  },
-  {
-    name: "belgium",
-    color: "#2B8DAC",
-  },
-  {
-    name: "aland",
-    color: "#084285",
-  },
-  {
-    name: "babylon",
-    color: "#367588",
-  },
-  {
-    name: "egypt",
-    color: "#BCA65D",
-  },
-  {
-    name: "sassanid_dynasty",
-    color: "#82A8E0",
-  },
-  {
-    name: "kushan",
-    color: "#007891",
-  },
-  {
-    name: "lithuania",
-    color: "#9A4574",
-  },
-  {
-    name: "wales",
-    color: "#757179",
-  },
-  {
-    name: "normandie",
-    color: "#615D66",
-  },
-  {
-    name: "italia",
-    color: "#7DAB54",
-  },
-  {
-    name: "croatia",
-    color: "#685EF7",
-  },
-  {
-    name: "crimea",
-    color: "#3B9E7D",
-  },
-  {
-    name: "crimean_khanate",
-    color: "#3B9E7D",
-  },
-  {
-    name: "latvia",
-    color: "#6D0E54",
-  },
-  {
-    name: "russia",
-    color: "#5D7E4D",
-  },
-  {
-    name: "estonia",
-    color: "#CA7467",
-  },
-  {
-    name: "pomerania",
-    color: "#547349",
-  },
-  {
-    name: "duchy_of_finland",
-    color: "#B68664",
-  },
-  {
-    name: "preußen",
-    color: "#8F8D80",
-  },
-  {
-    name: "crusader_states",
-    color: "#6A7FB7",
-  },
-  {
-    name: "silesia",
-    color: "#758C24",
-  },
-  {
-    name: "francia",
-    color: "#008CA5",
-  },
-  {
-    name: "poitou-charentes",
-    color: "#D8798B",
-  },
-  {
-    name: "ming",
-    color: "#B38068",
-  },
-  {
-    name: "yamato",
-    color: "#2F5D50",
-  },
-  {
-    name: "empire_of_japan",
-    color: "#DDDDDD",
-  },
-  {
-    name: "japan",
-    color: "#C92135",
-  },
-  {
-    name: "ezo_republic",
-    color: "#C9C57C",
-  },
-  {
-    name: "hida",
-    color: "#5654A2",
-  },
-  {
-    name: "korea",
-    color: "#1A35B1",
-  },
-  {
-    name: "manchuria",
-    color: "#F4944D",
-  },
-  {
-    name: "r.o.c",
-    color: "#FDCA2D",
-  },
-  {
-    name: "prc",
-    color: "#D73C66",
-  },
-  {
-    name: "vietnam",
-    color: "#88755A",
-  },
-  {
-    name: "laccadive_sea",
-    color: "#F6C418",
-  },
-  {
-    name: "orissa",
-    color: "#246DC2",
-  },
-  {
-    name: "mughals",
-    color: "#3F961E",
-  },
-  {
-    name: "delhi",
-    color: "#9DC82A",
-  },
-  {
-    name: "majapahit",
-    color: "#C91C36",
-  },
-  {
-    name: "indochina",
-    color: "#6460C5",
-  },
-  {
-    name: "albania",
-    color: "#B50014",
-  },
-  {
-    name: "kazakhstan",
-    color: "#5986A6",
-  },
-  {
-    name: "cornwall",
-    color: "#966430",
-  },
-  {
-    name: "sahara",
-    color: "#9A9869",
-  },
-  {
-    name: "annaba",
-    color: "#466C4B",
-  },
-  {
-    name: "monaco",
-    color: "#51657D",
-  },
-  {
-    name: "burgundy",
-    color: "#683145",
-  },
-  {
-    name: "bosnia",
-    color: "#746065",
-  },
-  {
-    name: "herzegovina",
-    color: "#746065",
-  },
-  {
-    name: "herzegovina",
-    color: "#465B73",
-  },
-  {
-    name: "romania",
-    color: "#A2A156",
-  },
-  {
-    name: "ostland",
-    color: "#5E6C78",
-  },
-  {
-    name: "karelia",
-    color: "#8E2C2C",
-  },
-  {
-    name: "oman",
-    color: "#608396",
-  },
-  {
-    name: "yemen",
-    color: "#6A262C",
-  },
-  {
-    name: "himyar",
-    color: "#35BFB0",
-  },
-  {
-    name: "arabia",
-    color: "#326946",
-  },
-  {
-    name: "chechenya",
-    color: "#2A6B11",
-  },
-  {
-    name: "fezzan",
-    color: "#71B097",
-  },
-  {
-    name: "kurdistan",
-    color: "#EAB31E",
-  },
-  {
-    name: "iraq",
-    color: "#8C6698",
-  },
-  {
-    name: "iran",
-    color: "#446E23",
-  },
-  {
-    name: "persia",
-    color: "#446E23",
-  },
-  {
-    name: "kievan_rus",
-    color: "#617E25",
-  },
-  {
-    name: "sri_lanka",
-    color: "#ED8B00",
-  },
-  {
-    name: "mysore",
-    color: "#ECF2F3",
-  },
-  {
-    name: "gujarat",
-    color: "#E7E06B",
-  },
-  {
-    name: "seljuk_empire",
-    color: "#D99058",
-  },
-  {
-    name: "philippines",
-    color: "#B274DD",
-  },
-  {
-    name: "tosa",
-    color: "#165E83",
-  },
-  {
-    name: "ryukyu",
-    color: "#5A8A85",
-  },
-  {
-    name: "yue",
-    color: "#4A5C80",
-  },
-  {
-    name: "han",
-    color: "#9F7FFF",
-  },
-  {
-    name: "shu",
-    color: "#98A7ED",
-  },
-  {
-    name: "shun",
-    color: "#98A7ED",
-  },
-  {
-    name: "xia",
-    color: "#21A867",
-  },
-  {
-    name: "tibet",
-    color: "#2665FF",
-  },
-  {
-    name: "xinjiang",
-    color: "#CCB8B1",
-  },
-  {
-    name: "sinkiang",
-    color: "#CCB8B1",
-  },
-];
-
 var mapdata = {
   pvp: L.layerGroup(),
-  EU4: L.layerGroup(),
+  clf: L.layerGroup(),
   claim: L.layerGroup(),
   popu: L.layerGroup(),
   deft: L.layerGroup(),
@@ -680,15 +81,8 @@ fetch(
 )
   .then((response) => response.json())
   .then((markerTA) => {
-    // Build recolors
-    // ========
-    // EU4 Mode
-    // ========
-
     if (markerTA.length < 2000) {
-      $("#loadingtip").html(
-        "Error!"
-      );
+      $("#loadingtip").html("Error!");
       $("#loadingText").html(
         "EarthMC did not return any data!<br />Please try refreshing the page.<br /><br />"
       );
@@ -701,19 +95,17 @@ fetch(
         '<div class="w3-light-grey" style="width: 200px; height: 18px"><div class="w3-container w3-indigo"style="width: 50%; height: 100%"></div>'
       );
 
-      var markerEU4 = JSON.stringify(markerTA);
-      markerEU4 = JSON.parse(markerEU4);
-      var areasEU4 = markerEU4["sets"]["townyPlugin.markerset"]["areas"];
+      // Build recolors
+      // =============
+      // Coloful mode
+      // =============
 
-      for (let i in areasEU4) {
-        markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
-          "#3FB4FF";
-        markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
-          "#3FB4FF";
-      }
+      var markerclf = JSON.stringify(markerTA);
+      markerclf = JSON.parse(markerclf);
+      var areasclf = markerclf["sets"]["townyPlugin.markerset"]["areas"];
 
-      for (let i in areasEU4) {
-        var desc = areasEU4[i]["desc"];
+      for (let i in areasclf) {
+        var desc = areasclf[i]["desc"];
         let desc_title = desc.match(
           /<span style=\"font-size:120%\">(.+?)<\/span>/
         );
@@ -729,6 +121,36 @@ fetch(
           }
           if (names[2] == "") {
             names[2] = "Nationless";
+            markerclf["sets"]["townyPlugin.markerset"]["areas"][i][
+              "fillcolor"
+            ] = "#383838";
+            markerclf["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+              "#121212";
+          } else {
+            // Generate random recolor for each nation
+            var randomcolor = "#696969";
+            var nationid = 0;
+            for (let k = 0; k < names[2].length; k++) {
+              nationid += names[2].charCodeAt(k) * (k + 1);
+            }
+            if (nationid > 16776) {
+              nationid *= 100;
+            } else if (nationid < 1049) {
+              nationid *= 10000;
+            } else {
+              nationid *= 1000;
+            }
+
+            var nationhex = "#" + nationid.toString(16);
+            if (nationhex.length != 7) {
+              console.log([names[2], nationhex]);
+            }
+
+            markerclf["sets"]["townyPlugin.markerset"]["areas"][i][
+              "fillcolor"
+            ] = nationhex;
+            markerclf["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+              nationhex;
           }
 
           var infos = desc.match(
@@ -749,7 +171,7 @@ fetch(
             infos[2]
           }`;
 
-          markerEU4["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = desc;
+          markerclf["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = desc;
           desc_title = desc_title[1];
 
           if (desc_title) {
@@ -763,12 +185,12 @@ fetch(
               nation = nation[1];
               if (nation) {
                 // Check if nation has recolor
-                for (let e of eu4colors) {
+                for (let e of nationcolors) {
                   if (e["name"].toLowerCase() === nation.toLowerCase()) {
-                    markerEU4["sets"]["townyPlugin.markerset"]["areas"][i][
+                    markerclf["sets"]["townyPlugin.markerset"]["areas"][i][
                       "fillcolor"
                     ] = e["color"];
-                    markerEU4["sets"]["townyPlugin.markerset"]["areas"][i][
+                    markerclf["sets"]["townyPlugin.markerset"]["areas"][i][
                       "color"
                     ] = e["color"];
                   }
@@ -1066,7 +488,7 @@ fetch(
             nbcolor;
         }
       }
-      
+
       // =======================
       // Nation Population Mode
       // =======================
@@ -1137,13 +559,16 @@ fetch(
             infos[1]
           }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
             infos[2]
-          }<br/><br/><span style="font-size:120%">N</span><span style="font-size:90%">ATION POPULATION</span> : <b><span style="font-size:120%; color:${ttpopcolor}">${nation == null ? 'None' : nationpop[nation[1]]}</span></b>`;
+          }<br/><br/><span style="font-size:120%">N</span><span style="font-size:90%">ATION POPULATION</span> : <b><span style="font-size:120%; color:${ttpopcolor}">${
+            nation == null ? "None" : nationpop[nation[1]]
+          }</span></b>`;
 
+          markerttpop["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] =
+            pop;
 
-          markerttpop["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
-
-          markerttpop["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
-            ttpopcolor;
+          markerttpop["sets"]["townyPlugin.markerset"]["areas"][i][
+            "fillcolor"
+          ] = ttpopcolor;
           markerttpop["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
             ttpopcolor;
         }
@@ -1381,7 +806,7 @@ fetch(
       );
 
       leafletConvert(markerpvp, "pvp");
-      leafletConvert(markerEU4, "EU4");
+      leafletConvert(markerclf, "clf");
       leafletConvert(markerpop, "popu");
       leafletConvert(markerclaim, "claim");
       leafletConvert(markernb, "nb");
@@ -1531,7 +956,7 @@ function loadmode(mode) {
   if (current === "blank") {
   } else {
     current === "deft" ? mapdata["deft"].removeFrom(emcmap) : "";
-    current === "EU4" ? mapdata["EU4"].removeFrom(emcmap) : "";
+    current === "clf" ? mapdata["clf"].removeFrom(emcmap) : "";
     current === "popu" ? mapdata["popu"].removeFrom(emcmap) : "";
     current === "claim" ? mapdata["claim"].removeFrom(emcmap) : "";
     current === "den" ? mapdata["den"].removeFrom(emcmap) : "";
@@ -1545,8 +970,8 @@ function loadmode(mode) {
       mapdata["deft"].addTo(emcmap);
       $("#legend").fadeOut(300);
       break;
-    case "EU4":
-      mapdata["EU4"].addTo(emcmap);
+    case "clf":
+      mapdata["clf"].addTo(emcmap);
       $("#legend").fadeOut(300);
       break;
     case "popu":

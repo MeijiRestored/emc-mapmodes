@@ -86,7 +86,7 @@
       </p>
       Current modes available:<br />
       <u>- Default:</u> The regular map, but better looking.<br />
-      <u>- EU4 Colors:</u> Nations are colored just like in EU4.<br />
+      <u>- Colorful:</u> Every nation has its own color.<br />
       <u>- Population:</u> Colors towns depending on their amount of
       residents.<br />
       <u>- Claims:</u> Colors towns depending on their amount of chunks
@@ -97,13 +97,13 @@
         >See how it is calculated</span
       ><br />
       <u>- Nation Bonus:</u> Colors nations depending on their nation bonus.<br />
-      <u>- Nation Population:</u> Colors nations depending on their total population.
+      <u>- Nation Population:</u> Colors nations depending on their total population.<br />
       <u>- Townless:</u> Bonus tool to easily recruit for your town!<br />
       <span style="font-size: 90%"
         ><a href="https://github.com/32Vache/emc-mapmodes" target="_blank"
           >Source code on Github</a
         >
-        • Version 2.4 • Feb. 2023 • </span
+        • Version 2.4.1 • Feb. 2023 • </span
       ><img src="https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/ua.svg" width="20px">
       <span onclick="hideInfo()" id="hideBtn">Close</span>
     </div>
@@ -143,7 +143,7 @@
     <ul>
       <li class="active" onclick="showInfo()">Info</li>
       <li onclick="loadmode('deft')">Default</li>
-      <li onclick="loadmode('EU4')">EU4 Colors</li>
+      <li onclick="loadmode('clf')">Coloful</li>
       <li onclick="loadmode('popu')">Population</li>
       <li onclick="loadmode('claim')">Claims</li>
       <li onclick="loadmode('pvp')">PvP status</li>
@@ -215,5 +215,7 @@
       ).addTo(emcmap);
     </script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="assets/nation-colors.js"></script>
+  </body>
   </body>
 </html>
