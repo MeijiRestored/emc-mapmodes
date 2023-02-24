@@ -195,6 +195,19 @@ li:hover:is(.active) {
   );
 }
 
+.natpopGrad {
+  width: 294px;
+  height: 24px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(225, 223, 206, 1) 0%,
+    rgba(204, 211, 146, 1) 25%,
+    rgba(183, 199, 109, 1) 50%,
+    rgba(126, 178, 102, 1) 75%,
+    rgba(81, 169, 109, 1) 100%
+  );
+}
+
 #legend {
   background-color: #eeeeee;
   position: fixed;

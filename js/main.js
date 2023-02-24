@@ -512,22 +512,23 @@ fetch(
             nation = desc_title[1].match(/.+? \((.+?)\)$/);
           }
 
-          var ttpopcolor = "#D6D3C0";
+          var ttpopcolor = "#E1DFCE";
           if (nation === null) {
-            ttpopcolor = "#D6D3C0";
+            ttpopcolor = "#E1DFCE";
           } else {
             let popul = nationpop[nation[1]];
-            popul > 300 ? (ttpopcolor = "#51A96D") : "";
-            popul <= 300 ? (ttpopcolor = "#63A05D") : "";
-            popul <= 200 ? (ttpopcolor = "#80A158") : "";
-            popul <= 160 ? (ttpopcolor = "#8BA84F") : "";
-            popul <= 120 ? (ttpopcolor = "#96AA53") : "";
-            popul <= 75 ? (ttpopcolor = "#98A756") : "";
-            popul <= 50 ? (ttpopcolor = "#B0B670") : "";
-            popul <= 30 ? (ttpopcolor = "#B3B583") : "";
-            popul <= 20 ? (ttpopcolor = "#BFBF9A") : "";
-            popul <= 10 ? (ttpopcolor = "#D0D0B8") : "";
-            popul <= 3 ? (ttpopcolor = "#D6D3C0") : "";
+            popul > 400 ? (ttpopcolor = "#51A96D") : "";
+            popul <= 400 ? (ttpopcolor = "#5EA462") : "";
+            popul <= 300 ? (ttpopcolor = "#7EB266") : "";
+            popul <= 200 ? (ttpopcolor = "#A4BB59") : "";
+            popul <= 160 ? (ttpopcolor = "#A9C065") : "";
+            popul <= 120 ? (ttpopcolor = "#B7C76D") : "";
+            popul <= 75 ? (ttpopcolor = "#C0CD77") : "";
+            popul <= 50 ? (ttpopcolor = "#CCD392") : "";
+            popul <= 30 ? (ttpopcolor = "#D3D6A1") : "";
+            popul <= 20 ? (ttpopcolor = "#D7D9A8") : "";
+            popul <= 10 ? (ttpopcolor = "#DEDEBC") : "";
+            popul <= 3 ? (ttpopcolor = "#E1DFCE") : "";
           }
 
           var names = [];
@@ -1011,8 +1012,10 @@ function loadmode(mode) {
       break;
     case "ttpop":
       mapdata["ttpop"].addTo(emcmap);
-      // TODO legend
-      $("#legend").fadeOut(300);
+      $("#legend").html(
+        '<span id="left">10</span><span id="left-middle">50</span><span id="middle">120</span><span id="middle-right">250</span><span id="right">400</span><div class="gradBox"><div class="natpopGrad"></div></div>'
+      );
+      $("#legend").fadeIn(300);
       break;
   }
 
