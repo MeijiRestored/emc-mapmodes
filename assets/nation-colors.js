@@ -165,11 +165,11 @@ var nationcolors = [
   },
   {
     name: "brazil",
-    color: "#82B17D",
+    color: "#269B53",
   },
   {
     name: "gran_colombia",
-    color: "#E9BC26",
+    color: "#FFEAA8",
   },
   {
     name: "tierra_del_fuego",
@@ -241,7 +241,7 @@ var nationcolors = [
   },
   {
     name: "mexico",
-    color: "#EBC237",
+    color: "#378F35",
   },
   {
     name: "california",
@@ -465,7 +465,7 @@ var nationcolors = [
   },
   {
     name: "burgundy",
-    color: "#683145",
+    color: "#7F1F30",
   },
   {
     name: "bosnia",
@@ -594,5 +594,141 @@ var nationcolors = [
   {
     name: "sinkiang",
     color: "#CCB8B1",
+  },
+  {
+    name: "scandinavia",
+    color: "#5781C6",
+  },
+  {
+    name: "bavaria",
+    color: "#75E5D7",
+  },
+  {
+    name: "soviet_union",
+    color: "#A53029",
+  },
+  {
+    name: "china",
+    color: "#FCB93F",
+  },
+  {
+    name: "rsa",
+    color: "#896AD9",
+  },
+  {
+    name: "namibia",
+    color: "#307721",
+  },
+  {
+    name: "benguela",
+    color: "#255694",
+  },
+  {
+    name: "madagascar",
+    color: "#709673",
+  },
+  {
+    name: "benin",
+    color: "#D3A69E",
+  },
+  {
+    name: "nigeria",
+    color: "#6EAD81",
+  },
+  {
+    name: "guinea",
+    color: "#E67D7F",
+  },
+  {
+    name: "liberia",
+    color: "#C18A53",
+  },
+  {
+    name: "cameroon",
+    color: "#EBC87F",
+  },
+  {
+    name: "cuba",
+    color: "#9E3BBD",
+  },
+  {
+    name: "venezuela",
+    color: "#FFB08C",
+  },
+  {
+    name: "ecuador",
+    color: "#2B8CAC",
+  },
+  {
+    name: "peru-bolivia",
+    color: "#E86BA2",
+  },
+  {
+    name: "peru",
+    color: "#FFCD9B",
+  },
+  {
+    name: "bolivar",
+    color: "#E1B955",
+  },
+  {
+    name: "chile",
+    color: "#EC9F59",
+  },
+  {
+    name: "uruguay",
+    color: "#836555",
+  },
+  {
+    name: "argentina",
+    color: "#6566A3",
+  },
+  {
+    name: "paraguay",
+    color: "#B1392C",
+  },
+  {
+    name: "patagonia",
+    color: "#397B8A",
+  },
+  {
+    name: "guatemala",
+    color: "#72C1FB",
+  },
+  {
+    name: "el_salvador",
+    color: "#173A5E",
+  },
+  {
+    name: "honduras",
+    color: "#B9D2F7",
+  },
+  {
+    name: "costa_rica",
+    color: "#CF473C",
+  },
+  {
+    name: "nicaragua",
+    color: "#2E60BA",
+  },
+  {
+    name: "yucatan",
+    color: "#3D9999",
+  },
+  {
+    name: "aztec",
+    color: "#309515",
+  },
+  {
+    name: "huasteca",
+    color: "#303179",
+  },
+  {
+    name: "san_luis_potosi",
+    color: "#40EC5B",
+  },
+  {
+    name: "texas",
+    color: "#2829A2",
   },
 ];
