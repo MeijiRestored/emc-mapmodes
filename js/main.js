@@ -208,69 +208,91 @@ fetch(
       var markerpop = JSON.stringify(markerTA);
       markerpop = JSON.parse(markerpop);
       var areaspop = markerpop["sets"]["townyPlugin.markerset"]["areas"];
+
+      // First figure exact population for each town (fix for towns cut in several polygons)
+      let poplist = {};
       for (let i in areaspop) {
         var pop = areaspop[i]["desc"];
-        let resList = pop.match(
-          /Members <span style=\"font-weight:bold\">(.+?)<\/span>/
-        );
-        var mCount = (resList[1].match(/,/g) || []).length + 1;
-
-        var popcolor = "#000000";
-        mCount >= 100 ? (popcolor = "#008800") : "";
-        mCount <= 99 ? (popcolor = "#00AA00") : "";
-        mCount <= 49 ? (popcolor = "#00CC00") : "";
-        mCount <= 42 ? (popcolor = "#00FF00") : "";
-        mCount <= 36 ? (popcolor = "#66FF00") : "";
-        mCount <= 28 ? (popcolor = "#99FF00") : "";
-        mCount <= 20 ? (popcolor = "#CCFF00") : "";
-        mCount <= 15 ? (popcolor = "#EEEE00") : "";
-        mCount <= 10 ? (popcolor = "#FFCC00") : "";
-        mCount <= 6 ? (popcolor = "#FF6600") : "";
-        mCount <= 4 ? (popcolor = "#FF2200") : "";
-        mCount == 2 ? (popcolor = "#EE0000") : "";
-        mCount == 1 ? (popcolor = "#CC0000") : "";
-
-        let desc_title = pop.match(
-          /<span style=\"font-size:120%\">(.+?)<\/span>/
-        );
-
-        var names = [];
-        if (desc_title[1].includes("</a>") == true) {
-          names = desc_title[1].match(
-            /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
-          );
-          names = [names[0], names[1], names[3], names[2]];
+        if (pop.includes("(Shop)") == true) {
+          // Ignore all 'Shop' shapes
         } else {
-          names = desc_title[1].match(/(.+) \((.+|)\)/);
+          let desc_title = pop.match(
+            /<span style=\"font-size:120%\">(.+?)<\/span>/
+          );
+          let resList = pop.match(
+            /Members <span style=\"font-weight:bold\">(.+?)<\/span>/
+          );
+          var mc = (resList[1].match(/,/g) || []).length + 1;
+
+          if (poplist[desc_title] == undefined) {
+            poplist[desc_title] = [mc, false];
+          }
         }
-        if (names[2] == "") {
-          names[2] = "Nationless";
+      }
+
+      for (let i in areaspop) {
+        var pop = areaspop[i]["desc"];
+        if (pop.includes("(Shop)") == true) {
+          // Ignore all 'Shop' shapes
+        } else {
+          let desc_title = pop.match(
+            /<span style=\"font-size:120%\">(.+?)<\/span>/
+          );
+          var mCount = poplist[desc_title][0];
+
+          var popcolor = "#000000";
+          mCount >= 100 ? (popcolor = "#008800") : "";
+          mCount <= 99 ? (popcolor = "#00AA00") : "";
+          mCount <= 49 ? (popcolor = "#00CC00") : "";
+          mCount <= 42 ? (popcolor = "#00FF00") : "";
+          mCount <= 36 ? (popcolor = "#66FF00") : "";
+          mCount <= 28 ? (popcolor = "#99FF00") : "";
+          mCount <= 20 ? (popcolor = "#CCFF00") : "";
+          mCount <= 15 ? (popcolor = "#EEEE00") : "";
+          mCount <= 10 ? (popcolor = "#FFCC00") : "";
+          mCount <= 6 ? (popcolor = "#FF6600") : "";
+          mCount <= 4 ? (popcolor = "#FF2200") : "";
+          mCount == 2 ? (popcolor = "#EE0000") : "";
+          mCount == 1 ? (popcolor = "#CC0000") : "";
+
+          var names = [];
+          if (desc_title[1].includes("</a>") == true) {
+            names = desc_title[1].match(
+              /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+            );
+            names = [names[0], names[1], names[3], names[2]];
+          } else {
+            names = desc_title[1].match(/(.+) \((.+|)\)/);
+          }
+          if (names[2] == "") {
+            names[2] = "Nationless";
+          }
+
+          var infos = pop.match(
+            /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+          );
+
+          pop = `<span style="font-size:130%">${
+            infos[3] == "true" ? "★ " + names[1] : names[1]
+          }, ${names[2][0]}</span>${names[2].slice(1).toUpperCase()} ${
+            names[3]
+              ? "<a href='" +
+                names[3] +
+                "' target='_blank' title='Wiki link'>📖</a>"
+              : ""
+          }<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
+            infos[1]
+          }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
+            infos[2]
+          }<br/><br/><span style="font-size:120%">P</span><span style="font-size:90%">OPULATION</span> : <b><span style="font-size:120%; color:${popcolor}">${mCount}</span></b>`;
+
+          markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
+
+          markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
+            popcolor;
+          markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
+            popcolor;
         }
-
-        var infos = pop.match(
-          /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
-        );
-
-        pop = `<span style="font-size:130%">${
-          infos[3] == "true" ? "★ " + names[1] : names[1]
-        }, ${names[2][0]}</span>${names[2].slice(1).toUpperCase()} ${
-          names[3]
-            ? "<a href='" +
-              names[3] +
-              "' target='_blank' title='Wiki link'>📖</a>"
-            : ""
-        }<br/><br/><span style="font-size:120%">M</span><span style="font-size:90%">AYOR</span> : <span style="font-size:120%">${
-          infos[1]
-        }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
-          infos[2]
-        }<br/><br/><span style="font-size:120%">P</span><span style="font-size:90%">OPULATION</span> : <b><span style="font-size:120%; color:${popcolor}">${mCount}</span></b>`;
-
-        markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
-
-        markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] =
-          popcolor;
-        markerpop["sets"]["townyPlugin.markerset"]["areas"][i]["color"] =
-          popcolor;
       }
 
       // ===========
@@ -390,10 +412,11 @@ fetch(
           let desc_title = pop.match(
             /<span style=\"font-size:120%\">(.+?)<\/span>/
           );
-          let resList = pop.match(
-            /Members <span style=\"font-weight:bold\">(.+?)<\/span>/
-          );
-          var mCount = (resList[1].match(/,/g) || []).length + 1;
+          var mCount = 0;
+          if (poplist[desc_title][1] == false) {
+            mCount = poplist[desc_title][0];
+            poplist[desc_title][1] = true;
+          }
           var nation = [];
           if (desc_title.includes("</a>") == true) {
             nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
