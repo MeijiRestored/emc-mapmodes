@@ -942,6 +942,7 @@ fetch(
       var layerctrl = L.control.layers();
       layerctrl.addOverlay(capitals, "Capitals");
       layerctrl.addOverlay(capitalNames, "Capital names");
+      layerctrl.setPosition('topleft');
       layerctrl.addTo(emcmap);
     }
   });
