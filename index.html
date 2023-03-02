@@ -77,6 +77,19 @@
       >
     </div>
 
+    <div id="tools">
+      <span style="font-size: 180%">Tools</span>
+      <p>There are several tools available! Click their name to open them!</p>
+      <span onclick="showTownless()" style="color: #3344ee">- Townless</span>
+      Find online townless players.<br />
+      <span onclick="enableDist()" style="color: #3344ee">- Distance</span>
+      Measure distance between two points.<br />
+      <!--<span onclick="enableCircle()" style="color: #3344ee">- Range</span>
+      Display a circle of given radius and center.<br />-->
+
+      <span onclick="hideTools()" id="hideBtn">Close</span>
+    </div>
+
     <div id="info">
       <span style="font-size: 200%">Information</span>
       <p>
@@ -97,14 +110,18 @@
         >See how it is calculated</span
       ><br />
       <u>- Nation Bonus:</u> Colors nations depending on their nation bonus.<br />
-      <u>- Nation Population:</u> Colors nations depending on their total population.<br />
-      <u>- Townless:</u> Bonus tool to easily recruit for your town!<br />
+      <u>- Nation Population:</u> Colors nations depending on their total
+      population.<br />
+      <u>- Tools:</u> Various tools for the map.<br />
       <span style="font-size: 90%"
         ><a href="https://github.com/32Vache/emc-mapmodes" target="_blank"
           >Source code on Github</a
         >
-        • Version 2.4.1 • Feb. 2023 • </span
-      ><img src="https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/ua.svg" width="20px">
+        • Version 2.5 • Mar. 2023 • </span
+      ><img
+        src="https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/ua.svg"
+        width="20px"
+      />
       <span onclick="hideInfo()" id="hideBtn">Close</span>
     </div>
 
@@ -140,6 +157,8 @@
 
     <div id="legend" title="Legend"></div>
 
+    <div id="hint" title="Hint"></div>
+
     <ul>
       <li class="active" onclick="showInfo()">Info</li>
       <li onclick="loadmode('deft')">Default</li>
@@ -149,8 +168,8 @@
       <li onclick="loadmode('pvp')">PvP status</li>
       <li onclick="loadmode('den')">Density</li>
       <li onclick="loadmode('nb')">Nation Bonus</li>
-      <li onclick="loadmode('ttpop')"> Nation Pop.</li>
-      <li class="tool" onclick="showTownless()">Townless</li>
+      <li onclick="loadmode('ttpop')">Nation Pop.</li>
+      <li class="tool" onclick="showTools()">Tools</li>
     </ul>
 
     <div id="map"></div>
@@ -216,6 +235,5 @@
     </script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="assets/nation-colors.js"></script>
-  </body>
   </body>
 </html>

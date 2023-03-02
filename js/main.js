@@ -1,3 +1,24 @@
+// setInteractive Plugin
+L.Layer.prototype.setInteractive = function (interactive) {
+  if (this.getLayers) {
+    this.getLayers().forEach((layer) => {
+      layer.setInteractive(interactive);
+    });
+    return;
+  }
+  if (!this._path) {
+    return;
+  }
+
+  this.options.interactive = interactive;
+
+  if (interactive) {
+    L.DomUtil.addClass(this._path, "leaflet-interactive");
+  } else {
+    L.DomUtil.removeClass(this._path, "leaflet-interactive");
+  }
+};
+
 // Area calculator
 /**
  * Calculate area of polygon.
@@ -68,6 +89,23 @@ var mapdata = {
 
 var capitals = L.layerGroup();
 var capitalNames = L.layerGroup();
+
+var distEnabled = false;
+var mapclicks = 0;
+var pt1 = L.marker();
+var pt2 = L.marker();
+var distLine = L.polyline([
+  [0, 0],
+  [0, 0],
+]);
+var locked = false;
+var distIcon = L.icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/dist-point.png",
+
+  iconSize: [15, 15],
+  iconAnchor: [7, 7],
+});
 
 var current = "deft";
 
@@ -942,7 +980,7 @@ fetch(
       var layerctrl = L.control.layers();
       layerctrl.addOverlay(capitals, "Capitals");
       layerctrl.addOverlay(capitalNames, "Capital names");
-      layerctrl.setPosition('topleft');
+      layerctrl.setPosition("topleft");
       layerctrl.addTo(emcmap);
     }
   });
@@ -969,81 +1007,84 @@ function hideInfo() {
 
 function showTownless() {
   $("#townless").fadeIn(500);
-  $("#loading").fadeIn(500);
 }
 
 function hideTownless() {
   $("#townless").fadeOut(500);
+}
+
+function showTools() {
+  $("#tools").fadeIn(500);
+  $("#loading").fadeIn(500);
+}
+
+function hideTools() {
+  $("#tools").fadeOut(500);
   $("#loading").fadeOut(500);
 }
 
 function loadmode(mode) {
-  if (current === "blank") {
-  } else {
-    current === "deft" ? mapdata["deft"].removeFrom(emcmap) : "";
-    current === "clf" ? mapdata["clf"].removeFrom(emcmap) : "";
-    current === "popu" ? mapdata["popu"].removeFrom(emcmap) : "";
-    current === "claim" ? mapdata["claim"].removeFrom(emcmap) : "";
-    current === "den" ? mapdata["den"].removeFrom(emcmap) : "";
-    current === "pvp" ? mapdata["pvp"].removeFrom(emcmap) : "";
-    current === "nb" ? mapdata["nb"].removeFrom(emcmap) : "";
-    current === "ttpop" ? mapdata["ttpop"].removeFrom(emcmap) : "";
-  }
+  if (locked == false) {
+    if (current === "blank") {
+    } else {
+      mapdata[current].removeFrom(emcmap);
+    }
 
-  switch (mode) {
-    case "deft":
-      mapdata["deft"].addTo(emcmap);
-      $("#legend").fadeOut(300);
-      break;
-    case "clf":
-      mapdata["clf"].addTo(emcmap);
-      $("#legend").fadeOut(300);
-      break;
-    case "popu":
-      mapdata["popu"].addTo(emcmap);
-      $("#legend").html(
-        '<span id="left">1</span><span id="left-middle">5</span><span id="middle">20</span><span id="middle-right">45</span><span id="right">100</span><div class="gradBox"><div class="popGrad"></div></div>'
-      );
-      $("#legend").fadeIn(300);
-      break;
-    case "claim":
-      mapdata["claim"].addTo(emcmap);
-      $("#legend").html(
-        '<span id="left">1</span><span id="left-middle">64</span><span id="middle">256</span><span id="middle-right">640</span><span id="right">940</span><div class="gradBox"><div class="popGrad"></div></div>'
-      );
-      $("#legend").fadeIn(300);
-      break;
-    case "den":
-      mapdata["den"].addTo(emcmap);
-      $("#legend").html(
-        '<span id="left">Low</span><span id="middle">Medium</span><span id="right">High</span><div class="gradBox"><div class="denGrad"></div></div>'
-      );
-      $("#legend").fadeIn(300);
-      break;
-    case "pvp":
-      mapdata["pvp"].addTo(emcmap);
-      $("#legend").html(
-        '<span id="left-middle">Enabled</span><span id="middle-right">Disabled</span><div class="gradBox"><div class="grGrad"></div></div>'
-      );
-      $("#legend").fadeIn(300);
-      break;
-    case "nb":
-      mapdata["nb"].addTo(emcmap);
-      $("#legend").html(
-        '<span style="left: 4%; position: absolute;">0</span><span style="left: 24%; position: absolute;">10</span><span style="left: 40%; position: absolute;">30</span><span style="left: 56%; position: absolute;">50</span><span style="left: 72%; position: absolute;">60</span><span style="right: 4%; position: absolute;">80</span><div class="gradBox"><div class="nbGrad"></div></div>'
-      );
-      $("#legend").fadeIn(300);
-      break;
-    case "ttpop":
-      mapdata["ttpop"].addTo(emcmap);
-      $("#legend").html(
-        '<span id="left">10</span><span id="left-middle">50</span><span id="middle">120</span><span id="middle-right">250</span><span id="right">400</span><div class="gradBox"><div class="natpopGrad"></div></div>'
-      );
-      $("#legend").fadeIn(300);
-      break;
-  }
+    switch (mode) {
+      case "deft":
+        mapdata["deft"].addTo(emcmap);
+        $("#legend").fadeOut(300);
+        break;
+      case "clf":
+        mapdata["clf"].addTo(emcmap);
+        $("#legend").fadeOut(300);
+        break;
+      case "popu":
+        mapdata["popu"].addTo(emcmap);
+        $("#legend").html(
+          '<span id="left">1</span><span id="left-middle">5</span><span id="middle">20</span><span id="middle-right">45</span><span id="right">100</span><div class="gradBox"><div class="popGrad"></div></div>'
+        );
+        $("#legend").fadeIn(300);
+        break;
+      case "claim":
+        mapdata["claim"].addTo(emcmap);
+        $("#legend").html(
+          '<span id="left">1</span><span id="left-middle">64</span><span id="middle">256</span><span id="middle-right">640</span><span id="right">940</span><div class="gradBox"><div class="popGrad"></div></div>'
+        );
+        $("#legend").fadeIn(300);
+        break;
+      case "den":
+        mapdata["den"].addTo(emcmap);
+        $("#legend").html(
+          '<span id="left">Low</span><span id="middle">Medium</span><span id="right">High</span><div class="gradBox"><div class="denGrad"></div></div>'
+        );
+        $("#legend").fadeIn(300);
+        break;
+      case "pvp":
+        mapdata["pvp"].addTo(emcmap);
+        $("#legend").html(
+          '<span id="left-middle">Enabled</span><span id="middle-right">Disabled</span><div class="gradBox"><div class="grGrad"></div></div>'
+        );
+        $("#legend").fadeIn(300);
+        break;
+      case "nb":
+        mapdata["nb"].addTo(emcmap);
+        $("#legend").html(
+          '<span style="left: 4%; position: absolute;">0</span><span style="left: 24%; position: absolute;">10</span><span style="left: 40%; position: absolute;">30</span><span style="left: 56%; position: absolute;">50</span><span style="left: 72%; position: absolute;">60</span><span style="right: 4%; position: absolute;">80</span><div class="gradBox"><div class="nbGrad"></div></div>'
+        );
+        $("#legend").fadeIn(300);
+        break;
+      case "ttpop":
+        mapdata["ttpop"].addTo(emcmap);
+        $("#legend").html(
+          '<span id="left">10</span><span id="left-middle">50</span><span id="middle">120</span><span id="middle-right">250</span><span id="right">400</span><div class="gradBox"><div class="natpopGrad"></div></div>'
+        );
+        $("#legend").fadeIn(300);
+        break;
+    }
 
-  current = mode;
+    current = mode;
+  }
 }
 
 function loadTownless() {
@@ -1101,3 +1142,70 @@ function copyTownless(cmd) {
   $("#checkmark").show();
   $("#checkmark").fadeOut(3000);
 }
+
+function enableDist() {
+  hideTools();
+  $("#hint").fadeIn(1000);
+  $("#legend").fadeOut(1000);
+  distEnabled = true;
+  mapclicks = 0;
+  $("#hint").html("Click on the first position.");
+  // Makes towns clickable through
+  locked = true;
+  mapdata[current].setInteractive(false);
+}
+
+function disableDist() {
+  $("#hint").fadeOut(500);
+  distEnabled = false;
+  mapclicks = 0;
+  pt1.removeFrom(emcmap);
+  pt2.removeFrom(emcmap);
+  distLine.removeFrom(emcmap);
+  // Restore towns
+  locked = false;
+  mapdata[current].setInteractive(true);
+  $("#hint").html("GEKOLONISEERD");
+}
+
+function onMapClick(e) {
+  if (distEnabled == true) {
+    if (mapclicks == 0) {
+      mapclicks += 1;
+      pt1
+        .setLatLng(e.latlng)
+        .setIcon(distIcon)
+        .bindTooltip(
+          `Position 1: ${e.latlng.lat.toString()};${e.latlng.lng.toString()}`
+        )
+        .addTo(emcmap);
+      $("#hint").html("Click on the second position.");
+    } else if (mapclicks == 1) {
+      mapclicks += 1;
+      pt2
+        .setLatLng(e.latlng)
+        .setIcon(distIcon)
+        .bindTooltip(
+          `Position 2: ${e.latlng.lat.toString()};${e.latlng.lng.toString()}`
+        )
+        .addTo(emcmap);
+
+      var loc1 = pt1.getLatLng();
+      var loc2 = pt2.getLatLng();
+      var distance = Math.sqrt(
+        (loc1.lat - loc2.lat) ** 2 + (loc1.lng - loc2.lng) ** 2
+      );
+      $("#hint").html(`Distance: ${Math.round(distance)} blocks. <span onclick="disableDist()" style="color: #3344ee">Click here to quit.</span>`);
+      distLine
+        .setLatLngs([
+          [loc1.lat, loc1.lng],
+          [loc2.lat, loc2.lng],
+        ])
+        .bindTooltip(`Distance: ${Math.round(distance)} blocks`)
+        .setStyle({ zIndex: 650, weight: 6, color: "#ff2200" })
+        .addTo(emcmap);
+    }
+  }
+}
+
+emcmap.on("click", onMapClick);

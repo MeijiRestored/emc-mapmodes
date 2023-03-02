@@ -114,6 +114,23 @@ li:hover:is(.active) {
   display: none;
 }
 
+#tools {
+  position: absolute;
+  height: 400px;
+  width: 300px;
+  top: 50%;
+  left: 50%;
+  margin: -275px 0 0 -152px;
+  padding: 6px;
+  border-radius: 5px;
+  text-align: left;
+  opacity: 1;
+  color: #eeeeee;
+  background-color: #222222;
+  z-index: 9995;
+  display: none;
+}
+
 #townless {
   position: absolute;
   height: 500px;
@@ -215,6 +232,19 @@ li:hover:is(.active) {
   right: 0;
   width: 300px;
   height: 50px;
+  z-index: 9898;
+  display: none;
+}
+
+#hint {
+  background-color: #333333;
+  color:#eeeeee;
+  padding: 2px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 20px;
   z-index: 9898;
   display: none;
 }
