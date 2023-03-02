@@ -1176,7 +1176,7 @@ function onMapClick(e) {
         .setLatLng(e.latlng)
         .setIcon(distIcon)
         .bindTooltip(
-          `Position 1: ${e.latlng.lat.toString()};${e.latlng.lng.toString()}`
+          `Position 1: ${Math.round(e.latlng.lat).toString()}; ${Math.round(e.latlng.lng).toString()}`
         )
         .addTo(emcmap);
       $("#hint").html("Click on the second position.");
@@ -1186,7 +1186,7 @@ function onMapClick(e) {
         .setLatLng(e.latlng)
         .setIcon(distIcon)
         .bindTooltip(
-          `Position 2: ${e.latlng.lat.toString()};${e.latlng.lng.toString()}`
+          `Position 2: ${Math.round(e.latlng.lat).toString()}; ${Math.round(e.latlng.lng).toString()}`
         )
         .addTo(emcmap);
 
