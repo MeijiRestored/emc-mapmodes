@@ -192,7 +192,7 @@ fetch(
           }
 
           var infos = desc.match(
-            /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+            /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
           );
 
           desc = `<span style="font-size:130%">${
@@ -307,7 +307,7 @@ fetch(
           }
 
           var infos = pop.match(
-            /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+            /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
           );
 
           pop = `<span style="font-size:130%">${
@@ -405,7 +405,7 @@ fetch(
           }
 
           var infos = pop.match(
-            /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+            /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
           );
 
           pop = `<span style="font-size:130%">${
@@ -524,7 +524,7 @@ fetch(
           }
 
           var infos = pop.match(
-            /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+            /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
           );
 
           pop = `<span style="font-size:130%">${
@@ -606,7 +606,7 @@ fetch(
           }
 
           var infos = pop.match(
-            /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+            /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
           );
 
           pop = `<span style="font-size:130%">${
@@ -681,7 +681,7 @@ fetch(
         }
 
         var infos = pop.match(
-          /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+          /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
         );
 
         pop = `<span style="font-size:130%">${
@@ -783,7 +783,7 @@ fetch(
           }
 
           var infos = pop.match(
-            /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+            /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
           );
 
           pop = `<span style="font-size:130%">${
@@ -899,7 +899,7 @@ fetch(
         }
 
         var infos = desc.match(
-          /Mayor <.+?>(.+?)<\/span>.+Members <.+?>(.+?)<\/span>.+capital: (.+?)<\/span>/
+          /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
         );
 
         desc = `<span style="font-size:130%">${
