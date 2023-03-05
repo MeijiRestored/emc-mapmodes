@@ -228,7 +228,7 @@ var nationcolors = [
     color: "#3878BF",
   },
   {
-    name: "orange",
+    name: "dutcheastindies",
     color: "#DC8A39",
   },
   {
