@@ -500,14 +500,14 @@ fetch(
             popul <= 89 ? (nbcolor = "#55CC00") : "";
             popul <= 59 ? (nbcolor = "#FFCC00") : "";
             popul <= 39 ? (nbcolor = "#FF3300") : "";
-            popul <= 9 ? (nbcolor = "#000000") : "";
+            popul <= 19 ? (nbcolor = "#000000") : "";
 
             popul >= 120 ? (nbo = 80) : "";
             popul <= 119 ? (nbo = 60) : "";
             popul <= 89 ? (nbo = 50) : "";
             popul <= 59 ? (nbo = 30) : "";
             popul <= 39 ? (nbo = 10) : "";
-            popul <= 9 ? (nbo = 0) : "";
+            popul <= 19 ? (nbo = 0) : "";
           }
 
           var names = [];
