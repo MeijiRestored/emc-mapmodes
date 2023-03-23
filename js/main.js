@@ -151,7 +151,7 @@ fetch(
           var names = [];
           if (desc_title[1].includes("</a>") == true) {
             names = desc_title[1].match(
-              /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+              /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
             names = [names[0], names[1], names[3], names[2]];
           } else {
@@ -296,7 +296,7 @@ fetch(
           var names = [];
           if (desc_title[1].includes("</a>") == true) {
             names = desc_title[1].match(
-              /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+              /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
             names = [names[0], names[1], names[3], names[2]];
           } else {
@@ -394,7 +394,7 @@ fetch(
           var names = [];
           if (desc_title[1].includes("</a>") == true) {
             names = desc_title[1].match(
-              /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+              /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
             names = [names[0], names[1], names[3], names[2]];
           } else {
@@ -513,7 +513,7 @@ fetch(
           var names = [];
           if (desc_title[1].includes("</a>") == true) {
             names = desc_title[1].match(
-              /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+              /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
             names = [names[0], names[1], names[3], names[2]];
           } else {
@@ -595,7 +595,7 @@ fetch(
           var names = [];
           if (desc_title[1].includes("</a>") == true) {
             names = desc_title[1].match(
-              /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+              /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
             names = [names[0], names[1], names[3], names[2]];
           } else {
@@ -670,7 +670,7 @@ fetch(
         var names = [];
         if (desc_title[1].includes("</a>") == true) {
           names = desc_title[1].match(
-            /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+            /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
           );
           names = [names[0], names[1], names[3], names[2]];
         } else {
@@ -772,7 +772,7 @@ fetch(
           var names = [];
           if (desc_title[1].includes("</a>") == true) {
             names = desc_title[1].match(
-              /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+              /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
             names = [names[0], names[1], names[3], names[2]];
           } else {
@@ -888,7 +888,7 @@ fetch(
         var names = [];
         if (desc_title[1].includes("</a>") == true) {
           names = desc_title[1].match(
-            /(.+?) \(<a href="(.+?)" .+?>(.+|)<\/a>\)/
+            /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
           );
           names = [names[0], names[1], names[3], names[2]];
         } else {
