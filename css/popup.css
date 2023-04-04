@@ -5,7 +5,7 @@
 /* !important definition required to overwrite leaflet.css */
 .leaflet-popup-content-wrapper {
   border-radius: 0px !important;
-  border: 2px solid #ffcc00 !important;
+  border: 2px solid #999999 !important;
   background: #222222 !important;
   color: #dddddd !important;
   box-shadow: 0px 0px 10px #111111 !important;

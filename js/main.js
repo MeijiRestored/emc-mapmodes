@@ -746,7 +746,11 @@ fetch(
 
           // We define density as the difference between a town's claim limit and its claimed size.
           // A large town with few residents would be very low under claim limit and thus have low density, for example.
+          var over940 = false
           var claimlimit = mCount * 8 + nbonus;
+          if (claimlimit > 940) {
+            over940 = true
+          }
           let density = claimlimit - area;
 
           var dencolor = "#000000";
@@ -785,6 +789,15 @@ fetch(
           var infos = pop.match(
             /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
           );
+          
+          var densitytext = ""
+          density < 0
+              ? (densitytext = (-density).toString() + " ABOVE CLAIM LIMIT")
+              : (densitytext = (density).toString() + " BELOW CLAIM LIMIT")
+              
+          over940
+              ? (densitytext = (940 - area).toString() + " BELOW CLAIM LIMIT (HAS " + (density - ( 940 - area)).toString() + " OVER 940)")
+              : (0)
 
           pop = `<span style="font-size:130%">${
             infos[3] == "true" ? "★ " + names[1] : names[1]
@@ -798,11 +811,7 @@ fetch(
             infos[1]
           }</span><br/><span style="font-size:120%">R</span><span style="font-size:90%">ESIDENTS</span> : ${
             infos[2]
-          }<br/><br/><span style="font-size:120%">D</span><span style="font-size:90%">ENSITY</span> : <b><span style="font-size:120%; color:${dencolor}">${
-            density < 0
-              ? (density * -1).toString() + " ABOVE CLAIM LIMIT"
-              : density.toString() + " BELOW CLAIM LIMIT"
-          }</span></b>`;
+          }<br/><br/><span style="font-size:120%">D</span><span style="font-size:90%">ENSITY</span> : <b><span style="font-size:120%; color:${dencolor}">${densitytext}</span></b>`;
 
           markerden["sets"]["townyPlugin.markerset"]["areas"][i]["desc"] = pop;
 
