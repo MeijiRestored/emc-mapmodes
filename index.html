@@ -2,25 +2,14 @@
   <head>
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <meta
-      http-equiv="content-type"
-      content="text/html; charset=utf-8"
-      lang="en"
-    />
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" lang="en" />
     <meta content="EMC Mapmodes" property="og:title" />
-    <meta
-      content="Visualize different statistics on EMC's map!"
-      property="og:description"
-    />
+    <meta content="Visualize different statistics on EMC's map!" property="og:description" />
     <meta content="#04aa6d" data-react-helmet="true" name="theme-color" />
     <meta property="og:type" content="website" />
     <meta name="twitter:title" content="EMC Mapmodes" />
-    <meta
-      name="twitter:description"
-      content="Visualize different statistics on EMC's map!"
-    />
+    <meta name="twitter:description" content="Visualize different statistics on EMC's map!" />
 
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/popup.css" />
@@ -31,13 +20,9 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
       integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin=""
-    />
+      crossorigin="" />
 
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-latest.js"
-    ></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
     <title>EMC Mapmodes</title>
   </head>
   <body>
@@ -48,10 +33,7 @@
       <div id="loadingText">Initializing<br /><br /></div>
       <div id="barContainer" width="200px">
         <div class="w3-light-grey" style="width: 200px; height: 18px">
-          <div
-            class="w3-container w3-indigo"
-            style="width: 0%; height: 100%"
-          ></div>
+          <div class="w3-container w3-indigo" style="width: 0%; height: 100%"></div>
         </div>
       </div>
     </div>
@@ -59,9 +41,7 @@
     <div id="townless">
       <span style="font-size: 180%">Townless Players</span>
       <p>
-        This tool lists townless players so you can recruit them. It can also
-        generate a <i>/t invite</i> command you can directly copy and paste in
-        the server!<br /><br />
+        This tool lists townless players so you can recruit them.<br /><br />
         Click Load to begin, or refresh.
       </p>
 
@@ -93,64 +73,49 @@
     <div id="info">
       <span style="font-size: 200%">Information</span>
       <p>
-        On this website you can visualize different statistics directly onto
-        EarthMC's map, by switching map modes with the buttons on the bottom of
-        the page.
+        On this website you can visualize different statistics directly onto EarthMC's map, by
+        switching map modes with the buttons on the bottom of the page.
       </p>
       Current modes available:<br />
       <u>- Default:</u> The regular map, but better looking.<br />
       <u>- Colorful:</u> Every nation has its own color.<br />
-      <u>- Population:</u> Colors towns depending on their amount of
-      residents.<br />
-      <u>- Claims:</u> Colors towns depending on their amount of chunks
-      claimed.<br />
+      <u>- Population:</u> Colors towns depending on their amount of residents.<br />
+      <u>- Claims:</u> Colors towns depending on their amount of chunks claimed.<br />
       <u>- PvP status:</u> Shows which towns have PvP enabled.<br />
       <u>- Density:</u> Colors towns depending on their population density.
-      <span onclick="howdense()" style="color: #3344ee"
-        >See how it is calculated</span
-      ><br />
+      <span onclick="howdense()" style="color: #3344ee">See how it is calculated</span><br />
       <u>- Nation Bonus:</u> Colors nations depending on their nation bonus.<br />
-      <u>- Nation Population:</u> Colors nations depending on their total
-      population.<br />
+      <u>- Nation Population:</u> Colors nations depending on their total population.<br />
       <u>- Tools:</u> Various tools for the map.<br />
       <span style="font-size: 90%"
-        ><a href="https://github.com/32Vache/emc-mapmodes" target="_blank"
-          >Source code on Github</a
-        >
+        ><a href="https://github.com/32Vache/emc-mapmodes" target="_blank">Source code on Github</a>
         • Version 2.5 • Mar. 2023 • </span
       ><img
         src="https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/ua.svg"
-        width="20px"
-      />
+        width="20px" />
       <span onclick="hideInfo()" id="hideBtn">Close</span>
     </div>
 
     <div id="densityInfo">
       <span style="font-size: 150%">Density Calculation</span>
       <p>
-        The density for each town is calculated depending on three factors: the
-        amount of chunks claimed, the amount of residents and the claim limit.
+        The density for each town is calculated depending on three factors: the amount of chunks
+        claimed, the amount of residents and the claim limit.
       </p>
       <p>The equation used:</p>
       <img
-        src="https://chart.apis.google.com/chart?cht=tx&chl=(residents%20*%208%20%2B%20nationbonus)%20-%20claims"
-      />
+        src="https://chart.apis.google.com/chart?cht=tx&chl=(residents%20*%208%20%2B%20nationbonus)%20-%20claims" />
       <p>
-        This returns the difference between the claim limit of the town and it's
-        claimed area, which can range from -932
-        <span style="font-size: 80%"
-          >(1 resident, no nation bonus and 940 claimed)</span
-        >
+        This returns the difference between the claim limit of the town and it's claimed area, which
+        can range from -932
+        <span style="font-size: 80%">(1 resident, no nation bonus and 940 claimed)</span>
         and +939
-        <span style="font-size: 80%"
-          >(max residents, max nation bonus and 1 claimed)</span
-        >.
+        <span style="font-size: 80%">(max residents, max nation bonus and 1 claimed)</span>.
       </p>
       <p>
-        This system considers a town that has a lot of chunks claimed but then
-        let its residents decay to be lowly dense, while a town that strifes to
-        keeping a good amount of residents to not end below claim limit, highly
-        dense.
+        This system considers a town that has a lot of chunks claimed but then let its residents
+        decay to be lowly dense, while a town that strifes to keeping a good amount of residents to
+        not end below claim limit, highly dense.
       </p>
       <span onclick="nodense()" id="hideBtn">Close</span>
     </div>
