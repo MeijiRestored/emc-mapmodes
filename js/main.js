@@ -106,7 +106,7 @@ var distIcon = L.icon({
 
 var current = "deft";
 
-$("#loadingText").html("Fetching map data<br /><br />");
+$("#loadingText").html("Fetching map data.<br />This way take a while...<br /><br />");
 $("#barContainer").html(
   '<div class="w3-light-grey" style="width: 200px; height: 18px"><div class="w3-container w3-indigo"style="width: 25%; height: 100%"></div>'
 );
@@ -130,6 +130,17 @@ fetch(
         '<div class="w3-light-grey" style="width: 200px; height: 18px"><div class="w3-container w3-indigo"style="width: 50%; height: 100%"></div>'
       );
 
+      // Check for bug towns
+      for (let k in markerTA["sets"]["townyPlugin.markerset"]["areas"]) {
+        var pop = markerTA["sets"]["townyPlugin.markerset"]["areas"][k]["desc"];
+        let desc_title = pop.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
+        if (desc_title[0].startsWith('<span style="font-size:120%"> (')) {
+          // Nameless town, nuke it off the map
+          delete markerTA["sets"]["townyPlugin.markerset"]["areas"][k];
+          console.log(`Omitted town area ${k} because it had an invalid name!`)
+        }
+      }
+
       // Build recolors
       // =============
       // Coloful mode
@@ -152,8 +163,6 @@ fetch(
           } else {
             names = desc_title[1].match(/(.+) \((.+|)\)/);
           }
-          console.log(desc_title);
-          console.log(names);
           if (names[2] == "") {
             names[2] = "Nationless";
             markerclf["sets"]["townyPlugin.markerset"]["areas"][i]["fillcolor"] = "#383838";
