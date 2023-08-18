@@ -52,7 +52,7 @@ var nationcolors = [
     color: "#952D66",
   },
   {
-    name: "turkey",
+    name: "ottomans",
     color: "#7ECB78",
   },
   {
@@ -113,7 +113,7 @@ var nationcolors = [
   },
   {
     name: "austria-hungary",
-    color: "#DCDCDC",
+    color: "#cfb172",
   },
   {
     name: "epirus",
@@ -730,5 +730,41 @@ var nationcolors = [
   {
     name: "texas",
     color: "#2829A2",
+  },
+  {
+    name: "occitania",
+    color: "#4dacd1",
+  },
+  {
+    name: "britannia",
+    color: "#5a187d",
+  },
+  {
+    name: "nordic",
+    color: "#1fff96",
+  },
+  {
+    name: "turkey",
+    color: "#3c8548",
+  },
+  {
+    name: "canada",
+    color: "#ed5f79",
+  },
+  {
+    name: "florida",
+    color: "#1aebeb",
+  },
+  {
+    name: "patagonia",
+    color: "#708a8a",
+  },
+  {
+    name: "savoie",
+    color: "#D3A59B",
+  },
+  {
+    name: "slovakia",
+    color: "#6f8187",
   },
 ];

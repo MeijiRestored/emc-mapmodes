@@ -106,7 +106,7 @@ var distIcon = L.icon({
 
 var current = "deft";
 
-$("#loadingText").html("Fetching map data.<br />This way take a while...<br /><br />");
+$("#loadingText").html("Fetching map data.<br />This may take a while...<br /><br />");
 $("#barContainer").html(
   '<div class="w3-light-grey" style="width: 200px; height: 18px"><div class="w3-container w3-indigo"style="width: 25%; height: 100%"></div>'
 );
