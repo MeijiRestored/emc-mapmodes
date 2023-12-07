@@ -56,7 +56,7 @@ function leafletConvert(dynMarker, layer) {
       ]);
     }
 
-    if (desc.includes("(Shop)") == true) {
+    if (desc.includes("(Shop)")) {
       // Destroy shop shapes.
     } else {
       mapdata[layer].addLayer(
@@ -85,35 +85,34 @@ var mapdata = {
   ttpop: L.layerGroup(),
 };
 
-var capitals = L.layerGroup();
-var capitalNames = L.layerGroup();
+var capitals = L.layerGroup(),
+  capitalNames = L.layerGroup();
 
-var distEnabled = false;
-var mapclicks = 0;
-var pt1 = L.marker();
-var pt2 = L.marker();
-var distLine = L.polyline([
-  [0, 0],
-  [0, 0],
-]);
-var locked = false;
-var distIcon = L.icon({
-  iconUrl: "https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/dist-point.png",
+var meurl =
+    "https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/standalone/MySQL_markers.php?marker=_markers_/marker_earth.json",
+  distEnabled = false,
+  mapclicks = 0,
+  t1 = L.marker(),
+  pt2 = L.marker(),
+  distLine = L.polyline([
+    [0, 0],
+    [0, 0],
+  ]),
+  locked = false,
+  distIcon = L.icon({
+    iconUrl: "https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/dist-point.png",
 
-  iconSize: [15, 15],
-  iconAnchor: [7, 7],
-});
-
-var current = "deft";
+    iconSize: [15, 15],
+    iconAnchor: [7, 7],
+  }),
+  current = "deft";
 
 $("#loadingText").html("Fetching map data.<br />This may take a while...<br /><br />");
 $("#barContainer").html(
   '<div class="w3-light-grey" style="width: 200px; height: 18px"><div class="w3-container w3-indigo"style="width: 25%; height: 100%"></div>'
 );
 
-fetch(
-  "https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/standalone/MySQL_markers.php?marker=_markers_/marker_earth.json"
-)
+fetch(meurl)
   .then((response) => response.json())
   .then((markerTA) => {
     if (markerTA.length < 2000) {
@@ -137,7 +136,7 @@ fetch(
         if (desc_title[0].startsWith('<span style="font-size:120%"> (')) {
           // Nameless town, nuke it off the map
           delete markerTA["sets"]["townyPlugin.markerset"]["areas"][k];
-          console.log(`Omitted town area ${k} because it had an invalid name!`)
+          console.log(`Omitted town area ${k} because it had an invalid name!`);
         }
       }
 
@@ -155,7 +154,7 @@ fetch(
         let desc_title = desc.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
         if (desc_title) {
           var names = [];
-          if (desc_title[1].includes("</a>") == true) {
+          if (desc_title[1].includes("</a>")) {
             names = desc_title[1].match(
               /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
@@ -169,7 +168,6 @@ fetch(
             markerclf["sets"]["townyPlugin.markerset"]["areas"][i]["color"] = "#121212";
           } else {
             // Generate random recolor for each nation
-            var randomcolor = "#696969";
             var nationid = 0;
             for (let k = 0; k < names[2].length; k++) {
               nationid += names[2].charCodeAt(k) * (k + 1);
@@ -210,7 +208,7 @@ fetch(
 
           if (desc_title) {
             var nation = [];
-            if (desc_title.includes("</a>") == true) {
+            if (desc_title.includes("</a>")) {
               nation = desc_title.match(/.+? \(<.+?>(.+?)<\/a>\)$/);
             } else {
               nation = desc_title.match(/.+? \((.+?)\)$/);
@@ -244,7 +242,7 @@ fetch(
       let poplist = {};
       for (let i in areaspop) {
         var pop = areaspop[i]["desc"];
-        if (pop.includes("(Shop)") == true) {
+        if (pop.includes("(Shop)")) {
           // Ignore all 'Shop' shapes
         } else {
           let desc_title = pop.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
@@ -259,29 +257,29 @@ fetch(
 
       for (let i in areaspop) {
         var pop = areaspop[i]["desc"];
-        if (pop.includes("(Shop)") == true) {
+        if (pop.includes("(Shop)")) {
           // Ignore all 'Shop' shapes
         } else {
           let desc_title = pop.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
           var mCount = poplist[desc_title][0];
 
           var popcolor = "#000000";
-          mCount >= 100 ? (popcolor = "#008800") : "";
-          mCount <= 99 ? (popcolor = "#00AA00") : "";
-          mCount <= 49 ? (popcolor = "#00CC00") : "";
-          mCount <= 42 ? (popcolor = "#00FF00") : "";
-          mCount <= 36 ? (popcolor = "#66FF00") : "";
-          mCount <= 28 ? (popcolor = "#99FF00") : "";
-          mCount <= 20 ? (popcolor = "#CCFF00") : "";
-          mCount <= 15 ? (popcolor = "#EEEE00") : "";
-          mCount <= 10 ? (popcolor = "#FFCC00") : "";
-          mCount <= 6 ? (popcolor = "#FF6600") : "";
-          mCount <= 4 ? (popcolor = "#FF2200") : "";
-          mCount == 2 ? (popcolor = "#EE0000") : "";
-          mCount == 1 ? (popcolor = "#CC0000") : "";
+          mCount >= 100 ? (popcolor = "#008800") : null;
+          mCount <= 99 ? (popcolor = "#00AA00") : null;
+          mCount <= 49 ? (popcolor = "#00CC00") : null;
+          mCount <= 42 ? (popcolor = "#00FF00") : null;
+          mCount <= 36 ? (popcolor = "#66FF00") : null;
+          mCount <= 28 ? (popcolor = "#99FF00") : null;
+          mCount <= 20 ? (popcolor = "#CCFF00") : null;
+          mCount <= 15 ? (popcolor = "#EEEE00") : null;
+          mCount <= 10 ? (popcolor = "#FFCC00") : null;
+          mCount <= 6 ? (popcolor = "#FF6600") : null;
+          mCount <= 4 ? (popcolor = "#FF2200") : null;
+          mCount == 2 ? (popcolor = "#EE0000") : null;
+          mCount == 1 ? (popcolor = "#CC0000") : null;
 
           var names = [];
-          if (desc_title[1].includes("</a>") == true) {
+          if (desc_title[1].includes("</a>")) {
             names = desc_title[1].match(
               /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
@@ -289,9 +287,7 @@ fetch(
           } else {
             names = desc_title[1].match(/(.+) \((.+|)\)/);
           }
-          if (names[2] == "") {
-            names[2] = "Nationless";
-          }
+          names[2] == "" ? "Nationless" : null;
 
           var infos = pop.match(
             /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
@@ -325,7 +321,7 @@ fetch(
       let arealist = {};
       for (let i in areasclaim) {
         var pop = areasclaim[i]["desc"];
-        if (pop.includes("(Shop)") == true) {
+        if (pop.includes("(Shop)")) {
           // Ignore all 'Shop' shapes
         } else {
           let desc_title = pop.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
@@ -346,7 +342,7 @@ fetch(
 
       for (let i in areasclaim) {
         var pop = areasclaim[i]["desc"];
-        if (pop.includes("(Shop)") == true) {
+        if (pop.includes("(Shop)")) {
           // Ignore all 'Shop' shapes
         } else {
           let desc_title = pop.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
@@ -354,21 +350,21 @@ fetch(
           let area = arealist[desc_title];
 
           var areacolor = "#000000";
-          area >= 940 ? (areacolor = "#008800") : "";
-          area <= 939 ? (areacolor = "#00AA00") : "";
-          area <= 768 ? (areacolor = "#00FF00") : "";
-          area <= 640 ? (areacolor = "#66FF00") : "";
-          area <= 512 ? (areacolor = "#99FF00") : "";
-          area <= 384 ? (areacolor = "#CCFF00") : "";
-          area <= 256 ? (areacolor = "#EEEE00") : "";
-          area <= 128 ? (areacolor = "#FFCC00") : "";
-          area <= 64 ? (areacolor = "#FF6600") : "";
-          area <= 32 ? (areacolor = "#FF2200") : "";
-          area <= 16 ? (areacolor = "#EE0000") : "";
-          area == 1 ? (areacolor = "#CC0000") : "";
+          area >= 940 ? (areacolor = "#008800") : null;
+          area <= 939 ? (areacolor = "#00AA00") : null;
+          area <= 768 ? (areacolor = "#00FF00") : null;
+          area <= 640 ? (areacolor = "#66FF00") : null;
+          area <= 512 ? (areacolor = "#99FF00") : null;
+          area <= 384 ? (areacolor = "#CCFF00") : null;
+          area <= 256 ? (areacolor = "#EEEE00") : null;
+          area <= 128 ? (areacolor = "#FFCC00") : null;
+          area <= 64 ? (areacolor = "#FF6600") : null;
+          area <= 32 ? (areacolor = "#FF2200") : null;
+          area <= 16 ? (areacolor = "#EE0000") : null;
+          area == 1 ? (areacolor = "#CC0000") : null;
 
           var names = [];
-          if (desc_title[1].includes("</a>") == true) {
+          if (desc_title[1].includes("</a>")) {
             names = desc_title[1].match(
               /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
@@ -376,10 +372,7 @@ fetch(
           } else {
             names = desc_title[1].match(/(.+) \((.+|)\)/);
           }
-          if (names[2] == "") {
-            names[2] = "Nationless";
-          }
-
+          names[2] == "" ? "Nationless" : null;
           var infos = pop.match(
             /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
           );
@@ -412,17 +405,17 @@ fetch(
       // First figure population for every nation
       for (let i in areasnb) {
         var pop = areasnb[i]["desc"];
-        if (pop.includes("(Shop)") == true) {
+        if (pop.includes("(Shop)")) {
           // Ignore all 'Shop' shapes
         } else {
           let desc_title = pop.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
           var mCount = 0;
-          if (poplist[desc_title][1] == false) {
+          if (!poplist[desc_title][1]) {
             mCount = poplist[desc_title][0];
             poplist[desc_title][1] = true;
           }
           var nation = [];
-          if (desc_title.includes("</a>") == true) {
+          if (desc_title.includes("</a>")) {
             nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
           } else {
             nation = desc_title[1].match(/.+? \((.+?)\)$/);
@@ -442,12 +435,12 @@ fetch(
 
       for (let i in areasnb) {
         var pop = areasnb[i]["desc"];
-        if (pop.includes("(Shop)") == true) {
+        if (pop.includes("(Shop)")) {
           // Ignore all 'Shop' shapes
         } else {
           let desc_title = pop.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
           var nation = [];
-          if (desc_title.includes("</a>") == true) {
+          if (desc_title.includes("</a>")) {
             nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
           } else {
             nation = desc_title[1].match(/.+? \((.+?)\)$/);
@@ -459,23 +452,23 @@ fetch(
             nbcolor = "#000000";
           } else {
             let popul = nationpop[nation[1]];
-            popul >= 120 ? (nbcolor = "#00BBEE") : "";
-            popul <= 119 ? (nbcolor = "#009900") : "";
-            popul <= 89 ? (nbcolor = "#55CC00") : "";
-            popul <= 59 ? (nbcolor = "#FFCC00") : "";
-            popul <= 39 ? (nbcolor = "#FF3300") : "";
-            popul <= 19 ? (nbcolor = "#000000") : "";
+            popul >= 120 ? (nbcolor = "#00BBEE") : null;
+            popul <= 119 ? (nbcolor = "#009900") : null;
+            popul <= 89 ? (nbcolor = "#55CC00") : null;
+            popul <= 59 ? (nbcolor = "#FFCC00") : null;
+            popul <= 39 ? (nbcolor = "#FF3300") : null;
+            popul <= 19 ? (nbcolor = "#000000") : null;
 
-            popul >= 120 ? (nbo = 80) : "";
-            popul <= 119 ? (nbo = 60) : "";
-            popul <= 89 ? (nbo = 50) : "";
-            popul <= 59 ? (nbo = 30) : "";
-            popul <= 39 ? (nbo = 10) : "";
-            popul <= 19 ? (nbo = 0) : "";
+            popul >= 120 ? (nbo = 80) : null;
+            popul <= 119 ? (nbo = 60) : null;
+            popul <= 89 ? (nbo = 50) : null;
+            popul <= 59 ? (nbo = 30) : null;
+            popul <= 39 ? (nbo = 10) : null;
+            popul <= 19 ? (nbo = 0) : null;
           }
 
           var names = [];
-          if (desc_title[1].includes("</a>") == true) {
+          if (desc_title[1].includes("</a>")) {
             names = desc_title[1].match(
               /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
@@ -483,9 +476,7 @@ fetch(
           } else {
             names = desc_title[1].match(/(.+) \((.+|)\)/);
           }
-          if (names[2] == "") {
-            names[2] = "Nationless";
-          }
+          names[2] == "" ? "Nationless" : null;
 
           var infos = pop.match(
             /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
@@ -518,12 +509,12 @@ fetch(
 
       for (let i in areasttpop) {
         var pop = areasttpop[i]["desc"];
-        if (pop.includes("(Shop)") == true) {
+        if (pop.includes("(Shop)")) {
           // Ignore all 'Shop' shapes
         } else {
           let desc_title = pop.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
           var nation = [];
-          if (desc_title.includes("</a>") == true) {
+          if (desc_title.includes("</a>")) {
             nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
           } else {
             nation = desc_title[1].match(/.+? \((.+?)\)$/);
@@ -534,22 +525,22 @@ fetch(
             ttpopcolor = "#E1DFCE";
           } else {
             let popul = nationpop[nation[1]];
-            popul > 400 ? (ttpopcolor = "#51A96D") : "";
-            popul <= 400 ? (ttpopcolor = "#5EA462") : "";
-            popul <= 300 ? (ttpopcolor = "#7EB266") : "";
-            popul <= 200 ? (ttpopcolor = "#A4BB59") : "";
-            popul <= 160 ? (ttpopcolor = "#A9C065") : "";
-            popul <= 120 ? (ttpopcolor = "#B7C76D") : "";
-            popul <= 75 ? (ttpopcolor = "#C0CD77") : "";
-            popul <= 50 ? (ttpopcolor = "#CCD392") : "";
-            popul <= 30 ? (ttpopcolor = "#D3D6A1") : "";
-            popul <= 20 ? (ttpopcolor = "#D7D9A8") : "";
-            popul <= 10 ? (ttpopcolor = "#DEDEBC") : "";
-            popul <= 3 ? (ttpopcolor = "#E1DFCE") : "";
+            popul > 400 ? (ttpopcolor = "#51A96D") : null;
+            popul <= 400 ? (ttpopcolor = "#5EA462") : null;
+            popul <= 300 ? (ttpopcolor = "#7EB266") : null;
+            popul <= 200 ? (ttpopcolor = "#A4BB59") : null;
+            popul <= 160 ? (ttpopcolor = "#A9C065") : null;
+            popul <= 120 ? (ttpopcolor = "#B7C76D") : null;
+            popul <= 75 ? (ttpopcolor = "#C0CD77") : null;
+            popul <= 50 ? (ttpopcolor = "#CCD392") : null;
+            popul <= 30 ? (ttpopcolor = "#D3D6A1") : null;
+            popul <= 20 ? (ttpopcolor = "#D7D9A8") : null;
+            popul <= 10 ? (ttpopcolor = "#DEDEBC") : null;
+            popul <= 3 ? (ttpopcolor = "#E1DFCE") : null;
           }
 
           var names = [];
-          if (desc_title[1].includes("</a>") == true) {
+          if (desc_title[1].includes("</a>")) {
             names = desc_title[1].match(
               /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
@@ -557,9 +548,7 @@ fetch(
           } else {
             names = desc_title[1].match(/(.+) \((.+|)\)/);
           }
-          if (names[2] == "") {
-            names[2] = "Nationless";
-          }
+          names[2] == "" ? "Nationless" : null;
 
           var infos = pop.match(
             /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
@@ -610,7 +599,7 @@ fetch(
         let desc_title = pop.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
 
         var names = [];
-        if (desc_title[1].includes("</a>") == true) {
+        if (desc_title[1].includes("</a>")) {
           names = desc_title[1].match(
             /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
           );
@@ -649,7 +638,7 @@ fetch(
       var areasden = markerden["sets"]["townyPlugin.markerset"]["areas"];
       for (let i in areasden) {
         var pop = areasden[i]["desc"];
-        if (pop.includes("(Shop)") == true) {
+        if (pop.includes("(Shop)")) {
           // Ignore all 'Shop' shapes
         } else {
           let desc_title = pop.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
@@ -659,7 +648,7 @@ fetch(
           let area = arealist[desc_title];
 
           var nation = [];
-          if (desc_title.includes("</a>") == true) {
+          if (desc_title.includes("</a>")) {
             nation = desc_title[1].match(/.+? \(<.+?>(.+?)<\/a>\)$/);
           } else {
             nation = desc_title[1].match(/.+? \((.+?)\)$/);
@@ -670,12 +659,12 @@ fetch(
             nbonus = 0;
           } else {
             let popul = nationpop[nation[1]];
-            popul >= 120 ? (nbonus = 80) : "";
-            popul <= 119 ? (nbonus = 60) : "";
-            popul <= 89 ? (nbonus = 50) : "";
-            popul <= 59 ? (nbonus = 30) : "";
-            popul <= 39 ? (nbonus = 10) : "";
-            popul <= 9 ? (nbonus = 0) : "";
+            popul >= 120 ? (nbonus = 80) : null;
+            popul <= 119 ? (nbonus = 60) : null;
+            popul <= 89 ? (nbonus = 50) : null;
+            popul <= 59 ? (nbonus = 30) : null;
+            popul <= 39 ? (nbonus = 10) : null;
+            popul <= 9 ? (nbonus = 0) : null;
           }
 
           // We define density as the difference between a town's claim limit and its claimed size.
@@ -688,28 +677,28 @@ fetch(
           let density = claimlimit - area;
 
           var dencolor = "#000000";
-          density >= 512 ? (dencolor = "#007700") : "";
-          density <= 511 ? (dencolor = "#008800") : "";
-          density <= 384 ? (dencolor = "#00AA00") : "";
-          density <= 256 ? (dencolor = "#00CC00") : "";
-          density <= 128 ? (dencolor = "#00FF00") : "";
-          density <= 64 ? (dencolor = "#66FF00") : "";
-          density <= 48 ? (dencolor = "#99FF00") : "";
-          density <= 32 ? (dencolor = "#CCFF00") : "";
-          density <= 16 ? (dencolor = "#EEEE00") : "";
-          density == 0 ? (dencolor = "#FFEE00") : "";
-          density <= -1 ? (dencolor = "#FFCC00") : "";
-          density <= -16 ? (dencolor = "#FF9900") : "";
-          density <= -32 ? (dencolor = "#FF6600") : "";
-          density <= -48 ? (dencolor = "#FF3300") : "";
-          density <= -64 ? (dencolor = "#FF0000") : "";
-          density <= -128 ? (dencolor = "#CC0000") : "";
-          density <= -256 ? (dencolor = "#990000") : "";
-          density <= -384 ? (dencolor = "#660000") : "";
-          density <= -512 ? (dencolor = "#550000") : "";
+          density >= 512 ? (dencolor = "#007700") : null;
+          density <= 511 ? (dencolor = "#008800") : null;
+          density <= 384 ? (dencolor = "#00AA00") : null;
+          density <= 256 ? (dencolor = "#00CC00") : null;
+          density <= 128 ? (dencolor = "#00FF00") : null;
+          density <= 64 ? (dencolor = "#66FF00") : null;
+          density <= 48 ? (dencolor = "#99FF00") : null;
+          density <= 32 ? (dencolor = "#CCFF00") : null;
+          density <= 16 ? (dencolor = "#EEEE00") : null;
+          density == 0 ? (dencolor = "#FFEE00") : null;
+          density <= -1 ? (dencolor = "#FFCC00") : null;
+          density <= -16 ? (dencolor = "#FF9900") : null;
+          density <= -32 ? (dencolor = "#FF6600") : null;
+          density <= -48 ? (dencolor = "#FF3300") : null;
+          density <= -64 ? (dencolor = "#FF0000") : null;
+          density <= -128 ? (dencolor = "#CC0000") : null;
+          density <= -256 ? (dencolor = "#990000") : null;
+          density <= -384 ? (dencolor = "#660000") : null;
+          density <= -512 ? (dencolor = "#550000") : null;
 
           var names = [];
-          if (desc_title[1].includes("</a>") == true) {
+          if (desc_title[1].includes("</a>")) {
             names = desc_title[1].match(
               /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
             );
@@ -717,9 +706,7 @@ fetch(
           } else {
             names = desc_title[1].match(/(.+) \((.+|)\)/);
           }
-          if (names[2] == "") {
-            names[2] = "Nationless";
-          }
+          names[2] == "" ? "Nationless" : null;
 
           var infos = pop.match(
             /Mayor <.+?>(.+?)?<\/span>.+Members <.+?>(.+?)?<\/span>.+capital: (.+?)<\/span>/
@@ -736,7 +723,7 @@ fetch(
                 " BELOW CLAIM LIMIT (HAS " +
                 (density - (940 - area)).toString() +
                 " OVER 940)")
-            : 0;
+            : null;
 
           pop = `<span style="font-size:130%">${infos[3] == "true" ? "★ " + names[1] : names[1]}, ${
             names[2][0]
@@ -757,10 +744,8 @@ fetch(
 
       // Convert the dynmap data to vanilla leaflet markers
       // Capital icons
-
       var capIcon = L.icon({
         iconUrl: "https://raw.githubusercontent.com/32Vache/emc-mapmodes/main/assets/capital.png",
-
         iconSize: [15, 15],
         iconAnchor: [7, 7],
       });
@@ -778,7 +763,6 @@ fetch(
       }
 
       // Capital names
-
       for (let i in markerTA["sets"]["townyPlugin.markerset"]["markers"]) {
         capitalNames.addLayer(
           L.marker(
@@ -820,7 +804,7 @@ fetch(
         var desc = deftareas[i]["desc"];
         let desc_title = desc.match(/<span style=\"font-size:120%\">(.+?)<\/span>/);
         var names = [];
-        if (desc_title[1].includes("</a>") == true) {
+        if (desc_title[1].includes("</a>")) {
           names = desc_title[1].match(
             /(?:<a href=.+?>|)(.+?)(?:<\/a>|) \((?:<a href="(.+?)" .+?>|)(.+?|)(?:<\/a>|)\)/
           );
@@ -855,7 +839,7 @@ fetch(
           ]);
         }
 
-        if (desc.includes("(Shop)") == true) {
+        if (desc.includes("(Shop)")) {
           // Keep shop shapes for default mode
           mapdata["deft"].addLayer(
             L.polygon(coordArray, {
@@ -944,7 +928,7 @@ function hideTools() {
 }
 
 function loadmode(mode) {
-  if (locked == false) {
+  if (!locked) {
     if (current === "blank") {
     } else {
       mapdata[current].removeFrom(emcmap);
@@ -1009,9 +993,7 @@ function loadmode(mode) {
 
 function loadTownless() {
   $(".townlessBtn").css("background-color", "#ff8811");
-  fetch(
-    "https://sus-9jn4.onrender.com/https://earthmc.net/map/aurora/standalone/MySQL_markers.php?marker=_markers_/marker_earth.json"
-  )
+  fetch(meurl)
     .then((response) => response.json())
     .then((marker) => {
       fetch(
@@ -1022,9 +1004,9 @@ function loadTownless() {
           var townlesses = [];
           for (i in update["players"]) {
             if (
-              JSON.stringify(marker["sets"]["townyPlugin.markerset"]["areas"]).includes(
+              !JSON.stringify(marker["sets"]["townyPlugin.markerset"]["areas"]).includes(
                 update["players"][i]["name"]
-              ) == false
+              )
             ) {
               townlesses.push(update["players"][i]["name"]);
             }
@@ -1075,7 +1057,7 @@ function disableDist() {
 }
 
 function onMapClick(e) {
-  if (distEnabled == true) {
+  if (distEnabled) {
     if (mapclicks == 0) {
       mapclicks += 1;
       pt1
