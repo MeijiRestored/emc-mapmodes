@@ -670,7 +670,7 @@ fetch(meurl)
           // We define density as the difference between a town's claim limit and its claimed size.
           // A large town with few residents would be very low under claim limit and thus have low density, for example.
           var over940 = false;
-          var claimlimit = mCount * 8 + nbonus;
+          var claimlimit = mCount * 16 + nbonus;
           if (claimlimit > 940) {
             over940 = true;
           }
