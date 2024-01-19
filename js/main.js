@@ -452,14 +452,16 @@ fetch(meurl)
             nbcolor = "#000000";
           } else {
             let popul = nationpop[nation[1]];
-            popul >= 120 ? (nbcolor = "#00BBEE") : null;
+            popul >= 200 ? (nbcolor = "#282CA6") : null;
+            popul <= 199 ? (nbcolor = "#00BBEE") : null;
             popul <= 119 ? (nbcolor = "#009900") : null;
             popul <= 89 ? (nbcolor = "#55CC00") : null;
             popul <= 59 ? (nbcolor = "#FFCC00") : null;
             popul <= 39 ? (nbcolor = "#FF3300") : null;
             popul <= 19 ? (nbcolor = "#000000") : null;
 
-            popul >= 120 ? (nbo = 80) : null;
+            popul >= 200 ? (nbo = 100) : null;
+            popul <= 199 ? (nbo = 80) : null;
             popul <= 119 ? (nbo = 60) : null;
             popul <= 89 ? (nbo = 50) : null;
             popul <= 59 ? (nbo = 30) : null;
@@ -659,7 +661,8 @@ fetch(meurl)
             nbonus = 0;
           } else {
             let popul = nationpop[nation[1]];
-            popul >= 120 ? (nbonus = 80) : null;
+            popul >= 200 ? (nbonus = 100) : null;
+            popul <= 199 ? (nbonus = 80) : null;
             popul <= 119 ? (nbonus = 60) : null;
             popul <= 89 ? (nbonus = 50) : null;
             popul <= 59 ? (nbonus = 30) : null;
@@ -974,7 +977,7 @@ function loadmode(mode) {
       case "nb":
         mapdata["nb"].addTo(emcmap);
         $("#legend").html(
-          '<span style="left: 4%; position: absolute;">0</span><span style="left: 24%; position: absolute;">10</span><span style="left: 40%; position: absolute;">30</span><span style="left: 56%; position: absolute;">50</span><span style="left: 72%; position: absolute;">60</span><span style="right: 4%; position: absolute;">80</span><div class="gradBox"><div class="nbGrad"></div></div>'
+          '<span style="left: 4%; position: absolute;">0</span><span style="left: 24%; position: absolute;">10</span><span style="left: 40%; position: absolute;">30</span><span style="left: 56%; position: absolute;">50</span><span style="left: 68%; position: absolute;">60</span><span style="right: 16%; position: absolute;">80</span><span style="right: 4%; position: absolute;">100</span><div class="gradBox"><div class="nbGrad"></div></div>'
         );
         $("#legend").fadeIn(300);
         break;
