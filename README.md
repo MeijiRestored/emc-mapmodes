@@ -1,3 +1,7 @@
+# Deprecated
+
+With EarthMC ditching Dynmap in favor of a newer plugin, this website is now useless. It will not be updated for the newer plugin.
+
 # EMC Mapmodes
 
 ![Release](https://img.shields.io/github/v/release/MeijiRestored/emc-mapmodes) ![Commit activity](https://img.shields.io/github/commit-activity/m/MeijiRestored/emc-mapmodes) ![Repo size](https://img.shields.io/github/repo-size/MeijiRestored/emc-mapmodes) <img src="https://raw.githubusercontent.com/MeijiRestored/emc-mapmodes/main/assets/ua.svg" width="20px">
